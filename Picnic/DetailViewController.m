@@ -52,7 +52,8 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+        self.detailDescriptionLabel.text = [self.detailItem name];
+        self.title = [self.detailItem name];
     }
 }
 
@@ -112,7 +113,7 @@
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc
 {
-    barButtonItem.title = @"Master";
+    barButtonItem.title = @"Venues";
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
