@@ -11,6 +11,7 @@
 @class DetailViewController;
 
 #import <CoreData/CoreData.h>
+#import "SessionCell.h"
 
 @interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 

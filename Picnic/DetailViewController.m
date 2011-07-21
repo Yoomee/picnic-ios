@@ -70,6 +70,7 @@
         NSString *dateString2 = [dateFormatter stringFromDate:[self.detailItem valueForKey:@"endsAt"]];
         NSString *dateString = [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
         self.sessionTime.text = dateString;
+
         
     }
 }
