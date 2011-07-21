@@ -152,6 +152,15 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
+
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic"      ofType:@"sqlite"];
+    if (defaultStorePath) {
+        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+    }
+    
     
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
