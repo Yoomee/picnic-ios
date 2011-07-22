@@ -18,7 +18,7 @@
 @implementation DetailViewController
 
 @synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize sessionName = _sessionName;
 @synthesize toolbar = _toolbar;
 @synthesize venueName = _venueName;
 @synthesize sessionText = _sessionText;
@@ -57,7 +57,7 @@
     if (self.detailItem) {
         
         
-        self.detailDescriptionLabel.text = [self.detailItem valueForKey:@"name"];
+        self.sessionName.text = [self.detailItem valueForKey:@"name"];
         self.title = [self.detailItem valueForKey:@"name"];
         
         self.venueName.text = [[self.detailItem valueForKey:@"venue"] name];
@@ -70,7 +70,7 @@
         NSString *dateString2 = [dateFormatter stringFromDate:[self.detailItem valueForKey:@"endsAt"]];
         NSString *dateString = [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
         self.sessionTime.text = dateString;
-
+        [self.navigationItem setTitle:@""];
         
     }
 }
