@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConferenceSession.h"
+#import "Venue.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate> {
     UILabel *_venueName;
@@ -14,7 +16,7 @@
     UILabel *_sessionTime;
 }
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) ConferenceSession *conferenceSession;
 
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 

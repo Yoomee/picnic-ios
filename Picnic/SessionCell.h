@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConferenceSession.h"
+#import "Venue.h"
 
 @interface SessionCell : UITableViewCell {
     UILabel *sessionName;
@@ -14,13 +16,12 @@
     UILabel *sessionTime;
 }
 
-@property (nonatomic, strong) NSManagedObject *sessionItem;
+@property (nonatomic, strong) ConferenceSession *conferenceSession;
 
 @property (nonatomic, strong) IBOutlet UILabel *sessionName;
 @property (nonatomic, strong) IBOutlet UILabel *venueName;
 @property (nonatomic, strong) IBOutlet UILabel *sessionTime;
 
-- (void)setSessionItem:(id)newSessionItem;
 - (void)configureView;
 
 @end

@@ -13,7 +13,7 @@
 @synthesize venueName;
 @synthesize sessionTime;
 
-@synthesize sessionItem = _sessionItem;
+@synthesize conferenceSession = _conferenceSession;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -37,9 +37,9 @@
     //Get the CGContext from this view
     CGContextRef context = UIGraphicsGetCurrentContext();
     //Draw a rectangle
-    float colorR = [[self.sessionItem valueForKey:@"colorR"] floatValue];
-    float colorG = [[self.sessionItem valueForKey:@"colorG"] floatValue];
-    float colorB = [[self.sessionItem valueForKey:@"colorB"] floatValue];
+    float colorR = [self.conferenceSession.colorR floatValue];
+    float colorB = [self.conferenceSession.colorB floatValue];
+    float colorG = [self.conferenceSession.colorG floatValue];
     UIColor *color = [UIColor colorWithRed:colorR green:colorG blue:colorB alpha:1.0];
     
     CGContextSetFillColorWithColor(context, color.CGColor);
@@ -49,10 +49,10 @@
     CGContextFillPath(context);
 }
 
-- (void)setSessionItem:(NSManagedObject *)newSessionItem
+- (void)setConferenceSession:(ConferenceSession *)newConferenceSession
 {
-    if (_sessionItem != newSessionItem) {
-        _sessionItem = newSessionItem;
+    if (_conferenceSession != newConferenceSession) {
+        _conferenceSession = newConferenceSession;
         
         // Update the view.
         [self configureView];
@@ -63,18 +63,10 @@
 {
     // Update the user interface for the detail item.
     
-    if (self.sessionItem) {        
-        self.sessionName.text = [self.sessionItem valueForKey:@"name"];
-        self.venueName.text = [[self.sessionItem valueForKey:@"venue"] name];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-        [dateFormatter setDateFormat:@"hh:mm"];
-        NSString *dateString1 = [dateFormatter stringFromDate:[self.sessionItem valueForKey:@"startsAt"]];
-        [dateFormatter setDateFormat:@"hh:mm"];
-        NSString *dateString2 = [dateFormatter stringFromDate:[self.sessionItem valueForKey:@"endsAt"]];
-        NSString *dateString = [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
-        self.sessionTime.text = dateString;
-        
+    if (self.conferenceSession) {        
+        self.sessionName.text = [self.conferenceSession name];
+        self.venueName.text = [self.conferenceSession.venue name];
+        self.sessionTime.text = [self.conferenceSession timeString];
     }
 }
 

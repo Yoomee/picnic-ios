@@ -32,6 +32,8 @@
 		5B5CFF6A13D720110080184E /* PicnicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6913D720110080184E /* PicnicTests.m */; };
 		5B5CFF7413D7219E0080184E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */; };
 		5B5CFF7613D721A30080184E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */; };
+		5B6A025A13D9C2400057F10A /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A025913D9C2400057F10A /* ConferenceSession.m */; };
+		5B6A026413D9C3040057F10A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A026313D9C3040057F10A /* Venue.m */; };
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
 		5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBF013D888B000317CD8 /* app_icon_72.png */; };
@@ -77,6 +79,10 @@
 		5B5CFF6913D720110080184E /* PicnicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicTests.m; sourceTree = "<group>"; };
 		5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		5B6A025813D9C2400057F10A /* ConferenceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceSession.h; sourceTree = "<group>"; };
+		5B6A025913D9C2400057F10A /* ConferenceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceSession.m; sourceTree = "<group>"; };
+		5B6A026213D9C3040057F10A /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		5B6A026313D9C3040057F10A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		5B94CBEA13D869FA00317CD8 /* SessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCell.h; sourceTree = "<group>"; };
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
 		5B94CBEE13D86A4600317CD8 /* SessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
@@ -114,10 +120,12 @@
 		5B5CFF1A13D720100080184E = {
 			isa = PBXGroup;
 			children = (
-				5B5CFF7913D721EC0080184E /* Classes */,
+				5B6A025C13D9C2520057F10A /* Models */,
+				5B6A025D13D9C2870057F10A /* Controllers */,
 				5B5CFF7813D721D80080184E /* Views */,
-				5B5CFF3213D720100080184E /* Supporting Files */,
 				5B5CFF3113D720100080184E /* Data */,
+				5B5CFF7713D721B50080184E /* Images */,
+				5B5CFF3213D720100080184E /* Supporting Files */,
 				5B5CFF6113D720110080184E /* PicnicTests */,
 				5B5CFF2813D720100080184E /* Frameworks */,
 				5B5CFF2613D720100080184E /* Products */,
@@ -194,7 +202,6 @@
 				5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */,
 			);
 			name = Images;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		5B5CFF7813D721D80080184E /* Views */ = {
@@ -202,7 +209,6 @@
 			children = (
 				5B5CFF4713D720100080184E /* RootViewController_iPhone.xib */,
 				5B5CFF4A13D720100080184E /* RootViewController_iPad.xib */,
-				5B5CFF7713D721B50080184E /* Images */,
 				5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */,
 				5B5CFF5013D720100080184E /* DetailViewController_iPad.xib */,
 				5B94CBEE13D86A4600317CD8 /* SessionCell.xib */,
@@ -211,19 +217,31 @@
 			path = Picnic;
 			sourceTree = "<group>";
 		};
-		5B5CFF7913D721EC0080184E /* Classes */ = {
+		5B6A025C13D9C2520057F10A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5B5CFF3A13D720100080184E /* PicnicAppDelegate.h */,
 				5B5CFF3B13D720100080184E /* PicnicAppDelegate.m */,
+				5B6A025813D9C2400057F10A /* ConferenceSession.h */,
+				5B6A025913D9C2400057F10A /* ConferenceSession.m */,
+				5B94CBEA13D869FA00317CD8 /* SessionCell.h */,
+				5B94CBEB13D869FA00317CD8 /* SessionCell.m */,
+				5B6A026213D9C3040057F10A /* Venue.h */,
+				5B6A026313D9C3040057F10A /* Venue.m */,
+			);
+			name = Models;
+			path = Picnic;
+			sourceTree = "<group>";
+		};
+		5B6A025D13D9C2870057F10A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				5B5CFF4013D720100080184E /* RootViewController.h */,
 				5B5CFF4113D720100080184E /* RootViewController.m */,
 				5B5CFF4313D720100080184E /* DetailViewController.h */,
 				5B5CFF4513D720100080184E /* DetailViewController.m */,
-				5B94CBEA13D869FA00317CD8 /* SessionCell.h */,
-				5B94CBEB13D869FA00317CD8 /* SessionCell.m */,
 			);
-			name = Classes;
+			name = Controllers;
 			path = Picnic;
 			sourceTree = "<group>";
 		};
@@ -349,6 +367,8 @@
 				5B5CFF4213D720100080184E /* RootViewController.m in Sources */,
 				5B5CFF4613D720100080184E /* DetailViewController.m in Sources */,
 				5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */,
+				5B6A025A13D9C2400057F10A /* ConferenceSession.m in Sources */,
+				5B6A026413D9C3040057F10A /* Venue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

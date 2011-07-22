@@ -137,15 +137,15 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
-        NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        detailViewController.detailItem = selectedObject;    
+        ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        detailViewController.conferenceSession = selectedConferenceSession;    
         [self.navigationItem.backBarButtonItem setTitle:@"Back"];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = backButton;
         [self.navigationController pushViewController:detailViewController animated:YES];
     } else {
-        NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = selectedObject;    
+        ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        self.detailViewController.conferenceSession = conferenceSession;    
     }
 }
 
@@ -261,15 +261,14 @@
 
 - (void)configureCell:(SessionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];    
-    cell.sessionItem = managedObject;
-    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController detailItem] == nil)) {
+    ConferenceSession *conferenceSession = [self.fetchedResultsController objectAtIndexPath:indexPath];    
+    cell.conferenceSession = conferenceSession;
+    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController conferenceSession] == nil)) {
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 
 }
-
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
     self.currentDay = [sender selectedSegmentIndex] + 1;
@@ -285,9 +284,8 @@
     }
     self.fetchedResultsController = nil;
     [tableView reloadData];
-    int selectedSessionDay = [[[self.detailViewController detailItem] valueForKey:@"day"] intValue];
-    if (selectedSessionDay == self.currentDay) {
-        NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController detailItem]];
+    if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {
+        NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController conferenceSession]];
         [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition: UITableViewScrollPositionMiddle];
     } else {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];

@@ -17,7 +17,7 @@
 
 @implementation DetailViewController
 
-@synthesize detailItem = _detailItem;
+@synthesize conferenceSession = _conferenceSession;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
 @synthesize toolbar = _toolbar;
 @synthesize venueName = _venueName;
@@ -36,10 +36,10 @@
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setConferenceSession:(ConferenceSession *)newConferenceSession
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (_conferenceSession != newConferenceSession) {
+        _conferenceSession = newConferenceSession;
         
         // Update the view.
         [self configureView];
@@ -54,22 +54,14 @@
 {
     // Update the user interface for the detail item.
 
-    if (self.detailItem) {
+    if (self.conferenceSession) {
         
         
-        self.detailDescriptionLabel.text = [self.detailItem valueForKey:@"name"];
-        self.title = [self.detailItem valueForKey:@"name"];
-        
-        self.venueName.text = [[self.detailItem valueForKey:@"venue"] name];
-        self.sessionText.text = [self.detailItem valueForKey:@"text"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-        [dateFormatter setDateFormat:@"dd MMM hh:mm"];
-        NSString *dateString1 = [dateFormatter stringFromDate:[self.detailItem valueForKey:@"startsAt"]];
-        [dateFormatter setDateFormat:@"hh:mm"];
-        NSString *dateString2 = [dateFormatter stringFromDate:[self.detailItem valueForKey:@"endsAt"]];
-        NSString *dateString = [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
-        self.sessionTime.text = dateString;
+        self.detailDescriptionLabel.text = [self.conferenceSession name];
+        self.title = [self.conferenceSession name];
+        self.venueName.text = [[self.conferenceSession venue] name];
+        self.sessionText.text = [self.conferenceSession text];
+        self.sessionTime.text = [self.conferenceSession dateString];
 
         
     }
