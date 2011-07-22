@@ -103,6 +103,15 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    // Display text
+    UIAlertView *alertView;
+    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"YEAH!" otherButtonTitles:nil];
+    [alertView show];    
+    return YES;
+}
+
 #pragma mark - Core Data stack
 
 /**
@@ -156,7 +165,7 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic"      ofType:@"sqlite"];
+    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
     if (defaultStorePath) {
         [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
     }

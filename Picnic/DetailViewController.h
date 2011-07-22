@@ -10,7 +10,7 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate> {
     UILabel *_venueName;
-    UILabel *_sessionText;
+    UITextView *_sessionText;
     UILabel *_sessionTime;
 }
 
@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UILabel *venueName;
-@property (nonatomic, strong) IBOutlet UILabel *sessionText;
+@property (nonatomic, strong) IBOutlet UITextView *sessionText;
 @property (nonatomic, strong) IBOutlet UILabel *sessionTime;
 
 @end
