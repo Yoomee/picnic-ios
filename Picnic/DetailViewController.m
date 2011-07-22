@@ -55,13 +55,13 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
+        
+        
         self.detailDescriptionLabel.text = [self.detailItem valueForKey:@"name"];
         self.title = [self.detailItem valueForKey:@"name"];
+        
         self.venueName.text = [[self.detailItem valueForKey:@"venue"] name];
         self.sessionText.text = [self.detailItem valueForKey:@"text"];
-        
-//        NSLog(@"startsAt : %@", [[self.detailItem valueForKey:@"startsAt"] description]);
-        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
         [dateFormatter setDateFormat:@"dd MMM hh:mm"];

@@ -49,7 +49,7 @@
     CGContextFillPath(context);
 }
 
-- (void)setSessionItem:(id)newSessionItem
+- (void)setSessionItem:(NSManagedObject *)newSessionItem
 {
     if (_sessionItem != newSessionItem) {
         _sessionItem = newSessionItem;

@@ -139,6 +139,9 @@
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
         NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         detailViewController.detailItem = selectedObject;    
+        [self.navigationItem.backBarButtonItem setTitle:@"Back"];
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backButton;
         [self.navigationController pushViewController:detailViewController animated:YES];
     } else {
         NSManagedObject *selectedObject = [[self fetchedResultsController] objectAtIndexPath:indexPath];
@@ -260,7 +263,7 @@
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];    
     cell.sessionItem = managedObject;
-    if ([self.detailViewController detailItem] == nil) {
+    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController detailItem] == nil)) {
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
     }

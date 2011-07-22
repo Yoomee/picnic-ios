@@ -14,7 +14,7 @@
     UILabel *sessionTime;
 }
 
-@property (strong, nonatomic) id sessionItem;
+@property (nonatomic, strong) NSManagedObject *sessionItem;
 
 @property (nonatomic, strong) IBOutlet UILabel *sessionName;
 @property (nonatomic, strong) IBOutlet UILabel *venueName;
