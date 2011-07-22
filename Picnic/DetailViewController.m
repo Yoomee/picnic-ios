@@ -18,7 +18,7 @@
 @implementation DetailViewController
 
 @synthesize conferenceSession = _conferenceSession;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize sessionName = _sessionName;
 @synthesize toolbar = _toolbar;
 @synthesize venueName = _venueName;
 @synthesize sessionText = _sessionText;
@@ -55,15 +55,12 @@
     // Update the user interface for the detail item.
 
     if (self.conferenceSession) {
-        
-        
-        self.detailDescriptionLabel.text = [self.conferenceSession name];
+        self.sessionName.text = [self.conferenceSession name];
         self.title = [self.conferenceSession name];
         self.venueName.text = [[self.conferenceSession venue] name];
         self.sessionText.text = [self.conferenceSession text];
         self.sessionTime.text = [self.conferenceSession dateString];
-
-        
+        [self.navigationItem setTitle:@""];
     }
 }
 

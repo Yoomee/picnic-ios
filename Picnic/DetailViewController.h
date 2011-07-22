@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) ConferenceSession *conferenceSession;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *sessionName;
 
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UILabel *venueName;

@@ -136,13 +136,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
-        ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        detailViewController.conferenceSession = selectedConferenceSession;    
+        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
+        ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];        
+        detailViewController.conferenceSession = selectedConferenceSession;
         [self.navigationItem.backBarButtonItem setTitle:@"Back"];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = backButton;
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        [self.navigationController pushViewController:self.detailViewController animated:YES];
     } else {
         ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         self.detailViewController.conferenceSession = conferenceSession;    
