@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Sessions";
+        self.title = @"Wednesday 14 September";
         self.currentDay = 1;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             //self.clearsSelectionOnViewWillAppear = NO;
@@ -259,13 +259,27 @@
 - (void)configureCell:(SessionCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];    
-    cell.sessionItem = managedObject;    
+    cell.sessionItem = managedObject;
+    if ([self.detailViewController detailItem] == nil) {
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
+        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
 
 }
 
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
     self.currentDay = [sender selectedSegmentIndex] + 1;
+    switch(self.currentDay) {
+        case 2:
+           self.title = @"Thursday 15 September";
+            break;
+        case 3:
+           self.title = @"Friday 16 September";
+           break;
+        default:
+           self.title = @"Wednesday 14 September";
+    }
     self.fetchedResultsController = nil;
     [tableView reloadData];
     int selectedSessionDay = [[[self.detailViewController detailItem] valueForKey:@"day"] intValue];
