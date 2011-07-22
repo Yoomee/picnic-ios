@@ -46,6 +46,7 @@
 						<string key="NSFrame">{{0, 45}, {320, 723}}</string>
 						<reference key="NSSuperview" ref="130281467"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -63,7 +64,7 @@
 					<object class="IBUISegmentedControl" id="257356169">
 						<reference key="NSNextResponder" ref="130281467"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 44}</string>
+						<string key="NSFrame">{{-5, 0}, {330, 44}}</string>
 						<reference key="NSSuperview" ref="130281467"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="404582119"/>
@@ -101,6 +102,10 @@
 							<object class="NSNull" id="4"/>
 							<reference ref="4"/>
 							<reference ref="4"/>
+						</object>
+						<object class="NSColor" key="IBTintColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
 						</object>
 					</object>
 				</object>
@@ -280,7 +285,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>detailDescriptionLabel</string>
 							<string>sessionName</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
@@ -289,7 +293,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
@@ -301,7 +304,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>detailDescriptionLabel</string>
 							<string>sessionName</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
@@ -310,10 +312,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">detailDescriptionLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">sessionName</string>
 								<string key="candidateClassName">UILabel</string>

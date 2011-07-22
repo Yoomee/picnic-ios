@@ -66,6 +66,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [super viewDidAppear:animated];
 }
 
@@ -138,7 +139,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
         ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];        
-        detailViewController.conferenceSession = selectedConferenceSession;
+        self.detailViewController.conferenceSession = selectedConferenceSession;
         [self.navigationItem.backBarButtonItem setTitle:@"Back"];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = backButton;

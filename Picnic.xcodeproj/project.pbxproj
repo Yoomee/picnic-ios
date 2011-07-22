@@ -34,10 +34,14 @@
 		5B5CFF7613D721A30080184E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */; };
 		5B6A025A13D9C2400057F10A /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A025913D9C2400057F10A /* ConferenceSession.m */; };
 		5B6A026413D9C3040057F10A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A026313D9C3040057F10A /* Venue.m */; };
+		5B6A02E313D9CF440057F10A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E213D9CF440057F10A /* CFNetwork.framework */; };
+		5B6A02E513D9CF4F0057F10A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */; };
+		5B6A02E713D9CF590057F10A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */; };
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
 		5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBF013D888B000317CD8 /* app_icon_72.png */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
+		5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,11 +87,16 @@
 		5B6A025913D9C2400057F10A /* ConferenceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceSession.m; sourceTree = "<group>"; };
 		5B6A026213D9C3040057F10A /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		5B6A026313D9C3040057F10A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		5B6A02E213D9CF440057F10A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5B6A02E813D9CF650057F10A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		5B94CBEA13D869FA00317CD8 /* SessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCell.h; sourceTree = "<group>"; };
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
 		5B94CBEE13D86A4600317CD8 /* SessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		5B94CBF013D888B000317CD8 /* app_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_72.png; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
+		5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +104,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B6A02E713D9CF590057F10A /* MobileCoreServices.framework in Frameworks */,
+				5B6A02E513D9CF4F0057F10A /* SystemConfiguration.framework in Frameworks */,
+				5B6A02E313D9CF440057F10A /* CFNetwork.framework in Frameworks */,
 				5B5CFF2A13D720100080184E /* UIKit.framework in Frameworks */,
 				5B5CFF2C13D720100080184E /* Foundation.framework in Frameworks */,
 				5B5CFF2E13D720100080184E /* CoreGraphics.framework in Frameworks */,
 				5B5CFF3013D720100080184E /* CoreData.framework in Frameworks */,
+				5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +157,11 @@
 		5B5CFF2813D720100080184E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */,
+				5B6A02E813D9CF650057F10A /* libz.1.2.5.dylib */,
+				5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */,
+				5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */,
+				5B6A02E213D9CF440057F10A /* CFNetwork.framework */,
 				5B5CFF2913D720100080184E /* UIKit.framework */,
 				5B5CFF2B13D720100080184E /* Foundation.framework */,
 				5B5CFF2D13D720100080184E /* CoreGraphics.framework */,
@@ -496,6 +514,11 @@
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"/usr/include/libxml2/**",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -508,6 +531,11 @@
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"/usr/include/libxml2/**",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
