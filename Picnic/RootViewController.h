@@ -13,11 +13,16 @@
 #import <CoreData/CoreData.h>
 #import "SessionCell.h"
 
-@interface RootViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface RootViewController : UIViewController <NSFetchedResultsControllerDelegate> {
+    UITableView *tableView;
+}
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet DetailViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readwrite, assign, nonatomic) int currentDay;
+- (IBAction)dayDidChange:(UISegmentedControl *)sender;
 
 @end
