@@ -62,7 +62,18 @@
         self.sessionTime.text = [self.conferenceSession dateString];        
         self.sessionText.text = [self.conferenceSession text];        
         [self resizeSessionTextAndContentView];
-        [self.navigationItem setTitle:@""];
+        [self.navigationItem setTitle:@""];        
+        NSSet *speakers = [self.conferenceSession speakers];
+        float speakerLabelY = self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 40;
+        static int idx = 0;
+        [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SpeakerThumbnail" owner:self options:nil];            
+            SpeakerThumbnail *speakerThumbnail = [topLevelObjects objectAtIndex:0];
+            speakerThumbnail.frame = CGRectMake(37.5 + speakerThumbnail.frame.size.width*idx, speakerLabelY, 0, 0);
+            [speakerThumbnail setMember:member];
+            [self.contentView addSubview:speakerThumbnail];
+            idx++;
+        }] ;
     }
 }
 
@@ -79,7 +90,7 @@
     frame.size.height = textSize.height + 10;
     self.sessionText.frame = frame;
     UIScrollView *tempScrollView = (UIScrollView *)self.contentView;
-    tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height);
+    tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 140);
 }
 
 #pragma mark - View lifecycle

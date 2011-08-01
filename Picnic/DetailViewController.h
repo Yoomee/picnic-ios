@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ConferenceSession.h"
 #import "Venue.h"
+#import "Member.h"
+#import "SpeakerThumbnail.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate> {
     UILabel *_venueName;

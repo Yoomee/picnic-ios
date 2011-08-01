@@ -32,16 +32,19 @@
 		5B5CFF6A13D720110080184E /* PicnicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6913D720110080184E /* PicnicTests.m */; };
 		5B5CFF7413D7219E0080184E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */; };
 		5B5CFF7613D721A30080184E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */; };
-		5B6A025A13D9C2400057F10A /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A025913D9C2400057F10A /* ConferenceSession.m */; };
 		5B6A026413D9C3040057F10A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A026313D9C3040057F10A /* Venue.m */; };
 		5B6A02E313D9CF440057F10A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E213D9CF440057F10A /* CFNetwork.framework */; };
 		5B6A02E513D9CF4F0057F10A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */; };
 		5B6A02E713D9CF590057F10A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */; };
+		5B78C2D313E6ED5100EEB790 /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78C2D213E6ED5100EEB790 /* ConferenceSession.m */; };
+		5B78C2D613E6FEE200EEB790 /* SpeakerThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78C2D513E6FEE200EEB790 /* SpeakerThumbnail.m */; };
+		5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */; };
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
 		5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBF013D888B000317CD8 /* app_icon_72.png */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
 		5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */; };
+		5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE89F913E6E63A00A9D343 /* Member.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,20 +86,25 @@
 		5B5CFF6913D720110080184E /* PicnicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicTests.m; sourceTree = "<group>"; };
 		5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		5B6A025813D9C2400057F10A /* ConferenceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceSession.h; sourceTree = "<group>"; };
-		5B6A025913D9C2400057F10A /* ConferenceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceSession.m; sourceTree = "<group>"; };
 		5B6A026213D9C3040057F10A /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		5B6A026313D9C3040057F10A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		5B6A02E213D9CF440057F10A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5B6A02E813D9CF650057F10A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		5B78C2D113E6ED5100EEB790 /* ConferenceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceSession.h; sourceTree = "<group>"; };
+		5B78C2D213E6ED5100EEB790 /* ConferenceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceSession.m; sourceTree = "<group>"; };
+		5B78C2D413E6FEE200EEB790 /* SpeakerThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerThumbnail.h; sourceTree = "<group>"; };
+		5B78C2D513E6FEE200EEB790 /* SpeakerThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerThumbnail.m; sourceTree = "<group>"; };
+		5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpeakerThumbnail.xib; sourceTree = "<group>"; };
 		5B94CBEA13D869FA00317CD8 /* SessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCell.h; sourceTree = "<group>"; };
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
 		5B94CBEE13D86A4600317CD8 /* SessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		5B94CBF013D888B000317CD8 /* app_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_72.png; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
 		5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		5BDE89F813E6E63A00A9D343 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
+		5BDE89F913E6E63A00A9D343 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +233,7 @@
 		5B5CFF7813D721D80080184E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */,
 				5B5CFF4713D720100080184E /* RootViewController_iPhone.xib */,
 				5B5CFF4A13D720100080184E /* RootViewController_iPad.xib */,
 				5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */,
@@ -240,10 +249,14 @@
 			children = (
 				5B5CFF3A13D720100080184E /* PicnicAppDelegate.h */,
 				5B5CFF3B13D720100080184E /* PicnicAppDelegate.m */,
-				5B6A025813D9C2400057F10A /* ConferenceSession.h */,
-				5B6A025913D9C2400057F10A /* ConferenceSession.m */,
 				5B94CBEA13D869FA00317CD8 /* SessionCell.h */,
 				5B94CBEB13D869FA00317CD8 /* SessionCell.m */,
+				5B78C2D413E6FEE200EEB790 /* SpeakerThumbnail.h */,
+				5B78C2D513E6FEE200EEB790 /* SpeakerThumbnail.m */,
+				5B78C2D113E6ED5100EEB790 /* ConferenceSession.h */,
+				5B78C2D213E6ED5100EEB790 /* ConferenceSession.m */,
+				5BDE89F813E6E63A00A9D343 /* Member.h */,
+				5BDE89F913E6E63A00A9D343 /* Member.m */,
 				5B6A026213D9C3040057F10A /* Venue.h */,
 				5B6A026313D9C3040057F10A /* Venue.m */,
 			);
@@ -344,6 +357,7 @@
 				5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */,
 				5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */,
 				5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */,
+				5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,8 +399,10 @@
 				5B5CFF4213D720100080184E /* RootViewController.m in Sources */,
 				5B5CFF4613D720100080184E /* DetailViewController.m in Sources */,
 				5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */,
-				5B6A025A13D9C2400057F10A /* ConferenceSession.m in Sources */,
 				5B6A026413D9C3040057F10A /* Venue.m in Sources */,
+				5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */,
+				5B78C2D313E6ED5100EEB790 /* ConferenceSession.m in Sources */,
+				5B78C2D613E6FEE200EEB790 /* SpeakerThumbnail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,7 @@
 #import "SessionCell.h"
 #import "ConferenceSession.h"
 #import "Venue.h"
+#import "Member.h"
 
 @interface RootViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     UITableView *tableView;

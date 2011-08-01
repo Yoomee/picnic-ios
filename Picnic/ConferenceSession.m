@@ -2,11 +2,13 @@
 //  ConferenceSession.m
 //  Picnic
 //
-//  Created by Matthew Atkins on 22/07/2011.
+//  Created by Matthew Atkins on 01/08/2011.
 //  Copyright (c) 2011 Yoomee. All rights reserved.
 //
 
 #import "ConferenceSession.h"
+#import "Member.h"
+#import "Venue.h"
 
 
 @implementation ConferenceSession
@@ -20,6 +22,7 @@
 @dynamic text;
 @dynamic name;
 @dynamic venue;
+@dynamic speakers;
 
 -(NSString *)dateString
 {
@@ -41,7 +44,5 @@
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
-
-
 
 @end
