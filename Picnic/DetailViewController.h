@@ -14,7 +14,9 @@
     UILabel *_venueName;
     UITextView *_sessionText;
     UILabel *_sessionTime;
+    UIScrollView *_contentView;
 }
+@property (nonatomic, strong) IBOutlet UIScrollView *contentView;
 
 @property (strong, nonatomic) ConferenceSession *conferenceSession;
 
@@ -24,5 +26,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *venueName;
 @property (nonatomic, strong) IBOutlet UITextView *sessionText;
 @property (nonatomic, strong) IBOutlet UILabel *sessionTime;
+
+-(void) resizeSessionTextAndContentView;
 
 @end

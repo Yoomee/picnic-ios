@@ -17,6 +17,7 @@
 
 @implementation DetailViewController
 
+@synthesize contentView = _contentView;
 @synthesize conferenceSession = _conferenceSession;
 @synthesize sessionName = _sessionName;
 @synthesize toolbar = _toolbar;
@@ -58,8 +59,9 @@
         self.sessionName.text = [self.conferenceSession name];
         self.title = [self.conferenceSession name];
         self.venueName.text = [[self.conferenceSession venue] name];
-        self.sessionText.text = [self.conferenceSession text];
-        self.sessionTime.text = [self.conferenceSession dateString];
+        self.sessionTime.text = [self.conferenceSession dateString];        
+        self.sessionText.text = [self.conferenceSession text];        
+        [self resizeSessionTextAndContentView];
         [self.navigationItem setTitle:@""];
     }
 }
@@ -68,6 +70,16 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)resizeSessionTextAndContentView
+{
+    CGSize textSize = [[self.conferenceSession text] sizeWithFont:[UIFont systemFontOfSize:18.0f] constrainedToSize:CGSizeMake(self.sessionText.frame.size.width, 1000.0f)];
+    CGRect frame = self.sessionText.frame; 
+    frame.size.height = textSize.height + 10;
+    self.sessionText.frame = frame;
+    UIScrollView *tempScrollView = (UIScrollView *)self.contentView;
+    tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height);
 }
 
 #pragma mark - View lifecycle
@@ -84,6 +96,7 @@
     [self setVenueName:nil];
     [self setSessionText:nil];
     [self setSessionTime:nil];
+    [self setContentView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -117,6 +130,10 @@
     } else {
         return YES;
     }
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self resizeSessionTextAndContentView];
 }
 
 #pragma mark - Split view
