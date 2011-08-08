@@ -56,24 +56,26 @@
     // Update the user interface for the detail item.
 
     if (self.conferenceSession) {
+        [self.toolbar setTintColor:[self.conferenceSession color]];
         self.sessionName.text = [self.conferenceSession name];
         self.title = [self.conferenceSession name];
         self.venueName.text = [[self.conferenceSession venue] name];
         self.sessionTime.text = [self.conferenceSession dateString];        
         self.sessionText.text = [self.conferenceSession text];        
         [self resizeSessionTextAndContentView];
-        [self.navigationItem setTitle:@""];        
-        NSSet *speakers = [self.conferenceSession speakers];
-        float speakerLabelY = self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 40;
-        static int idx = 0;
-        [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SpeakerThumbnail" owner:self options:nil];            
-            SpeakerThumbnail *speakerThumbnail = [topLevelObjects objectAtIndex:0];
-            speakerThumbnail.frame = CGRectMake(37.5 + speakerThumbnail.frame.size.width*idx, speakerLabelY, 0, 0);
-            [speakerThumbnail setMember:member];
-            [self.contentView addSubview:speakerThumbnail];
-            idx++;
-        }] ;
+        [self.navigationItem setTitle:@""];
+        [self.navigationController.navigationBar setTintColor:[self.conferenceSession color]];
+//        NSSet *speakers = [self.conferenceSession speakers];
+//        float speakerLabelY = self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 40;
+//        static int idx = 0;
+//        [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
+//            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SpeakerThumbnail" owner:self options:nil];            
+//            SpeakerThumbnail *speakerThumbnail = [topLevelObjects objectAtIndex:0];
+//            speakerThumbnail.frame = CGRectMake(37.5 + speakerThumbnail.frame.size.width*idx, speakerLabelY, 0, 0);
+//            [speakerThumbnail setMember:member];
+//            [self.contentView addSubview:speakerThumbnail];
+//            idx++;
+//        }] ;
     }
 }
 

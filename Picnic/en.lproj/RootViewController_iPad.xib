@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K540</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1864</string>
 		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -46,7 +46,6 @@
 						<string key="NSFrame">{{0, 45}, {320, 807}}</string>
 						<reference key="NSSuperview" ref="824702226"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -63,8 +62,8 @@
 					</object>
 					<object class="IBUISegmentedControl" id="142853546">
 						<reference key="NSNextResponder" ref="824702226"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{-5, 0}, {330, 44}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="824702226"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="779926550"/>
@@ -114,8 +113,8 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="142853546"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+					<int key="NSColorSpace">2</int>
+					<bytes key="NSRGB">MC4yNDcwNTg4Mzg2IDAuMjQ3MDU4ODM4NiAwLjI0NzA1ODgzODYAA</bytes>
 				</object>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISplitViewMasterSimulatedSizeMetrics</string>
@@ -215,8 +214,8 @@
 						<reference key="object" ref="824702226"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="142853546"/>
 							<reference ref="779926550"/>
+							<reference ref="142853546"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -284,6 +283,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>contentView</string>
 							<string>sessionName</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
@@ -292,6 +292,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIScrollView</string>
 							<string>UILabel</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
@@ -303,6 +304,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>contentView</string>
 							<string>sessionName</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
@@ -311,6 +313,10 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">contentView</string>
+								<string key="candidateClassName">UIScrollView</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">sessionName</string>
 								<string key="candidateClassName">UILabel</string>

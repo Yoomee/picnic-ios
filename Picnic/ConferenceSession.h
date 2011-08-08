@@ -35,5 +35,6 @@
 
 -(NSString *)dateString;
 -(NSString *)timeString;
+-(UIColor *)color;
 
 @end

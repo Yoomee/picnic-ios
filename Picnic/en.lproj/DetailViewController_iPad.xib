@@ -67,8 +67,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUILabel" id="351789159">
 								<reference key="NSNextResponder" ref="304845567"/>
-								<int key="NSvFlags">298</int>
-								<string key="NSFrame">{{38, 20}, {693, 39}}</string>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{38, 30}, {693, 39}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="171626729"/>
@@ -96,8 +96,8 @@
 							</object>
 							<object class="IBUILabel" id="533307799">
 								<reference key="NSNextResponder" ref="304845567"/>
-								<int key="NSvFlags">298</int>
-								<string key="NSFrame">{{38, 113}, {693, 40}}</string>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{38, 114}, {693, 40}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="425847448"/>
@@ -127,8 +127,8 @@
 							</object>
 							<object class="IBUILabel" id="171626729">
 								<reference key="NSNextResponder" ref="304845567"/>
-								<int key="NSvFlags">298</int>
-								<string key="NSFrame">{{38, 67}, {693, 29}}</string>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{38, 77}, {693, 29}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="533307799"/>
@@ -155,7 +155,6 @@
 								<string key="NSFrame">{{38, 170}, {693, 200}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -322,9 +321,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="351789159"/>
-							<reference ref="533307799"/>
-							<reference ref="171626729"/>
 							<reference ref="425847448"/>
+							<reference ref="171626729"/>
+							<reference ref="533307799"/>
 						</object>
 						<reference key="parent" ref="647120888"/>
 					</object>

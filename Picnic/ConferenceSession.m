@@ -45,4 +45,12 @@
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
 
+-(UIColor *)color
+{
+    float colorR = [self.colorR floatValue];
+    float colorB = [self.colorB floatValue];
+    float colorG = [self.colorG floatValue];
+    return [UIColor colorWithRed:colorR green:colorG blue:colorB alpha:1.0];
+}
+
 @end

@@ -61,6 +61,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -143,10 +144,12 @@
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = backButton;
         [self.navigationController pushViewController:self.detailViewController animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else {
         ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.conferenceSession = conferenceSession;    
+        self.detailViewController.conferenceSession = conferenceSession;
     }
+    
 }
 
 #pragma mark - Fetched results controller
@@ -267,6 +270,9 @@
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
         [self tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 73)];
+    [bgView setBackgroundColor:conferenceSession.color];
+    [cell setSelectedBackgroundView:bgView];
 
 }
 

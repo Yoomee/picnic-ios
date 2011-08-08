@@ -28,8 +28,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    //[self setBackgroundColor:[UIColor blackColor]];
-
     // Configure the view for the selected state
 }
 
@@ -37,13 +35,8 @@
 {
     //Get the CGContext from this view
     CGContextRef context = UIGraphicsGetCurrentContext();
-    //Draw a rectangle
-    float colorR = [self.conferenceSession.colorR floatValue];
-    float colorB = [self.conferenceSession.colorB floatValue];
-    float colorG = [self.conferenceSession.colorG floatValue];
-    UIColor *color = [UIColor colorWithRed:colorR green:colorG blue:colorB alpha:1.0];
-    
-    CGContextSetFillColorWithColor(context, color.CGColor);
+    //Draw a rectangle    
+    CGContextSetFillColorWithColor(context, [[self.conferenceSession color] CGColor]);
     //Define a rectangle
     CGContextAddRect(context, CGRectMake(0.0, 0.0, 8.0, 73.0));     //X, Y, Width, Height
     //Draw it
