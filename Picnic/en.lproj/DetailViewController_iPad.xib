@@ -100,7 +100,7 @@
 								<string key="NSFrame">{{38, 114}, {693, 40}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="425847448"/>
+								<reference key="NSNextKeyView" ref="855470068"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -138,7 +138,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<string key="IBUIText">Session Time</string>
-								<object class="NSColor" key="IBUITextColor">
+								<object class="NSColor" key="IBUITextColor" id="928551165">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
@@ -149,12 +149,34 @@
 								<reference key="IBUIFontDescription" ref="46695046"/>
 								<reference key="IBUIFont" ref="166637267"/>
 							</object>
+							<object class="IBUILabel" id="855470068">
+								<reference key="NSNextResponder" ref="304845567"/>
+								<int key="NSvFlags">290</int>
+								<string key="NSFrame">{{38, 162}, {693, 29}}</string>
+								<reference key="NSSuperview" ref="304845567"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="425847448"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">7</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<string key="IBUIText">Speakers</string>
+								<reference key="IBUITextColor" ref="928551165"/>
+								<nil key="IBUIHighlightedColor"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUITextAlignment">1</int>
+								<reference key="IBUIFontDescription" ref="46695046"/>
+								<reference key="IBUIFont" ref="166637267"/>
+							</object>
 							<object class="IBUITextView" id="425847448">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{38, 170}, {693, 200}}</string>
+								<string key="NSFrame">{{38, 199}, {693, 200}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -274,6 +296,14 @@
 					</object>
 					<int key="connectionID">87</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">sessionSpeakers</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="855470068"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -321,9 +351,10 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="351789159"/>
-							<reference ref="425847448"/>
 							<reference ref="171626729"/>
 							<reference ref="533307799"/>
+							<reference ref="425847448"/>
+							<reference ref="855470068"/>
 						</object>
 						<reference key="parent" ref="647120888"/>
 					</object>
@@ -347,6 +378,11 @@
 						<reference key="object" ref="425847448"/>
 						<reference key="parent" ref="304845567"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">90</int>
+						<reference key="object" ref="855470068"/>
+						<reference key="parent" ref="304845567"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -364,12 +400,14 @@
 					<string>8.IBPluginDependency</string>
 					<string>83.IBPluginDependency</string>
 					<string>86.IBPluginDependency</string>
+					<string>90.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>DetailViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -392,7 +430,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">91</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -406,6 +444,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>contentView</string>
 							<string>sessionName</string>
+							<string>sessionSpeakers</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
 							<string>toolbar</string>
@@ -414,6 +453,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIScrollView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UITextView</string>
 							<string>UILabel</string>
@@ -427,6 +467,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>contentView</string>
 							<string>sessionName</string>
+							<string>sessionSpeakers</string>
 							<string>sessionText</string>
 							<string>sessionTime</string>
 							<string>toolbar</string>
@@ -440,6 +481,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">sessionName</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">sessionSpeakers</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">

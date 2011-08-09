@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Picnic/DetailViewController.m"
-         timestampString = "334512720.119142"
+         timestampString = "334581707.917474"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "79"
-         endingLineNumber = "79"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
          landmarkName = "-configureView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -155,6 +155,20 @@
          startingLineNumber = "128"
          endingLineNumber = "128"
          landmarkName = "-hideSplashScreen"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Picnic/ConferenceSession.m"
+         timestampString = "334581335.564047"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-speakersString"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

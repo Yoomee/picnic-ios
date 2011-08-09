@@ -45,6 +45,16 @@
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
 
+-(NSString *)speakersString
+{    
+    NSMutableArray *speakerNames = [[NSMutableArray alloc] init];
+    NSSet *speakers = [self speakers];
+    [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
+        [speakerNames addObject:[member fullName]];
+    }] ;
+    return @"";//[NSString stringWithFormat:@"%@", speakerNames];
+}
+
 -(UIColor *)color
 {
     float colorR = [self.colorR floatValue];

@@ -16,13 +16,13 @@
     UILabel *_venueName;
     UITextView *_sessionText;
     UILabel *_sessionTime;
+    UILabel *_sessionSpeakers;
     UIScrollView *_contentView;
 }
 @property (nonatomic, strong) IBOutlet UIScrollView *contentView;
-
 @property (strong, nonatomic) ConferenceSession *conferenceSession;
-
 @property (strong, nonatomic) IBOutlet UILabel *sessionName;
+@property (strong, nonatomic) IBOutlet UILabel *sessionSpeakers;
 
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) IBOutlet UILabel *venueName;

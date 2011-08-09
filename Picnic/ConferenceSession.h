@@ -35,6 +35,7 @@
 
 -(NSString *)dateString;
 -(NSString *)timeString;
+-(NSString *)speakersString;
 -(UIColor *)color;
 
 @end
