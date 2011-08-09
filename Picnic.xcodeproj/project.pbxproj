@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */; };
+		5B589E0C13F157B100DFD44D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 5B589E0B13F157B100DFD44D /* Entitlements.entitlements */; };
 		5B5CFF2A13D720100080184E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2913D720100080184E /* UIKit.framework */; };
 		5B5CFF2C13D720100080184E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2B13D720100080184E /* Foundation.framework */; };
 		5B5CFF2E13D720100080184E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2D13D720100080184E /* CoreGraphics.framework */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashScreen_iPhone.xib; path = Picnic.xcodeproj/SplashScreen_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		5B589E0B13F157B100DFD44D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		5B5CFF2513D720100080184E /* Picnic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picnic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CFF2913D720100080184E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B5CFF2B13D720100080184E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -211,6 +213,7 @@
 		5B5CFF3213D720100080184E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B589E0B13F157B100DFD44D /* Entitlements.entitlements */,
 				5B5CFF3313D720100080184E /* Picnic-Info.plist */,
 				5B5CFF3413D720100080184E /* InfoPlist.strings */,
 				5B5CFF3713D720100080184E /* main.m */,
@@ -395,6 +398,7 @@
 				5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */,
 				5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */,
 				5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */,
+				5B589E0C13F157B100DFD44D /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +518,64 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B589E0E13F1642300DFD44D /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		5B589E0F13F1642300DFD44D /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoomee";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"/usr/include/libxml2/**",
+				);
+				PRODUCT_NAME = picnic;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4C5E8FE3-E07A-4E4A-B34D-51C659BC86F8";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		5B589E1013F1642300DFD44D /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Picnic.app/Picnic";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "PicnicTests/PicnicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 		5B5CFF6B13D720110080184E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -564,6 +626,7 @@
 		5B5CFF6E13D720110080184E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
@@ -581,6 +644,7 @@
 		5B5CFF6F13D720110080184E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
@@ -629,61 +693,6 @@
 			};
 			name = Release;
 		};
-		5BC648EB13F0308D000D942F /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Ad Hoc";
-		};
-		5BC648EC13F0308D000D942F /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
-				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"/usr/include/libxml2/**",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Ad Hoc";
-		};
-		5BC648ED13F0308D000D942F /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Picnic.app/Picnic";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
-				INFOPLIST_FILE = "PicnicTests/PicnicTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Ad Hoc";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -692,7 +701,7 @@
 			buildConfigurations = (
 				5B5CFF6B13D720110080184E /* Debug */,
 				5B5CFF6C13D720110080184E /* Release */,
-				5BC648EB13F0308D000D942F /* Ad Hoc */,
+				5B589E0E13F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -702,7 +711,7 @@
 			buildConfigurations = (
 				5B5CFF6E13D720110080184E /* Debug */,
 				5B5CFF6F13D720110080184E /* Release */,
-				5BC648EC13F0308D000D942F /* Ad Hoc */,
+				5B589E0F13F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -712,7 +721,7 @@
 			buildConfigurations = (
 				5B5CFF7113D720110080184E /* Debug */,
 				5B5CFF7213D720110080184E /* Release */,
-				5BC648ED13F0308D000D942F /* Ad Hoc */,
+				5B589E1013F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

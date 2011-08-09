@@ -28,9 +28,9 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [dateFormatter setDateFormat:@"dd MMM hh:mm"];
+    [dateFormatter setDateFormat:@"eeee dd MMM HH:mm"];
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
-    [dateFormatter setDateFormat:@"hh:mm"];
+    [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
@@ -39,7 +39,7 @@
 {    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [dateFormatter setDateFormat:@"hh:mm"];
+    [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
@@ -51,8 +51,8 @@
     NSSet *speakers = [self speakers];
     [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
         [speakerNames addObject:[member fullName]];
-    }] ;
-    return @"";//[NSString stringWithFormat:@"%@", speakerNames];
+    }];
+    return [NSString stringWithFormat:@"%@",[speakerNames componentsJoinedByString:@", "]];
 }
 
 -(UIColor *)color

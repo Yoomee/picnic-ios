@@ -64,6 +64,15 @@
         self.sessionTime.text = [self.conferenceSession dateString];        
         self.sessionText.text = [self.conferenceSession text];
         self.sessionSpeakers.text = [self.conferenceSession speakersString];
+        int sessionTextOffset;
+        if ([[self.conferenceSession speakers] count] == 0){
+            sessionTextOffset = 33;
+        } else {
+            sessionTextOffset = 85;
+        }
+        CGRect frame = self.sessionText.frame; 
+        frame.origin.y = self.venueName.frame.origin.y + sessionTextOffset;
+        self.sessionText.frame = frame;
         [self resizeSessionTextAndContentView];
         [self.navigationItem setTitle:@""];
         [self.navigationController.navigationBar setTintColor:[self.conferenceSession color]];
