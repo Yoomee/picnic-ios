@@ -87,12 +87,18 @@
 
 -(void)resizeSessionTextAndContentView
 {
-    CGSize textSize = [[self.conferenceSession text] sizeWithFont:[UIFont systemFontOfSize:18.0f] constrainedToSize:CGSizeMake(self.sessionText.frame.size.width, 1000.0f)];
+    CGFloat fontSize;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        fontSize = 17.0;
+    } else {
+        fontSize = 18.0;
+    }
+    CGSize textSize = [[self.conferenceSession text] sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:CGSizeMake(self.sessionText.frame.size.width, 1000.0f)];
     CGRect frame = self.sessionText.frame; 
     frame.size.height = textSize.height + 10;
     self.sessionText.frame = frame;
     UIScrollView *tempScrollView = (UIScrollView *)self.contentView;
-    tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 140);
+    tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 20);
 }
 
 #pragma mark - View lifecycle
@@ -157,6 +163,7 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
+    [self.toolbar setTintColor:[self.conferenceSession color]];
     self.popoverController = pc;
 }
 

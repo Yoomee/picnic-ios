@@ -13,6 +13,10 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>app_icon_72.png</string>
+		<string>PICNIC_iOS_artwork-01.png</string>
+		<string>PICNIC_iOS_artwork-01.png</string>
+		<string>app_icon_57.png</string>
+		<string>app_icon_114.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>Yoomee.${PRODUCT_NAME:rfc1034identifier}</string>

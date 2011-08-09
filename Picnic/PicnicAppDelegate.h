@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SplashScreenController.h"
 
 @interface PicnicAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,8 +20,10 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+@property (strong, nonatomic) SplashScreenController *splashScreenController;
 @property (strong, nonatomic) UINavigationController *navigationController;
-
 @property (strong, nonatomic) UISplitViewController *splitViewController;
+
+- (void)hideSplashScreen;
 
 @end

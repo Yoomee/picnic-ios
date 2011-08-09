@@ -36,7 +36,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="299215203">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">301</int>
+				<int key="NSvFlags">303</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIView" id="90230995">
@@ -46,7 +46,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUILabel" id="927177679">
 								<reference key="NSNextResponder" ref="90230995"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{20, 26}, {280, 21}}</string>
 								<reference key="NSSuperview" ref="90230995"/>
 								<reference key="NSWindow"/>
@@ -80,7 +80,7 @@
 							</object>
 							<object class="IBUILabel" id="184141075">
 								<reference key="NSNextResponder" ref="90230995"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{20, 47}, {280, 21}}</string>
 								<reference key="NSSuperview" ref="90230995"/>
 								<reference key="NSWindow"/>
@@ -110,7 +110,7 @@
 							</object>
 							<object class="IBUILabel" id="313113632">
 								<reference key="NSNextResponder" ref="90230995"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{20, 5}, {289, 21}}</string>
 								<reference key="NSSuperview" ref="90230995"/>
 								<reference key="NSWindow"/>

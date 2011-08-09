@@ -18,6 +18,7 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize splashScreenController = _splashScreenController;
 @synthesize navigationController = _navigationController;
 @synthesize splitViewController = _splitViewController;
 
@@ -25,17 +26,21 @@
 {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPhone" bundle:nil];
+        
         RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPhone" bundle:nil];
         self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
         self.window.rootViewController = self.navigationController;
+        
         controller.managedObjectContext = self.managedObjectContext;
     } else {
+        self.splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPad" bundle:nil];
         RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPad" bundle:nil];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        
         DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil];
-        
+
         self.splitViewController = [[UISplitViewController alloc] init];
         self.splitViewController.delegate = detailViewController;
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:navigationController, detailViewController, nil];
@@ -45,6 +50,8 @@
         controller.managedObjectContext = self.managedObjectContext;
     }
     [self.window makeKeyAndVisible];
+    [self.window.rootViewController presentModalViewController:self.splashScreenController animated:NO];
+    [self performSelector:@selector(hideSplashScreen) withObject:nil afterDelay: 1.5f];    
     return YES;
 }
 
@@ -110,6 +117,15 @@
     alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"YEAH!" otherButtonTitles:nil];
     [alertView show];    
     return YES;
+}
+
+- (void)hideSplashScreen
+{
+    DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
+    controller.contentView.alpha = 0.0;
+    self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self.window.rootViewController dismissModalViewControllerAnimated:YES];
+    [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.contentView.alpha = 1.0;} completion:NULL];
 }
 
 #pragma mark - Core Data stack

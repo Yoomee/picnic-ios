@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */; };
 		5B5CFF2A13D720100080184E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2913D720100080184E /* UIKit.framework */; };
 		5B5CFF2C13D720100080184E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2B13D720100080184E /* Foundation.framework */; };
 		5B5CFF2E13D720100080184E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2D13D720100080184E /* CoreGraphics.framework */; };
@@ -30,8 +31,6 @@
 		5B5CFF6613D720110080184E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6413D720110080184E /* InfoPlist.strings */; };
 		5B5CFF6813D720110080184E /* PicnicTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6713D720110080184E /* PicnicTests.h */; };
 		5B5CFF6A13D720110080184E /* PicnicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6913D720110080184E /* PicnicTests.m */; };
-		5B5CFF7413D7219E0080184E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */; };
-		5B5CFF7613D721A30080184E /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */; };
 		5B6A026413D9C3040057F10A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A026313D9C3040057F10A /* Venue.m */; };
 		5B6A02E313D9CF440057F10A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E213D9CF440057F10A /* CFNetwork.framework */; };
 		5B6A02E513D9CF4F0057F10A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */; };
@@ -41,9 +40,19 @@
 		5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */; };
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
-		5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBF013D888B000317CD8 /* app_icon_72.png */; };
+		5BA4873913F03BCF009754DA /* app_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873313F03BCF009754DA /* app_icon_114.png */; };
+		5BA4873A13F03BCF009754DA /* app_icon_512.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873413F03BCF009754DA /* app_icon_512.png */; };
+		5BA4873B13F03BCF009754DA /* app_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873513F03BCF009754DA /* app_icon_57.png */; };
+		5BA4873C13F03BCF009754DA /* app_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873613F03BCF009754DA /* app_icon_72.png */; };
+		5BA4873D13F03BCF009754DA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */; };
+		5BA4873E13F03BCF009754DA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */; };
+		5BA4874813F03E6E009754DA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874713F03E6E009754DA /* Default.png */; };
+		5BA4874E13F03F30009754DA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874D13F03F30009754DA /* Default@2x.png */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
 		5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */; };
+		5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */; };
+		5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */; };
+		5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */; };
 		5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE89F913E6E63A00A9D343 /* Member.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashScreen_iPhone.xib; path = Picnic.xcodeproj/SplashScreen_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		5B5CFF2513D720100080184E /* Picnic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picnic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CFF2913D720100080184E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B5CFF2B13D720100080184E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,8 +94,6 @@
 		5B5CFF6513D720110080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5CFF6713D720110080184E /* PicnicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicnicTests.h; sourceTree = "<group>"; };
 		5B5CFF6913D720110080184E /* PicnicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicTests.m; sourceTree = "<group>"; };
-		5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		5B6A026213D9C3040057F10A /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		5B6A026313D9C3040057F10A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		5B6A02E213D9CF440057F10A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -100,9 +108,20 @@
 		5B94CBEA13D869FA00317CD8 /* SessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCell.h; sourceTree = "<group>"; };
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
 		5B94CBEE13D86A4600317CD8 /* SessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
-		5B94CBF013D888B000317CD8 /* app_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_72.png; sourceTree = "<group>"; };
+		5BA4873313F03BCF009754DA /* app_icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_114.png; path = images/app_icon_114.png; sourceTree = "<group>"; };
+		5BA4873413F03BCF009754DA /* app_icon_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_512.png; path = images/app_icon_512.png; sourceTree = "<group>"; };
+		5BA4873513F03BCF009754DA /* app_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_57.png; path = images/app_icon_57.png; sourceTree = "<group>"; };
+		5BA4873613F03BCF009754DA /* app_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_72.png; path = images/app_icon_72.png; sourceTree = "<group>"; };
+		5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "images/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "images/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		5BA4874713F03E6E009754DA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
+		5BA4874D13F03F30009754DA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
 		5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PicnicLogo.png; path = images/PicnicLogo.png; sourceTree = "<group>"; };
+		5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenController.h; sourceTree = "<group>"; };
+		5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenController.m; sourceTree = "<group>"; };
+		5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen_iPad.xib; sourceTree = "<group>"; };
 		5BDE89F813E6E63A00A9D343 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
 		5BDE89F913E6E63A00A9D343 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,9 +242,15 @@
 		5B5CFF7713D721B50080184E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5B94CBF013D888B000317CD8 /* app_icon_72.png */,
-				5B5CFF7513D721A30080184E /* Default-Portrait~ipad.png */,
-				5B5CFF7313D7219E0080184E /* Default-Landscape~ipad.png */,
+				5BA4874713F03E6E009754DA /* Default.png */,
+				5BA4874D13F03F30009754DA /* Default@2x.png */,
+				5BA4873313F03BCF009754DA /* app_icon_114.png */,
+				5BA4873413F03BCF009754DA /* app_icon_512.png */,
+				5BA4873513F03BCF009754DA /* app_icon_57.png */,
+				5BA4873613F03BCF009754DA /* app_icon_72.png */,
+				5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */,
+				5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */,
+				5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -233,11 +258,13 @@
 		5B5CFF7813D721D80080184E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */,
 				5B5CFF4713D720100080184E /* RootViewController_iPhone.xib */,
 				5B5CFF4A13D720100080184E /* RootViewController_iPad.xib */,
 				5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */,
 				5B5CFF5013D720100080184E /* DetailViewController_iPad.xib */,
+				5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */,
+				5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */,
+				5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */,
 				5B94CBEE13D86A4600317CD8 /* SessionCell.xib */,
 			);
 			name = Views;
@@ -271,6 +298,8 @@
 				5B5CFF4113D720100080184E /* RootViewController.m */,
 				5B5CFF4313D720100080184E /* DetailViewController.h */,
 				5B5CFF4513D720100080184E /* DetailViewController.m */,
+				5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */,
+				5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */,
 			);
 			name = Controllers;
 			path = Picnic;
@@ -352,12 +381,20 @@
 				5B5CFF4C13D720100080184E /* RootViewController_iPad.xib in Resources */,
 				5B5CFF4F13D720100080184E /* DetailViewController_iPhone.xib in Resources */,
 				5B5CFF5213D720100080184E /* DetailViewController_iPad.xib in Resources */,
-				5B5CFF7413D7219E0080184E /* Default-Landscape~ipad.png in Resources */,
-				5B5CFF7613D721A30080184E /* Default-Portrait~ipad.png in Resources */,
 				5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */,
-				5B94CBF113D888B000317CD8 /* app_icon_72.png in Resources */,
 				5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */,
 				5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */,
+				5BA4873913F03BCF009754DA /* app_icon_114.png in Resources */,
+				5BA4873A13F03BCF009754DA /* app_icon_512.png in Resources */,
+				5BA4873B13F03BCF009754DA /* app_icon_57.png in Resources */,
+				5BA4873C13F03BCF009754DA /* app_icon_72.png in Resources */,
+				5BA4873D13F03BCF009754DA /* Default-Landscape~ipad.png in Resources */,
+				5BA4873E13F03BCF009754DA /* Default-Portrait~ipad.png in Resources */,
+				5BA4874813F03E6E009754DA /* Default.png in Resources */,
+				5BA4874E13F03F30009754DA /* Default@2x.png in Resources */,
+				5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */,
+				5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */,
+				5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +440,7 @@
 				5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */,
 				5B78C2D313E6ED5100EEB790 /* ConferenceSession.m in Sources */,
 				5B78C2D613E6FEE200EEB790 /* SpeakerThumbnail.m in Sources */,
+				5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +629,61 @@
 			};
 			name = Release;
 		};
+		5BC648EB13F0308D000D942F /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		5BC648EC13F0308D000D942F /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"/usr/include/libxml2/**",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		5BC648ED13F0308D000D942F /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Picnic.app/Picnic";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "PicnicTests/PicnicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -599,6 +692,7 @@
 			buildConfigurations = (
 				5B5CFF6B13D720110080184E /* Debug */,
 				5B5CFF6C13D720110080184E /* Release */,
+				5BC648EB13F0308D000D942F /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -608,6 +702,7 @@
 			buildConfigurations = (
 				5B5CFF6E13D720110080184E /* Debug */,
 				5B5CFF6F13D720110080184E /* Release */,
+				5BC648EC13F0308D000D942F /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -617,6 +712,7 @@
 			buildConfigurations = (
 				5B5CFF7113D720110080184E /* Debug */,
 				5B5CFF7213D720110080184E /* Release */,
+				5BC648ED13F0308D000D942F /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
