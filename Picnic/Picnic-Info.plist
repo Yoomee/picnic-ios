@@ -19,7 +19,7 @@
 		<string>app_icon_114.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.yoomee.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.yoomee.picnicfestival</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,14 +27,14 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.yoomee.picnic</string>
+			<string>com.yoomee.picnicfestival</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>picnic</string>
@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIPrerenderedIcon</key>

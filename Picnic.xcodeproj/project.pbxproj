@@ -70,7 +70,7 @@
 /* Begin PBXFileReference section */
 		5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashScreen_iPhone.xib; path = Picnic.xcodeproj/SplashScreen_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		5B589E0B13F157B100DFD44D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
-		5B5CFF2513D720100080184E /* Picnic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picnic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5CFF2513D720100080184E /* PICNIC Festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PICNIC Festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CFF2913D720100080184E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B5CFF2B13D720100080184E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5B5CFF2D13D720100080184E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -177,7 +177,7 @@
 		5B5CFF2613D720100080184E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B5CFF2513D720100080184E /* Picnic.app */,
+				5B5CFF2513D720100080184E /* PICNIC Festival.app */,
 				5B5CFF5813D720110080184E /* PicnicTests.octest */,
 			);
 			name = Products;
@@ -325,7 +325,7 @@
 			);
 			name = Picnic;
 			productName = Picnic;
-			productReference = 5B5CFF2513D720100080184E /* Picnic.app */;
+			productReference = 5B5CFF2513D720100080184E /* PICNIC Festival.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5B5CFF5713D720110080184E /* PicnicTests */ = {
@@ -547,14 +547,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"/usr/include/libxml2/**",
 				);
-				PRODUCT_NAME = picnic;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3801E83-E159-466C-A893-0FA754AE1D28";
+				PRODUCT_NAME = "PICNIC Festival";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "09C7DA14-869B-45B4-95D3-21A9F02FE2F1";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -630,13 +630,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"/usr/include/libxml2/**",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "PICNIC Festival";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -648,13 +648,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"/usr/include/libxml2/**",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "PICNIC Festival";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
