@@ -18,7 +18,9 @@
     UILabel *_sessionTime;
     UILabel *_sessionSpeakers;
     UIScrollView *_contentView;
+    UIImageView *_welcomeView;
 }
+@property (nonatomic, strong) UIImageView *welcomeView;
 @property (nonatomic, strong) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) ConferenceSession *conferenceSession;
 @property (strong, nonatomic) IBOutlet UILabel *sessionName;
@@ -30,5 +32,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *sessionTime;
 
 -(void) resizeSessionTextAndContentView;
+-(void) showWelcome;
 
 @end

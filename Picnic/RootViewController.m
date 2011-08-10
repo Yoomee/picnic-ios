@@ -267,10 +267,10 @@
 {
     ConferenceSession *conferenceSession = [self.fetchedResultsController objectAtIndexPath:indexPath];    
     cell.conferenceSession = conferenceSession;
-    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController conferenceSession] == nil)) {
-        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
-        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-    }
+//    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController conferenceSession] == nil)) {
+//        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
+//        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+//    }
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 73)];
     [bgView setBackgroundColor:conferenceSession.color];
     [cell setSelectedBackgroundView:bgView];

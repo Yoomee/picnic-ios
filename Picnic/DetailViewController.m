@@ -17,6 +17,7 @@
 
 @implementation DetailViewController
 
+@synthesize welcomeView = _welcomeView;
 @synthesize contentView = _contentView;
 @synthesize conferenceSession = _conferenceSession;
 @synthesize sessionName = _sessionName;
@@ -76,6 +77,12 @@
         [self resizeSessionTextAndContentView];
         [self.navigationItem setTitle:@""];
         [self.navigationController.navigationBar setTintColor:[self.conferenceSession color]];
+        if (self.welcomeView){
+            for (UIView *subView in self.contentView.subviews)
+                [subView setHidden:NO];
+            [self.welcomeView removeFromSuperview];
+            self.welcomeView = NULL;
+        }
     }
 }
 
@@ -101,6 +108,17 @@
     tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 20);
 }
 
+-(void) showWelcome
+{
+    for (UIView *subView in self.contentView.subviews)
+        [subView setHidden:YES];
+    [self.toolbar setTintColor:[UIColor blackColor]];
+    UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WelcomeLandscape.png"]];
+    self.welcomeView = welView;
+    [self.contentView addSubview:welView];
+    NSLog(@"ALPHA:%f",self.welcomeView.alpha);
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -116,6 +134,7 @@
     [self setSessionText:nil];
     [self setSessionTime:nil];
     [self setContentView:nil];
+    [self setWelcomeView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

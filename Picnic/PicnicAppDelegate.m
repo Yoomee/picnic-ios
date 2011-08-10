@@ -123,9 +123,10 @@
 {
     DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
     controller.contentView.alpha = 0.0;
+    [controller showWelcome];
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.window.rootViewController dismissModalViewControllerAnimated:YES];
-    [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.contentView.alpha = 1.0;} completion:NULL];
+    [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.welcomeView.alpha = 1.0;controller.contentView.alpha = 1.0;} completion:NULL];
 }
 
 #pragma mark - Core Data stack
