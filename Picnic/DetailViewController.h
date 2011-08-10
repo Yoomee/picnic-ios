@@ -32,6 +32,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *sessionTime;
 
 -(void) resizeSessionTextAndContentView;
--(void) showWelcome;
+-(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
 
 @end

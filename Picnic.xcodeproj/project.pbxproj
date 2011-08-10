@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B3716A513F2DC3000739EC4 /* WelcomePortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */; };
 		5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */; };
 		5B589E0C13F157B100DFD44D /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 5B589E0B13F157B100DFD44D /* Entitlements.entitlements */; };
 		5B5CFF2A13D720100080184E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2913D720100080184E /* UIKit.framework */; };
@@ -51,7 +52,6 @@
 		5BA4874813F03E6E009754DA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874713F03E6E009754DA /* Default.png */; };
 		5BA4874E13F03F30009754DA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874D13F03F30009754DA /* Default@2x.png */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
-		5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */; };
 		5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */; };
 		5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */; };
 		5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */; };
@@ -69,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomePortrait.png; path = images/WelcomePortrait.png; sourceTree = "<group>"; };
 		5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashScreen_iPhone.xib; path = Picnic.xcodeproj/SplashScreen_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		5B589E0B13F157B100DFD44D /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		5B5CFF2513D720100080184E /* PICNIC Festival.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PICNIC Festival.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +143,6 @@
 				5B5CFF2C13D720100080184E /* Foundation.framework in Frameworks */,
 				5B5CFF2E13D720100080184E /* CoreGraphics.framework in Frameworks */,
 				5B5CFF3013D720100080184E /* CoreData.framework in Frameworks */,
-				5BD0896A13D9D4B5004DAD7A /* libxml2.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +256,7 @@
 				5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */,
 				5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */,
 				5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */,
+				5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */,
 				5B8F0CC013F298380016E114 /* WelcomeLandscape.png */,
 			);
 			name = Images;
@@ -403,6 +404,7 @@
 				5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */,
 				5B589E0C13F157B100DFD44D /* Entitlements.entitlements in Resources */,
 				5B8F0CC113F298380016E114 /* WelcomeLandscape.png in Resources */,
+				5B3716A513F2DC3000739EC4 /* WelcomePortrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +524,74 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B3716A113F2D8D200739EC4 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Picnic/Entitlements.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoomee";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "86B56BF0-4B0D-477D-9BBD-2893412D3578";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		5B3716A213F2D8D200739EC4 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
+				CODE_SIGN_ENTITLEMENTS = Picnic/Entitlements.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoomee";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"/usr/include/libxml2/**",
+				);
+				PRODUCT_NAME = "PICNIC Festival";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "86B56BF0-4B0D-477D-9BBD-2893412D3578";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		5B3716A313F2D8D200739EC4 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Picnic.app/Picnic";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
+				INFOPLIST_FILE = "PicnicTests/PicnicTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
 		5B589E0E13F1642300DFD44D /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -535,7 +605,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -551,7 +621,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -600,7 +670,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -619,7 +689,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -634,7 +704,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -652,7 +722,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
 				INFOPLIST_FILE = "Picnic/Picnic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -705,6 +775,7 @@
 			buildConfigurations = (
 				5B5CFF6B13D720110080184E /* Debug */,
 				5B5CFF6C13D720110080184E /* Release */,
+				5B3716A113F2D8D200739EC4 /* Distribution */,
 				5B589E0E13F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -715,6 +786,7 @@
 			buildConfigurations = (
 				5B5CFF6E13D720110080184E /* Debug */,
 				5B5CFF6F13D720110080184E /* Release */,
+				5B3716A213F2D8D200739EC4 /* Distribution */,
 				5B589E0F13F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -725,6 +797,7 @@
 			buildConfigurations = (
 				5B5CFF7113D720110080184E /* Debug */,
 				5B5CFF7213D720110080184E /* Release */,
+				5B3716A313F2D8D200739EC4 /* Distribution */,
 				5B589E1013F1642300DFD44D /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;

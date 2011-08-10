@@ -45,7 +45,7 @@
 					<object class="IBUIToolbar" id="410698538">
 						<reference key="NSNextResponder" ref="647120888"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrameSize">{703, 44}</string>
+						<string key="NSFrameSize">{768, 44}</string>
 						<reference key="NSSuperview" ref="647120888"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="304845567"/>
@@ -68,7 +68,7 @@
 							<object class="IBUILabel" id="351789159">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{38, 30}, {628, 39}}</string>
+								<string key="NSFrame">{{38, 20}, {693, 39}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="171626729"/>
@@ -97,7 +97,7 @@
 							<object class="IBUILabel" id="533307799">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{38, 114}, {628, 25}}</string>
+								<string key="NSFrame">{{38, 104}, {693, 25}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="855470068"/>
@@ -128,7 +128,7 @@
 							<object class="IBUILabel" id="171626729">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{38, 77}, {628, 29}}</string>
+								<string key="NSFrame">{{38, 67}, {693, 29}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="533307799"/>
@@ -152,7 +152,7 @@
 							<object class="IBUILabel" id="855470068">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{140, 147}, {423, 44}}</string>
+								<string key="NSFrame">{{140, 137}, {488, 44}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="425847448"/>
@@ -184,10 +184,9 @@
 							<object class="IBUITextView" id="425847448">
 								<reference key="NSNextResponder" ref="304845567"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{38, 199}, {628, 200}}</string>
+								<string key="NSFrame">{{38, 189}, {693, 200}}</string>
 								<reference key="NSSuperview" ref="304845567"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -218,10 +217,9 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{0, 44}, {703, 704}}</string>
+						<string key="NSFrame">{{0, 44}, {768, 960}}</string>
 						<reference key="NSSuperview" ref="647120888"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -232,7 +230,7 @@
 						<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 					</object>
 				</object>
-				<string key="NSFrame">{{0, 20}, {703, 748}}</string>
+				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="410698538"/>
@@ -244,33 +242,6 @@
 				<int key="IBUIContentMode">1</int>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
-				</object>
-				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-					<int key="IBUIInterfaceOrientation">3</int>
-					<int key="interfaceOrientation">3</int>
-				</object>
-				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
-					<string key="IBUISimulatedSizeMetricsClass">IBUISplitViewDetailSimulatedSizeMetrics</string>
-					<object class="NSMutableDictionary" key="IBUINormalizedOrientationToSizeMap">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<integer value="1"/>
-							<integer value="3"/>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>{768, 1024}</string>
-							<string>{703, 768}</string>
-						</object>
-					</object>
-					<string key="IBUITargetRuntime">IBIPadFramework</string>
-					<string key="IBUIDisplayName">Detail</string>
-					<string key="IBUIDestinationClass">IBUISplitViewController</string>
-					<object class="NSDictionary" key="IBUIDestinationContext">
-						<string key="NS.key.0">IBUISplitViewControllerContentSizeLocation</string>
-						<string key="NS.object.0">IBUISplitViewControllerContentSizeLocationDetail</string>
-					</object>
 				</object>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
@@ -487,7 +458,6 @@
 							<string>sessionTime</string>
 							<string>toolbar</string>
 							<string>venueName</string>
-							<string>welcomeView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -498,7 +468,6 @@
 							<string>UILabel</string>
 							<string>UIToolbar</string>
 							<string>UILabel</string>
-							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -512,7 +481,6 @@
 							<string>sessionTime</string>
 							<string>toolbar</string>
 							<string>venueName</string>
-							<string>welcomeView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -543,10 +511,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">venueName</string>
 								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">welcomeView</string>
-								<string key="candidateClassName">UIImageView</string>
 							</object>
 						</object>
 					</object>

@@ -205,12 +205,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Picnic/DetailViewController.m"
-         timestampString = "334669401.414677"
+         timestampString = "334684444.449732"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "119"
-         endingLineNumber = "119"
-         landmarkName = "-showWelcome"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
+         landmarkName = "-showWelcome:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -224,7 +224,21 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "114"
          endingLineNumber = "114"
-         landmarkName = "-showWelcome"
+         landmarkName = "-showWelcome:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Picnic/DetailViewController.m"
+         timestampString = "334684444.449732"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
+         landmarkName = "-showWelcome:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

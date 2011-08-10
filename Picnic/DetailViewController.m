@@ -102,21 +102,27 @@
     }
     CGSize textSize = [[self.conferenceSession text] sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:CGSizeMake(self.sessionText.frame.size.width, 1000.0f)];
     CGRect frame = self.sessionText.frame; 
-    frame.size.height = textSize.height + 10;
+    frame.size.height = textSize.height + 30;
     self.sessionText.frame = frame;
     UIScrollView *tempScrollView = (UIScrollView *)self.contentView;
     tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 20);
 }
 
--(void) showWelcome
+-(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation
 {
     for (UIView *subView in self.contentView.subviews)
         [subView setHidden:YES];
-    [self.toolbar setTintColor:[UIColor blackColor]];
-    UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WelcomeLandscape.png"]];
+    NSString *imageName;        
+    if ((interfaceOrientation == 3) || (interfaceOrientation == 4)) {
+        imageName = @"WelcomeLandscape.png";
+            } else {
+        imageName = @"WelcomePortrait.png";
+    }
+    UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     self.welcomeView = welView;
     [self.contentView addSubview:welView];
-    NSLog(@"ALPHA:%f",self.welcomeView.alpha);
+    [self.toolbar setTintColor:[UIColor blackColor]];
+
 }
 
 #pragma mark - View lifecycle
@@ -182,7 +188,8 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
-    [self.toolbar setTintColor:[self.conferenceSession color]];
+    if(self.conferenceSession)
+        [self.toolbar setTintColor:[self.conferenceSession color]];
     self.popoverController = pc;
 }
 

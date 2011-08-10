@@ -112,10 +112,10 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     // Display text
-    UIAlertView *alertView;
-    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"YEAH!" otherButtonTitles:nil];
-    [alertView show];    
+//    UIAlertView *alertView;
+//    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"YEAH!" otherButtonTitles:nil];
+//    [alertView show];    
     return YES;
 }
 
@@ -123,7 +123,7 @@
 {
     DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
     controller.contentView.alpha = 0.0;
-    [controller showWelcome];
+    [controller showWelcome:self.window.rootViewController.interfaceOrientation];
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.window.rootViewController dismissModalViewControllerAnimated:YES];
     [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.welcomeView.alpha = 1.0;controller.contentView.alpha = 1.0;} completion:NULL];
