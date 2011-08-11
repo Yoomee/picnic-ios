@@ -20,11 +20,11 @@
     UITableView *tableView;
 }
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (retain, nonatomic) IBOutlet DetailViewController *detailViewController;
 
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readwrite, assign, nonatomic) int currentDay;
 - (IBAction)dayDidChange:(UISegmentedControl *)sender;
 

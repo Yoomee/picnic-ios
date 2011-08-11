@@ -25,29 +25,46 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    UIWindow *myWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = myWindow;
+    [myWindow release];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPhone" bundle:nil];
-        
+        SplashScreenController *mySplashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPhone" bundle:nil];
+        self.splashScreenController = mySplashScreenController;       
         RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPhone" bundle:nil];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        self.window.rootViewController = self.navigationController;
-        
         controller.managedObjectContext = self.managedObjectContext;
-    } else {
-        self.splashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPad" bundle:nil];
-        RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPad" bundle:nil];
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil];
+        
+        UINavigationController *myNavigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        self.navigationController = myNavigationController;
+        self.window.rootViewController = self.navigationController;
 
-        self.splitViewController = [[UISplitViewController alloc] init];
+        [mySplashScreenController release];   
+        [myNavigationController release];
+        [controller release];
+    } else {
+        SplashScreenController *mySplashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPad" bundle:nil];
+        self.splashScreenController = mySplashScreenController;
+        
+        RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPad" bundle:nil];
+        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil];
+        controller.detailViewController = detailViewController;
+        controller.managedObjectContext = self.managedObjectContext;
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+
+        UISplitViewController *mySplitViewController = [[UISplitViewController alloc] init];
+        self.splitViewController = mySplitViewController;
         self.splitViewController.delegate = detailViewController;
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:navigationController, detailViewController, nil];
         
         self.window.rootViewController = self.splitViewController;
-        controller.detailViewController = detailViewController;
-        controller.managedObjectContext = self.managedObjectContext;
+
+        [mySplitViewController release];
+        [navigationController release];
+        [detailViewController release];
+        [mySplashScreenController release];
+        [controller release];
     }
     [self.window makeKeyAndVisible];
     [self.window.rootViewController presentModalViewController:self.splashScreenController animated:NO];
@@ -127,6 +144,21 @@
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.window.rootViewController dismissModalViewControllerAnimated:YES];
     [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.welcomeView.alpha = 1.0;controller.contentView.alpha = 1.0;} completion:NULL];
+}
+
+- (void)dealloc
+{
+    [_window release];
+    [__managedObjectContext release];
+    [__managedObjectModel release];
+    [__persistentStoreCoordinator release];
+    [_splitViewController.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) { 
+        [viewController release];
+    }];
+    [_splitViewController release];
+    [_navigationController release];
+    [_splashScreenController release];
+    [super dealloc];
 }
 
 #pragma mark - Core Data stack

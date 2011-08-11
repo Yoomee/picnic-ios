@@ -11,7 +11,7 @@
 #import "RootViewController.h"
 
 @interface DetailViewController ()
-@property (strong, nonatomic) UIPopoverController *popoverController;
+@property (retain, nonatomic) UIPopoverController *popoverController;
 - (void)configureView;
 @end
 
@@ -41,12 +41,13 @@
 
 - (void)setConferenceSession:(ConferenceSession *)newConferenceSession
 {
-    if (_conferenceSession != newConferenceSession) {
-        _conferenceSession = newConferenceSession;
-        
+	if (_conferenceSession != newConferenceSession) {
+		[_conferenceSession release];
+		_conferenceSession = [newConferenceSession retain];
+		
         // Update the view.
         [self configureView];
-    }
+	}
 
     if (self.popoverController != nil) {
         [self.popoverController dismissPopoverAnimated:YES];
@@ -141,9 +142,12 @@
     [self setSessionTime:nil];
     [self setContentView:nil];
     [self setWelcomeView:nil];
-    [super viewDidUnload];
+    self.conferenceSession = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.popoverController = nil;
+    self.welcomeView = nil;
+    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -165,6 +169,22 @@
 {
 	[super viewDidDisappear:animated];
 }
+
+- (void)dealloc
+{
+    [_myPopoverController release];
+    [_toolbar release];
+    [_conferenceSession release];
+    [_sessionName release];
+    [_sessionTime release];
+    [_venueName release];
+    [_sessionSpeakers release];
+    [_contentView release];
+    [_sessionText release];
+    [_welcomeView release];
+    [super dealloc];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -188,8 +208,10 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
-    if(self.conferenceSession)
+    [items release];
+    if(self.conferenceSession){
         [self.toolbar setTintColor:[self.conferenceSession color]];
+    }
     self.popoverController = pc;
 }
 
@@ -199,6 +221,7 @@
     NSMutableArray *items = [[self.toolbar items] mutableCopy];
     [items removeObjectAtIndex:0];
     [self.toolbar setItems:items animated:YES];
+    [items release];
     self.popoverController = nil;
 }
 

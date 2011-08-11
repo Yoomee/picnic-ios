@@ -16,11 +16,11 @@
     UILabel *sessionTime;
 }
 
-@property (nonatomic, strong) ConferenceSession *conferenceSession;
+@property (nonatomic, retain) ConferenceSession *conferenceSession;
 
-@property (nonatomic, strong) IBOutlet UILabel *sessionName;
-@property (nonatomic, strong) IBOutlet UILabel *venueName;
-@property (nonatomic, strong) IBOutlet UILabel *sessionTime;
+@property (nonatomic, retain) IBOutlet UILabel *sessionName;
+@property (nonatomic, retain) IBOutlet UILabel *venueName;
+@property (nonatomic, retain) IBOutlet UILabel *sessionTime;
 
 - (void)configureView;
 

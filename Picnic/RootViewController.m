@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "DetailViewController.h"
+#import "SessionCell.h"
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -56,6 +57,14 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)dealloc
+{
+    [_detailViewController release];
+    [__fetchedResultsController release];
+    [__managedObjectContext release];
+    [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,7 +116,7 @@
 - (SessionCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {   
     static NSString *CellIdentifier = @"SessionCell";
-    SessionCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SessionCell *cell = (SessionCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:self options:nil];
@@ -138,14 +147,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
+        DetailViewController *aDetailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
+        self.detailViewController = aDetailViewController;
         ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];        
         self.detailViewController.conferenceSession = selectedConferenceSession;
-        [self.navigationItem.backBarButtonItem setTitle:@"Back"];
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
         self.navigationItem.backBarButtonItem = backButton;
         [self.navigationController pushViewController:self.detailViewController animated:YES];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [backButton release];
+        [aDetailViewController release];
     } else {
         ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         self.detailViewController.conferenceSession = conferenceSession;
@@ -199,6 +210,10 @@
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
     }    
+        [aFetchedResultsController release];
+    [fetchRequest release];
+    [sortDescriptor release];
+    [sortDescriptors release];
     return __fetchedResultsController;
 }    
 
@@ -274,7 +289,7 @@
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 73)];
     [bgView setBackgroundColor:conferenceSession.color];
     [cell setSelectedBackgroundView:bgView];
-
+    [bgView release];
 }
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
@@ -289,7 +304,7 @@
         default:
            self.title = @"Wednesday 14 September";
     }
-    self.fetchedResultsController = nil;
+    __fetchedResultsController = nil;
     [tableView reloadData];
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
         if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {

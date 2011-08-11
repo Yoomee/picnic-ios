@@ -32,6 +32,7 @@
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
+    [dateFormatter release];
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
 
@@ -42,6 +43,7 @@
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
+    [dateFormatter release];
     return [NSString stringWithFormat:@"%@ - %@", dateString1, dateString2];
 }
 
@@ -52,7 +54,9 @@
     [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
         [speakerNames addObject:[member fullName]];
     }];
-    return [NSString stringWithFormat:@"%@",[speakerNames componentsJoinedByString:@", "]];
+    NSString *speakerNamesString = [NSString stringWithFormat:@"%@",[speakerNames componentsJoinedByString:@", "]];
+    [speakerNames release];
+    return speakerNamesString;
 }
 
 -(UIColor *)color

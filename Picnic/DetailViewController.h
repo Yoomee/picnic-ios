@@ -20,16 +20,16 @@
     UIScrollView *_contentView;
     UIImageView *_welcomeView;
 }
-@property (nonatomic, strong) UIImageView *welcomeView;
-@property (nonatomic, strong) IBOutlet UIScrollView *contentView;
-@property (strong, nonatomic) ConferenceSession *conferenceSession;
-@property (strong, nonatomic) IBOutlet UILabel *sessionName;
-@property (strong, nonatomic) IBOutlet UILabel *sessionSpeakers;
+@property (nonatomic, retain) UIImageView *welcomeView;
+@property (nonatomic, retain) IBOutlet UIScrollView *contentView;
+@property (retain, nonatomic) ConferenceSession *conferenceSession;
+@property (retain, nonatomic) IBOutlet UILabel *sessionName;
+@property (retain, nonatomic) IBOutlet UILabel *sessionSpeakers;
 
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, strong) IBOutlet UILabel *venueName;
-@property (nonatomic, strong) IBOutlet UITextView *sessionText;
-@property (nonatomic, strong) IBOutlet UILabel *sessionTime;
+@property (retain, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UILabel *venueName;
+@property (nonatomic, retain) IBOutlet UITextView *sessionText;
+@property (nonatomic, retain) IBOutlet UILabel *sessionTime;
 
 -(void) resizeSessionTextAndContentView;
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;

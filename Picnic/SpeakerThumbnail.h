@@ -15,11 +15,11 @@
     UILabel *surnameLabel;
 }
 
-@property (nonatomic, strong) Member *member;
+@property (nonatomic, retain) Member *member;
 
-@property (nonatomic, strong) IBOutlet UIImageView *image;
-@property (nonatomic, strong) IBOutlet UILabel *forenameLabel;
-@property (nonatomic, strong) IBOutlet UILabel *surnameLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *image;
+@property (nonatomic, retain) IBOutlet UILabel *forenameLabel;
+@property (nonatomic, retain) IBOutlet UILabel *surnameLabel;
 
 -(void)configureView;
 

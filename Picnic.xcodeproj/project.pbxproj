@@ -528,10 +528,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Picnic/Entitlements.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoomee";
@@ -553,10 +550,7 @@
 		5B3716A213F2D8D200739EC4 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Picnic/Entitlements.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoomee";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -700,6 +694,7 @@
 		5B5CFF6E13D720110080184E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matt Atkins (86N66R4WRU)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
@@ -711,6 +706,7 @@
 					"/usr/include/libxml2/**",
 				);
 				PRODUCT_NAME = "PICNIC Festival";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B4D326-135A-4DCD-B863-77CD0554414E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
