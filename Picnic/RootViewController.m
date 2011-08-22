@@ -188,8 +188,11 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startsAt" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startsAt" ascending:YES];
+    NSSortDescriptor *venueOrderDescriptor = [[NSSortDescriptor alloc] initWithKey:@"venue.order" ascending:YES];
+    
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:startTimeDescriptor, venueOrderDescriptor, nil];
+
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -212,7 +215,8 @@
     }    
         [aFetchedResultsController release];
     [fetchRequest release];
-    [sortDescriptor release];
+    [venueOrderDescriptor release];
+    [startTimeDescriptor release];
     [sortDescriptors release];
     return __fetchedResultsController;
 }    
