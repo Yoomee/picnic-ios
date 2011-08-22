@@ -216,6 +216,7 @@
     
     NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
     if (defaultStorePath) {
+        [fileManager removeItemAtPath:[storeURL path] error:NULL];
         [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
     }
     
