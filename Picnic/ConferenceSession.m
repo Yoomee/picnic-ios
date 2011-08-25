@@ -24,11 +24,13 @@
 @dynamic venue;
 @dynamic speakers;
 
+
 -(NSString *)dateString
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [dateFormatter setDateFormat:@"eeee dd MMM HH:mm"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
@@ -41,6 +43,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [dateFormatter setDateFormat:@"HH:mm"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Amsterdam"]];
     NSString *dateString1 = [dateFormatter stringFromDate:self.startsAt];
     NSString *dateString2 = [dateFormatter stringFromDate:self.endsAt];
     [dateFormatter release];
