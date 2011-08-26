@@ -7,10 +7,9 @@
 //
 
 #import "PicnicAppDelegate.h"
-
 #import "RootViewController.h"
-
 #import "DetailViewController.h"
+#import "Synchroniser.h"
 
 @implementation PicnicAppDelegate
 
@@ -28,6 +27,9 @@
     UIWindow *myWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = myWindow;
     [myWindow release];
+    
+    [self setupSettings];
+    [Synchroniser getURL];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         SplashScreenController *mySplashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPhone" bundle:nil];
@@ -71,6 +73,8 @@
     [self performSelector:@selector(hideSplashScreen) withObject:nil afterDelay: 1.5f];    
     return YES;
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -125,6 +129,14 @@
             abort();
         } 
     }
+}
+
+-(void)setupSettings
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
+    [defaults setInteger:0 forKey:@"programVersion"];
+    [defaults synchronize];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

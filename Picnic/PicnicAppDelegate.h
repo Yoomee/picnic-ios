@@ -25,5 +25,5 @@
 @property (retain, nonatomic) UISplitViewController *splitViewController;
 
 - (void)hideSplashScreen;
-
+- (void)setupSettings;
 @end
