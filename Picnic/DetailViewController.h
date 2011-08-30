@@ -33,5 +33,6 @@
 
 -(void) resizeSessionTextAndContentView;
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
+-(void) reloadData;
 
 @end

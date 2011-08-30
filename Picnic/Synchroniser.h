@@ -13,6 +13,7 @@
 @interface Synchroniser : NSObject {
     
 }
-+(void)getURL;
+-(void)updateProgram;
+@property (readonly, retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

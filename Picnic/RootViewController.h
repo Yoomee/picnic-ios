@@ -27,5 +27,6 @@
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readwrite, assign, nonatomic) int currentDay;
 - (IBAction)dayDidChange:(UISegmentedControl *)sender;
+-(void)reloadData;
 
 @end

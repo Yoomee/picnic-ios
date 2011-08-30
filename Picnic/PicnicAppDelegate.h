@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SplashScreenController.h"
+#import "Synchroniser.h"
 
 @interface PicnicAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -16,14 +17,13 @@
 @property (readonly, retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, retain, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, retain, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-
 @property (retain, nonatomic) SplashScreenController *splashScreenController;
 @property (retain, nonatomic) UINavigationController *navigationController;
 @property (retain, nonatomic) UISplitViewController *splitViewController;
+@property (retain, nonatomic) Synchroniser *synchroniser;
 
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 - (void)hideSplashScreen;
 - (void)setupSettings;
 @end

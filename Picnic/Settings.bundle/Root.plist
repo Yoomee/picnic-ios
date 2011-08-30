@@ -23,8 +23,6 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
-			<key>DefaultValue</key>
-			<string>1</string>
 			<key>Title</key>
 			<string>Program version</string>
 			<key>Key</key>

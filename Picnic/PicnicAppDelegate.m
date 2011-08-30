@@ -9,7 +9,6 @@
 #import "PicnicAppDelegate.h"
 #import "RootViewController.h"
 #import "DetailViewController.h"
-#import "Synchroniser.h"
 
 @implementation PicnicAppDelegate
 
@@ -20,6 +19,7 @@
 @synthesize splashScreenController = _splashScreenController;
 @synthesize navigationController = _navigationController;
 @synthesize splitViewController = _splitViewController;
+@synthesize synchroniser = _synchroniser;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -29,7 +29,10 @@
     [myWindow release];
     
     [self setupSettings];
-    [Synchroniser getURL];
+    
+    Synchroniser *mySynchroniser = [[Synchroniser alloc] init];
+    self.synchroniser = mySynchroniser;
+    [mySynchroniser release];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         SplashScreenController *mySplashScreenController = [[SplashScreenController alloc] initWithNibName:@"SplashScreen_iPhone" bundle:nil];
@@ -104,6 +107,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    [self.synchroniser updateProgram];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -135,7 +139,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
-    [defaults setInteger:0 forKey:@"programVersion"];
     [defaults synchronize];
 }
 
@@ -164,6 +167,7 @@
     [__managedObjectContext release];
     [__managedObjectModel release];
     [__persistentStoreCoordinator release];
+    [_synchroniser release];
     [_splitViewController.viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop) { 
         [viewController release];
     }];
@@ -227,9 +231,9 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
-    if (defaultStorePath) {
+    if (true && defaultStorePath) {
         [fileManager removeItemAtPath:[storeURL path] error:NULL];
-        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
     }
     
     

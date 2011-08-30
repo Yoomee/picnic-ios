@@ -308,6 +308,11 @@
         default:
            self.title = @"Wednesday 14 September";
     }
+    [self reloadData];
+}
+
+-(void)reloadData{
+    NSLog(@"Reloading data");
     __fetchedResultsController = nil;
     [tableView reloadData];
     if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {

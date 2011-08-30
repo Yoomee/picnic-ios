@@ -224,5 +224,8 @@
     [items release];
     self.popoverController = nil;
 }
+-(void)reloadData {
+    [self configureView];
+}
 
 @end
