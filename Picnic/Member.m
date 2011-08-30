@@ -11,10 +11,11 @@
 
 
 @implementation Member
+@dynamic uid;
 @dynamic forename;
 @dynamic surname;
 @dynamic bio;
-@dynamic is_speaker;
+@dynamic isSpeaker;
 @dynamic sessionsSpeakingAt;
 
 -(NSString *)fullName {

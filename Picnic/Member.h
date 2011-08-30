@@ -14,10 +14,11 @@
 @interface Member : NSManagedObject {
 @private
 }
+@property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSString * forename;
 @property (nonatomic, retain) NSString * surname;
 @property (nonatomic, retain) NSString * bio;
-@property (nonatomic, retain) NSNumber * is_speaker;
+@property (nonatomic, retain) NSNumber * isSpeaker;
 @property (nonatomic, retain) NSSet *sessionsSpeakingAt;
 @end
 

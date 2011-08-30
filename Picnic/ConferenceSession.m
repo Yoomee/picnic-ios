@@ -12,6 +12,7 @@
 
 
 @implementation ConferenceSession
+@dynamic uid;
 @dynamic colorB;
 @dynamic endsAt;
 @dynamic colorG;
@@ -57,6 +58,7 @@
     [speakers enumerateObjectsUsingBlock:^(Member *member, BOOL *stop) { 
         [speakerNames addObject:[member fullName]];
     }];
+    [speakerNames sortUsingSelector:@selector(caseInsensitiveCompare:)];
     NSString *speakerNamesString = [NSString stringWithFormat:@"%@",[speakerNames componentsJoinedByString:@", "]];
     [speakerNames release];
     return speakerNamesString;

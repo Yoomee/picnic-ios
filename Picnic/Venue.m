@@ -7,10 +7,12 @@
 //
 
 #import "Venue.h"
+#import "PicnicAppDelegate.h"
 #import "ConferenceSession.h"
 
 
 @implementation Venue
+@dynamic uid;
 @dynamic name;
 @dynamic order;
 @dynamic conferenceSessions;

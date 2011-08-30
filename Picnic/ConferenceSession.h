@@ -14,6 +14,7 @@
 @interface ConferenceSession : NSManagedObject {
 @private
 }
+@property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSNumber * colorB;
 @property (nonatomic, retain) NSDate * endsAt;
 @property (nonatomic, retain) NSNumber * colorG;

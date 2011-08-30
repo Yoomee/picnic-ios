@@ -14,9 +14,11 @@
 @interface Venue : NSManagedObject {
 @private
 }
+@property (nonatomic, retain) NSNumber * uid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSSet *conferenceSessions;
+
 @end
 
 @interface Venue (CoreDataGeneratedAccessors)
