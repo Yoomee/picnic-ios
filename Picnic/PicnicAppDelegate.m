@@ -137,7 +137,21 @@
 
 -(void)setupSettings
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
+    NSString *progVersion = [defaults stringForKey:@"programVersion"];
+    
+    if (progVersion == NULL) {
+        NSLog(@"Replacing database");
+        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
+        if (true && defaultStorePath) {
+            [fileManager removeItemAtPath:[storeURL path] error:NULL];
+            [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+        }
+    }
+    
+    
     [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
     [defaults synchronize];
 }
@@ -228,13 +242,13 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
 
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
-    if (true && defaultStorePath) {
-        [fileManager removeItemAtPath:[storeURL path] error:NULL];
-//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
-    }
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    
+//    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
+//    if (true && defaultStorePath) {
+//        [fileManager removeItemAtPath:[storeURL path] error:NULL];
+////        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+//    }
     
     
     NSError *error = nil;
