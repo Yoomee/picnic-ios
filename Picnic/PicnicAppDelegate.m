@@ -20,6 +20,8 @@
 @synthesize navigationController = _navigationController;
 @synthesize splitViewController = _splitViewController;
 @synthesize synchroniser = _synchroniser;
+@synthesize alertView = _alertView;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -107,7 +109,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-    [self.synchroniser updateProgram];
+    [self.synchroniser startUpdate];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -165,6 +167,40 @@
     return YES;
 }
 
+-(void)willStartUpdate{
+    NSLog(@"Updating program.");    
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Updating program\nPlease wait..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    [self.alertView show];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
+    [indicator startAnimating];
+    [self.alertView addSubview:indicator];
+    [indicator release];
+    [self.window.rootViewController presentModalViewController:self.splashScreenController animated:YES];
+
+}
+
+-(void)didFinishUpdate{
+    NSLog(@"Finished.");
+    [NSFetchedResultsController deleteCacheWithName:@"Day1"];
+    [NSFetchedResultsController deleteCacheWithName:@"Day2"];
+    [NSFetchedResultsController deleteCacheWithName:@"Day3"];
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:10];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [viewControllers addObjectsFromArray:[self.navigationController viewControllers]];
+    } else {
+        RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
+        [viewControllers addObject: aRootViewController];
+        [viewControllers addObject:aRootViewController.detailViewController];
+    }
+    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop){
+        [(RootViewController *)viewController updateSelected:YES];
+    }];
+    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+    DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
+    [controller.welcomeView removeFromSuperview];
+    [self hideSplashScreen];
+}
 - (void)hideSplashScreen
 {
     DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
@@ -177,6 +213,7 @@
 
 - (void)dealloc
 {
+    [_alertView release];
     [_window release];
     [__managedObjectContext release];
     [__managedObjectModel release];

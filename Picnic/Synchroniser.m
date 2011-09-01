@@ -17,15 +17,16 @@
 @implementation Synchroniser
 @synthesize managedObjectContext = __managedObjectContext;
 
--(void)updateProgram
+-(void)startUpdate
 {
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *progVersion = [prefs stringForKey:@"programVersion"];
-    NSString *urlString = [NSString  stringWithFormat:@"http://10.0.1.5:3000/api/program/%@",progVersion];
+    // NSString *urlString = [NSString  stringWithFormat:@"http://10.0.1.5:3000/api/program/%@",progVersion];
+    NSString *urlString = [NSString  stringWithFormat:@"http://picnicnetwork.org/api/program/%@",progVersion];
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setPersistentConnectionTimeoutSeconds:120];
+    [request setPersistentConnectionTimeoutSeconds:60];
     [request setDelegate:self];
     [request startAsynchronous];    
 }
@@ -50,13 +51,12 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"uid" ascending:YES];    
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
-    
     error = nil;
     NSArray *existingSessions = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     [existingSessions enumerateObjectsUsingBlock:^(ConferenceSession *eSession, NSUInteger idx, BOOL *stop) { 
+        NSMutableDictionary *nSession = [NSMutableDictionary dictionary];
         int eSessionId = [eSession.uid intValue];
         int nSessionId;
-        NSDictionary *nSession;
         if([sessions count] > 0){
             nSession = [sessions objectAtIndex:0];
             nSessionId = [[nSession objectForKey:@"id"] intValue];
@@ -77,11 +77,21 @@
             [newSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
             [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:newSession];
             [sessions removeObjectAtIndex:0];
-            nSession = [sessions objectAtIndex:0];
-            nSessionId = [[nSession objectForKey:@"id"] intValue];
+            if ([sessions count] > 0){
+                nSession = [sessions objectAtIndex:0];
+                nSessionId = [[nSession objectForKey:@"id"] intValue];
+            }
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
         }
         if (eSessionId < nSessionId){
             [self.managedObjectContext deleteObject:eSession];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
         } else if (eSessionId == nSessionId){
             [eSession setUid:[NSNumber numberWithInt:nSessionId]];
             [eSession setName:[nSession objectForKey:@"name"]];
@@ -95,9 +105,12 @@
             [eSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
             [eSession setSpeakers:NULL];
             [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:eSession];
-            
             if([sessions count] > 0){
                 [sessions removeObjectAtIndex:0];
+            }
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
             }
         }
     }];
@@ -115,12 +128,17 @@
         [newSession setEndsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"ends_at"] intValue]]];
         [newSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
         [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:newSession];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"ERROR: updating sessions");
+        }
     }];
     
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"ERROR: updating sessions");
     }
     
+    [venueDict release];
     [sortDescriptor release];
     [sortDescriptors release];
     [fetchRequest release];
@@ -152,7 +170,7 @@
     [existingMembers enumerateObjectsUsingBlock:^(Member *eMember, NSUInteger idx, BOOL *stop) { 
         int eMemberId = [eMember.uid intValue];
         int nMemberId;
-        NSDictionary *nMember;
+        NSDictionary *nMember = [NSMutableDictionary dictionary];
         if([members count] > 0){
             nMember = [members objectAtIndex:0];
             nMemberId = [[nMember objectForKey:@"id"] intValue];
@@ -170,12 +188,20 @@
             [sessionIds enumerateObjectsUsingBlock:^(NSNumber *sessionId, NSUInteger idx, BOOL *stop) {
                 [(ConferenceSession *)[sessionDict objectForKey:sessionId] addSpeakersObject:newMember];
             }];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
             [members removeObjectAtIndex:0];
             nMember = [members objectAtIndex:0];
             nMemberId = [[nMember objectForKey:@"id"] intValue];
         }
         if (eMemberId < nMemberId){
             [self.managedObjectContext deleteObject:eMember];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
         } else if (eMemberId == nMemberId){
             [eMember setUid:[NSNumber numberWithInt:nMemberId]];
             [eMember setForename:[nMember objectForKey:@"forename"]];
@@ -188,6 +214,10 @@
             }];
             if([members count] > 0){
                 [members removeObjectAtIndex:0];
+            }
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
             }
         }
     }];
@@ -203,12 +233,17 @@
         [sessionIds enumerateObjectsUsingBlock:^(NSNumber *sessionId, NSUInteger idx, BOOL *stop) {
             [(ConferenceSession *)[sessionDict objectForKey:sessionId] addSpeakersObject:newMember];
         }];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"ERROR: updating sessions");
+        }
     }];
     
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"ERROR: updating members");
     }
     
+    [sessionDict release];
     [sortDescriptor release];
     [sortDescriptors release];
     [fetchRequest release];
@@ -230,7 +265,7 @@
     [existingVenues enumerateObjectsUsingBlock:^(Venue *eVenue, NSUInteger idx, BOOL *stop) { 
         int eVenueId = [eVenue.uid intValue];
         int nVenueId;
-        NSDictionary *nVenue;
+        NSDictionary *nVenue = [NSMutableDictionary dictionary];
         if([venues count] > 0){
             nVenue = [venues objectAtIndex:0];
             nVenueId = [[nVenue objectForKey:@"id"] intValue];
@@ -242,19 +277,30 @@
             [newVenue setUid:[NSNumber numberWithInt:nVenueId]];
             [newVenue setName:[nVenue objectForKey:@"name"]];
             [newVenue setOrder:[NSNumber numberWithInt:[[nVenue objectForKey:@"order"] intValue]]];
-            
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
             [venues removeObjectAtIndex:0];
             nVenue = [venues objectAtIndex:0];
             nVenueId = [[nVenue objectForKey:@"id"] intValue];
         }
         if (eVenueId < nVenueId){
             [self.managedObjectContext deleteObject:eVenue];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
         } else if (eVenueId == nVenueId){
             [eVenue setUid:[NSNumber numberWithInt:nVenueId]];
             [eVenue setName:[nVenue objectForKey:@"name"]];
             [eVenue setOrder:[NSNumber numberWithInt:[[nVenue objectForKey:@"order"] intValue]]];
             if([venues count] > 0){
                 [venues removeObjectAtIndex:0];
+            }
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
             }
         }
     }];
@@ -264,6 +310,10 @@
         [newVenue setUid:[NSNumber numberWithInt:[[nVenue objectForKey:@"id"] intValue]]];
         [newVenue setName:[nVenue objectForKey:@"name"]];
         [newVenue setOrder:[NSNumber numberWithInt:[[nVenue objectForKey:@"order"] intValue]]];
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"ERROR: updating sessions");
+        }
     }];
 
     if (![self.managedObjectContext save:&error]) {
@@ -275,46 +325,43 @@
     [fetchRequest release];
 }
 
+-(void)updateProgram:(NSDictionary *)data{
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    [self updateVenues:[data objectForKey:@"venues"]]; 
+    [self updateConferenceSessions:[data objectForKey:@"conference_sessions"]];            
+    [self updateMembers:[data objectForKey:@"members"]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[data objectForKey:@"version"] forKey:@"programVersion"];
+    [defaults synchronize];
+    [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] performSelectorOnMainThread:@selector(didFinishUpdate)
+                                           withObject:nil
+                                        waitUntilDone:YES];
+    [pool release];
+}
+
+
+
 
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
-    // Use when fetching text data
-    NSString *responseString = [request responseString];
-    
     SBJsonParser *parser = [[SBJsonParser alloc] init];
-
-    id object = [parser objectWithString:responseString];
-    
+    id object = [parser objectWithData:[request responseData]];
     if (object) {
         NSDictionary *data = (NSDictionary *)object; 
         int update = [[data objectForKey:@"update"] intValue];
-        if (update==1) {
-            NSLog(@"Updating.");
-            [self updateVenues:[data objectForKey:@"venues"]];            
-            [self updateConferenceSessions:[data objectForKey:@"conference_sessions"]];            
-            [self updateMembers:[data objectForKey:@"members"]];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[data objectForKey:@"version"] forKey:@"programVersion"];
-            [defaults synchronize];
-            NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:10];
-            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-                [viewControllers addObjectsFromArray:[(UINavigationController *)[(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] navigationController] viewControllers]];
-            } else {
-                RootViewController *aRootViewController = (RootViewController *)[(UINavigationController *)[[[(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController] viewControllers]objectAtIndex:0] topViewController];
-                [viewControllers addObject: aRootViewController];
-                [viewControllers addObject:aRootViewController.detailViewController];
-            }
-            [viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop){
-                [(RootViewController *)viewController reloadData];
-            }];
-
-            NSLog(@"Finished.");
+        if (update==1) {            
+            [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] willStartUpdate];
+            [self performSelectorInBackground:@selector(updateProgram:) withObject:data];
         }
     } else {
         NSLog(@"%@",[NSString stringWithFormat:@"An error occurred: %@", parser.error]);
     }
+    [parser release];
 }
 
+             
 -(void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
@@ -329,6 +376,11 @@
     }
     __managedObjectContext = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     return __managedObjectContext;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
 }
 
 @end

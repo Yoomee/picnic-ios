@@ -33,14 +33,16 @@
 
 - (void) drawRect:(CGRect)rect
 {
-    //Get the CGContext from this view
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    //Draw a rectangle    
-    CGContextSetFillColorWithColor(context, [[self.conferenceSession color] CGColor]);
-    //Define a rectangle
-    CGContextAddRect(context, CGRectMake(0.0, 0.0, 8.0, 73.0));     //X, Y, Width, Height
-    //Draw it
-    CGContextFillPath(context);
+    if([self conferenceSession]){
+        //Get the CGContext from this view
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        //Draw a rectangle    
+        CGContextSetFillColorWithColor(context, [[self.conferenceSession color] CGColor]);
+        //Define a rectangle
+        CGContextAddRect(context, CGRectMake(0.0, 0.0, 8.0, 73.0));     //X, Y, Width, Height
+        //Draw it
+        CGContextFillPath(context);
+    }
 }
 
 - (void)setConferenceSession:(ConferenceSession *)newConferenceSession

@@ -82,7 +82,6 @@
             for (UIView *subView in self.contentView.subviews)
                 [subView setHidden:NO];
             [self.welcomeView removeFromSuperview];
-            self.welcomeView = NULL;
         }
     }
 }
@@ -116,12 +115,13 @@
     NSString *imageName;        
     if ((interfaceOrientation == 3) || (interfaceOrientation == 4)) {
         imageName = @"WelcomeLandscape.png";
-            } else {
+        } else {
         imageName = @"WelcomePortrait.png";
     }
     UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
     self.welcomeView = welView;
     [self.contentView addSubview:welView];
+    [welView release];
     [self.toolbar setTintColor:[UIColor blackColor]];
 
 }
@@ -224,8 +224,7 @@
     [items release];
     self.popoverController = nil;
 }
--(void)reloadData {
-    [self configureView];
+-(void)updateSelected:(BOOL)selectFirst{
 }
 
 @end

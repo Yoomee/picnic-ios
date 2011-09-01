@@ -21,9 +21,12 @@
 @property (retain, nonatomic) UINavigationController *navigationController;
 @property (retain, nonatomic) UISplitViewController *splitViewController;
 @property (retain, nonatomic) Synchroniser *synchroniser;
+@property (nonatomic, retain) UIAlertView *alertView;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)hideSplashScreen;
 - (void)setupSettings;
+- (void)willStartUpdate;
+- (void)didFinishUpdate;
 @end

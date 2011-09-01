@@ -11,9 +11,8 @@
 
 
 @interface Synchroniser : NSObject {
-    
 }
--(void)updateProgram;
+-(void)startUpdate;
 @property (readonly, retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

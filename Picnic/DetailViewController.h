@@ -33,6 +33,6 @@
 
 -(void) resizeSessionTextAndContentView;
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
--(void) reloadData;
+-(void) updateSelected:(BOOL)selectFirst;
 
 @end

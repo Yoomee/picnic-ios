@@ -18,7 +18,9 @@
 
 @interface RootViewController : UIViewController <NSFetchedResultsControllerDelegate> {
     UITableView *tableView;
+    UISegmentedControl *_daySelector;
 }
+@property (nonatomic, retain) IBOutlet UISegmentedControl *daySelector;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet DetailViewController *detailViewController;
@@ -27,6 +29,6 @@
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readwrite, assign, nonatomic) int currentDay;
 - (IBAction)dayDidChange:(UISegmentedControl *)sender;
--(void)reloadData;
+-(void)updateSelected:(BOOL)selectFirst;
 
 @end
