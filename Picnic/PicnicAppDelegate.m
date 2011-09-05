@@ -141,6 +141,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     NSString *progVersion = [defaults stringForKey:@"programVersion"];
+    [defaults setValue:NULL forKey:@"apiKey"];
     
     if (progVersion == NULL) {
         NSLog(@"Replacing database");
@@ -151,19 +152,35 @@
             [fileManager removeItemAtPath:[storeURL path] error:NULL];
             [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
         }
-    }
-    
+    }    
     
     [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
     [defaults synchronize];
 }
 
+-(void)refreshViewControllers{
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:10];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [viewControllers addObjectsFromArray:[self.navigationController viewControllers]];
+    } else {
+        RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
+        [viewControllers addObject: aRootViewController];
+        [viewControllers addObject:aRootViewController.detailViewController];
+    }
+    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop){
+        [(RootViewController *)viewController updateSelected:YES];
+    }];
+}
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     // Display text
-//    UIAlertView *alertView;
-//    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    alertView = [[UIAlertView alloc] initWithTitle:@"Text" message:text delegate:nil cancelButtonTitle:@"YEAH!" otherButtonTitles:nil];
-//    [alertView show];    
+    if ([[url host] isEqualToString:@"api"] && ([[url pathComponents] count] > 1)) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *apiKey = [[url pathComponents] objectAtIndex:1];
+        [defaults setValue:apiKey forKey:@"apiKey"];
+        [defaults synchronize];
+        [self refreshViewControllers];
+    }
     return YES;
 }
 
@@ -185,17 +202,7 @@
     [NSFetchedResultsController deleteCacheWithName:@"Day1"];
     [NSFetchedResultsController deleteCacheWithName:@"Day2"];
     [NSFetchedResultsController deleteCacheWithName:@"Day3"];
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:10];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [viewControllers addObjectsFromArray:[self.navigationController viewControllers]];
-    } else {
-        RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
-        [viewControllers addObject: aRootViewController];
-        [viewControllers addObject:aRootViewController.detailViewController];
-    }
-    [viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop){
-        [(RootViewController *)viewController updateSelected:YES];
-    }];
+    [self refreshViewControllers];
     [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
     DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
     [controller.welcomeView removeFromSuperview];
@@ -286,11 +293,13 @@
 //        [fileManager removeItemAtPath:[storeURL path] error:NULL];
 ////        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
 //    }
-    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
     {
         /*
          Replace this implementation with code to handle the error appropriately.

@@ -194,6 +194,7 @@
 		5BA4874713F03E6E009754DA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
 		5BA4874D13F03F30009754DA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
+		5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Picnic1.2.xcdatamodel; sourceTree = "<group>"; };
 		5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PicnicLogo.png; path = images/PicnicLogo.png; sourceTree = "<group>"; };
 		5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenController.h; sourceTree = "<group>"; };
@@ -967,9 +968,10 @@
 		5B5CFF3D13D720100080184E /* Picnic.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */,
 				5B5CFF3E13D720100080184E /* Picnic.xcdatamodel */,
 			);
-			currentVersion = 5B5CFF3E13D720100080184E /* Picnic.xcdatamodel */;
+			currentVersion = 5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */;
 			path = Picnic.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

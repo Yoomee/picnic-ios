@@ -301,21 +301,60 @@
     [bgView release];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 0)
+	{
+		NSLog(@"Yes");
+        NSString* launchUrl = @"http://10.0.1.5:3000/api/authenticate";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+	}
+	else if (buttonIndex == 1)
+	{
+		NSLog(@"No");
+        [self.daySelector setSelectedSegmentIndex:(self.currentDay - 1)];
+	}
+}
+
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
-    self.currentDay = [sender selectedSegmentIndex] + 1;
-    switch(self.currentDay) {
-        case 2:
-            self.title = @"Thursday 15 September";
-            break;
-        case 3:
-            self.title = @"Friday 16 September";
-            break;
-        default:
-            self.title = @"Wednesday 14 September";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *apiKey = [defaults valueForKey:@"apiKey"];
+    if([sender selectedSegmentIndex] == 3) {        
+        NSLog(@"My program");
+        if(([apiKey length] == 0)){
+            NSLog(@"Fetch API KEY");
+            UIAlertView *alert = [[UIAlertView alloc] init];
+            [alert setTitle:@"Log in"];
+            [alert setMessage:@"We need you to log in to your PICNIC account."];
+            [alert setDelegate:self];
+            [alert addButtonWithTitle:@"Open Safari"];
+            [alert addButtonWithTitle:@"Not now"];
+            [alert show];
+            [alert release];
+
+        } else {
+            NSLog(@"Got API KEY: %@", apiKey);
+        }
     }
-    __fetchedResultsController = nil;
-    [self.tableView reloadData];
-    [self updateSelected:NO];
+    if (([sender selectedSegmentIndex] < 3) || ([apiKey length] > 0)) {
+        self.currentDay = [sender selectedSegmentIndex] + 1;
+        switch(self.currentDay) {
+            case 2:
+                self.title = @"Thursday 15 September";
+                break;
+            case 3:
+                self.title = @"Friday 16 September";
+                break;
+            case 4:
+                self.title = @"My program";
+                break;
+            default:
+                self.title = @"Wednesday 14 September";
+        }
+        __fetchedResultsController = nil;
+        [self.tableView reloadData];
+        [self updateSelected:NO];
+    }
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
