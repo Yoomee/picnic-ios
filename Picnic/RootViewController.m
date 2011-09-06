@@ -296,8 +296,11 @@
  */
  - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    // In the simplest, most efficient, case, reload the table view.
     [tableView reloadData];
+    if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {
+        NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController conferenceSession]];
+        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
+    }
 }
  
 
@@ -343,6 +346,7 @@
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
+    NSLog(@"Updating selected");
     if (selectFirst == YES){
         if([self.detailViewController conferenceSession]){
             if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
@@ -367,7 +371,6 @@
 
 #pragma mark - Tab bar
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"%d", item.tag);
     switch (item.tag) {
         case 0: //Program
             self.myProgram = NO;

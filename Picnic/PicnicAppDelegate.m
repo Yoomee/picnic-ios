@@ -59,6 +59,7 @@
         controller.managedObjectContext = self.managedObjectContext;
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        self.navigationController = navigationController;
 
         UISplitViewController *mySplitViewController = [[UISplitViewController alloc] init];
         self.splitViewController = mySplitViewController;

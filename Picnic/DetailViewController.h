@@ -16,6 +16,7 @@
     UILabel *_venueName;
     UITextView *_sessionText;
     UILabel *_sessionTime;
+    UIBarButtonItem *_attendingToggleButton;
     UILabel *_sessionSpeakers;
     UIScrollView *_contentView;
     UIImageView *_welcomeView;
@@ -30,9 +31,11 @@
 @property (nonatomic, retain) IBOutlet UILabel *venueName;
 @property (nonatomic, retain) IBOutlet UITextView *sessionText;
 @property (nonatomic, retain) IBOutlet UILabel *sessionTime;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *attendingToggleButton;
 
 -(void) resizeSessionTextAndContentView;
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
 -(void) updateSelected:(BOOL)selectFirst;
+- (IBAction)didPressAttendingToggleButton:(id)sender;
 
 @end

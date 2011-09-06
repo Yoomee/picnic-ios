@@ -7,8 +7,9 @@
 //
 
 #import "DetailViewController.h"
-
+#import "PicnicAppDelegate.h"
 #import "RootViewController.h"
+#import "Synchroniser.h"
 
 @interface DetailViewController ()
 @property (retain, nonatomic) UIPopoverController *popoverController;
@@ -25,14 +26,18 @@
 @synthesize venueName = _venueName;
 @synthesize sessionText = _sessionText;
 @synthesize sessionTime = _sessionTime;
+@synthesize attendingToggleButton = _attendingToggleButton;
 @synthesize sessionSpeakers = _sessionSpeakers;
 @synthesize popoverController = _myPopoverController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];    
     if (self) {
         self.title = NSLocalizedString(@"Detail", @"Detail");
+        UIBarButtonItem *aBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Empty star" style:UIBarButtonItemStyleBordered target:self action:@selector(didPressAttendingToggleButton:)];
+        self.attendingToggleButton  = aBarButton;
+        [aBarButton release];
     }
     return self;
 }
@@ -44,11 +49,27 @@
 	if (_conferenceSession != newConferenceSession) {
 		[_conferenceSession release];
 		_conferenceSession = [newConferenceSession retain];
-		
+        
         // Update the view.
         [self configureView];
 	}
 
+    BOOL containsAttendingToggle = [[self.toolbar items] containsObject:self.attendingToggleButton];
+    
+    if (newConferenceSession != nil && !containsAttendingToggle) {
+        NSMutableArray *items = [self.toolbar.items mutableCopy];
+        UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        [items addObject:flexibleSpace];
+        [items addObject:self.attendingToggleButton];
+        self.toolbar.items = items;
+        [flexibleSpace release];
+        [items release];
+    } else if (newConferenceSession == nil && containsAttendingToggle) {
+        NSArray *emptyArray = [[NSArray alloc] init];
+        self.toolbar.items = emptyArray;
+        [emptyArray release];
+    }
+    
     if (self.popoverController != nil) {
         [self.popoverController dismissPopoverAnimated:YES];
     }        
@@ -78,6 +99,11 @@
         [self resizeSessionTextAndContentView];
         [self.navigationItem setTitle:@""];
         [self.navigationController.navigationBar setTintColor:[self.conferenceSession color]];
+        if ([[self.conferenceSession attending] boolValue]) {
+            [self.attendingToggleButton setTitle:@"Star"];
+        } else {
+            [self.attendingToggleButton setTitle:@"Empty star"];
+        }
         if (self.welcomeView){
             for (UIView *subView in self.contentView.subviews)
                 [subView setHidden:NO];
@@ -147,6 +173,7 @@
     // e.g. self.myOutlet = nil;
     self.popoverController = nil;
     self.welcomeView = nil;
+    [self setAttendingToggleButton:nil];
     [super viewDidUnload];
 }
 
@@ -182,6 +209,7 @@
     [_contentView release];
     [_sessionText release];
     [_welcomeView release];
+    [_attendingToggleButton release];
     [super dealloc];
 }
 
@@ -225,6 +253,21 @@
     self.popoverController = nil;
 }
 -(void)updateSelected:(BOOL)selectFirst{
+    NSLog(@"Now I'm here");
+}
+
+- (IBAction)didPressAttendingToggleButton:(id)sender {
+    if (self.conferenceSession) {
+        PicnicAppDelegate *myAppDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
+        Synchroniser *mySynchroniser = [myAppDelegate synchroniser];
+        if ([self.conferenceSession.attending boolValue]) {
+            [mySynchroniser setAttending:[NSNumber numberWithInt:0] forConferenceSession:self.conferenceSession];
+            [self.attendingToggleButton setTitle:@"Empty star"];
+        } else {
+            [mySynchroniser setAttending:[NSNumber numberWithInt:1] forConferenceSession:self.conferenceSession];
+            [self.attendingToggleButton setTitle:@"Star"];
+        }
+    }
 }
 
 @end

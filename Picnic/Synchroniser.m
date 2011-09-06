@@ -8,7 +8,6 @@
 
 #import "Synchroniser.h"
 #import "SBJson.h"
-#import "ConferenceSession.h"
 #import "Venue.h"
 #import "PicnicAppDelegate.h"
 #import "RootViewController.h"
@@ -380,9 +379,6 @@
     [pool release];
 }
 
-
-
-
 -(void)requestFinished:(ASIHTTPRequest *)request
 {
     SBJsonParser *parser = [[SBJsonParser alloc] init];
@@ -405,6 +401,15 @@
 {
     NSError *error = [request error];
     NSLog(@"%@",error);
+}
+
+-(void) setAttending:(NSNumber *)attending forConferenceSession:(ConferenceSession *)conferenceSession {
+    [NSFetchedResultsController deleteCacheWithName:[NSString stringWithFormat:@"MyDay%i",conferenceSession.day]];
+    [conferenceSession setAttending:attending];
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"ERROR: updating sessions");
+    }
 }
 
 - (NSManagedObjectContext *)managedObjectContext
