@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSNumber * day;
 @property (nonatomic, retain) NSDate * timeStamp;
 @property (nonatomic, retain) NSDate * startsAt;
+@property (nonatomic, retain) NSNumber * attending;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Venue *venue;

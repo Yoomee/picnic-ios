@@ -141,17 +141,17 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     NSString *progVersion = [defaults stringForKey:@"programVersion"];
-    [defaults setValue:NULL forKey:@"apiKey"];
+    
+//    [defaults setValue:@"" forKey:@"apiKey"];
     
     if (progVersion == NULL) {
-        NSLog(@"Replacing database");
-        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
-        if (true && defaultStorePath) {
-            [fileManager removeItemAtPath:[storeURL path] error:NULL];
-            [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
-        }
+        [defaults setValue:0 forKey:@"programVersion"];
+//        NSLog(@"Replacing database");
+//        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
+//        [fileManager removeItemAtPath:[storeURL path] error:NULL];
+//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
     }    
     
     [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
@@ -179,7 +179,6 @@
         NSString *apiKey = [[url pathComponents] objectAtIndex:1];
         [defaults setValue:apiKey forKey:@"apiKey"];
         [defaults synchronize];
-        [self refreshViewControllers];
     }
     return YES;
 }
@@ -193,7 +192,7 @@
     [indicator startAnimating];
     [self.alertView addSubview:indicator];
     [indicator release];
-    [self.window.rootViewController presentModalViewController:self.splashScreenController animated:YES];
+    [self.window.rootViewController presentModalViewController:self.splashScreenController animated:NO];
 
 }
 
@@ -202,6 +201,9 @@
     [NSFetchedResultsController deleteCacheWithName:@"Day1"];
     [NSFetchedResultsController deleteCacheWithName:@"Day2"];
     [NSFetchedResultsController deleteCacheWithName:@"Day3"];
+    [NSFetchedResultsController deleteCacheWithName:@"MyDay1"];
+    [NSFetchedResultsController deleteCacheWithName:@"MyDay2"];
+    [NSFetchedResultsController deleteCacheWithName:@"MyDay3"];
     [self refreshViewControllers];
     [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
     DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
@@ -214,7 +216,7 @@
     controller.contentView.alpha = 0.0;
     [controller showWelcome:self.window.rootViewController.interfaceOrientation];
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self.window.rootViewController dismissModalViewControllerAnimated:YES];
+    [self.window.rootViewController dismissModalViewControllerAnimated:NO];
     [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationCurveEaseInOut animations:^{controller.welcomeView.alpha = 1.0;controller.contentView.alpha = 1.0;} completion:NULL];
 }
 

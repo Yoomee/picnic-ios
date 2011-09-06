@@ -1,4 +1,4 @@
-//
+    //
 //  RootViewController.m
 //  Picnic
 //
@@ -22,6 +22,8 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize currentDay = _currentDay;
 @synthesize daySelector = _daySelector;
+@synthesize myProgram = _myProgram;
+@synthesize tabBar = _tabBar;
 @synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +32,7 @@
     if (self) {
         self.title = @"Wednesday 14 September";
         self.currentDay = 1;
+        self.myProgram = NO;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             //self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -50,6 +53,7 @@
 
 - (void)viewDidLoad
 {
+    [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
     [super viewDidLoad];  
 }
 
@@ -57,6 +61,7 @@
 {
     __fetchedResultsController = nil;
     [self setDaySelector:nil];
+    [self setTabBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -68,6 +73,7 @@
     [__fetchedResultsController release];
     [__managedObjectContext release];
     [_daySelector release];
+    [_tabBar release];
     [super dealloc];
 }
 
@@ -185,7 +191,15 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ConferenceSession" inManagedObjectContext:self.managedObjectContext];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day == %d", self.currentDay];
+    NSPredicate *predicate;
+    NSString *cacheName;
+    if(self.myProgram){
+        predicate = [NSPredicate predicateWithFormat:@"day == %d && attending == 1", self.currentDay];
+        cacheName = [NSString stringWithFormat:@"MyDay%i",self.currentDay];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"day == %d", self.currentDay];
+        cacheName = [NSString stringWithFormat:@"Day%i",self.currentDay];
+    }
     [fetchRequest setEntity:entity];
     [fetchRequest setPredicate:predicate];
 
@@ -203,7 +217,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"Day%i",self.currentDay]];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:cacheName];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -291,10 +305,6 @@
 {    
     ConferenceSession *conferenceSession = [self.fetchedResultsController objectAtIndexPath:indexPath];    
     cell.conferenceSession = conferenceSession;
-//    if (([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) && ([self.detailViewController conferenceSession] == nil)) {
-//        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition: UITableViewScrollPositionTop];
-//        [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-//    }
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 73)];
     [bgView setBackgroundColor:conferenceSession.color];
     [cell setSelectedBackgroundView:bgView];
@@ -303,71 +313,47 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex == 0)
+	if (buttonIndex == 1)
 	{
-		NSLog(@"Yes");
         NSString* launchUrl = @"http://10.0.1.5:3000/api/authenticate";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 	}
-	else if (buttonIndex == 1)
+	else
 	{
-		NSLog(@"No");
-        [self.daySelector setSelectedSegmentIndex:(self.currentDay - 1)];
+        self.myProgram = NO;
+        [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
 	}
 }
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *apiKey = [defaults valueForKey:@"apiKey"];
-    if([sender selectedSegmentIndex] == 3) {        
-        NSLog(@"My program");
-        if(([apiKey length] == 0)){
-            NSLog(@"Fetch API KEY");
-            UIAlertView *alert = [[UIAlertView alloc] init];
-            [alert setTitle:@"Log in"];
-            [alert setMessage:@"We need you to log in to your PICNIC account."];
-            [alert setDelegate:self];
-            [alert addButtonWithTitle:@"Open Safari"];
-            [alert addButtonWithTitle:@"Not now"];
-            [alert show];
-            [alert release];
-
-        } else {
-            NSLog(@"Got API KEY: %@", apiKey);
-        }
+    self.currentDay = [sender selectedSegmentIndex] + 1;
+    switch(self.currentDay) {
+        case 2:
+            self.title = @"Thursday 15 September";
+            break;
+        case 3:
+            self.title = @"Friday 16 September";
+            break;
+        default:
+            self.title = @"Wednesday 14 September";
     }
-    if (([sender selectedSegmentIndex] < 3) || ([apiKey length] > 0)) {
-        self.currentDay = [sender selectedSegmentIndex] + 1;
-        switch(self.currentDay) {
-            case 2:
-                self.title = @"Thursday 15 September";
-                break;
-            case 3:
-                self.title = @"Friday 16 September";
-                break;
-            case 4:
-                self.title = @"My program";
-                break;
-            default:
-                self.title = @"Wednesday 14 September";
-        }
-        __fetchedResultsController = nil;
-        [self.tableView reloadData];
-        [self updateSelected:NO];
-    }
+    __fetchedResultsController = nil;
+    [self.tableView reloadData];
+    [self updateSelected:NO];
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
     if (selectFirst == YES){
-        [self dayDidChange:self.daySelector];
-    }
-    if([self.detailViewController conferenceSession]){
-        if(selectFirst == YES){
+        if([self.detailViewController conferenceSession]){
             if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
                 [self.navigationController popViewControllerAnimated:YES];
-            ConferenceSession *firstConferenceSession = [[self fetchedResultsController] objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];        
-            self.detailViewController.conferenceSession = firstConferenceSession;
+            self.detailViewController.conferenceSession = nil;
         }
+        if ([self.tableView numberOfRowsInSection:0] > 0) {
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        }
+        [self dayDidChange:self.daySelector];
+    } else if([self.detailViewController conferenceSession]){
         if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
             if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {
                 NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController conferenceSession]];
@@ -377,7 +363,36 @@
             }
         }
     }
+}
 
+#pragma mark - Tab bar
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSLog(@"%d", item.tag);
+    switch (item.tag) {
+        case 0: //Program
+            self.myProgram = NO;
+            [self dayDidChange:self.daySelector];
+            break;
+        case 1: //My program
+            self.myProgram = YES;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *apiKey = [defaults valueForKey:@"apiKey"];
+            if(([apiKey length] == 0)){
+                UIAlertView *alert = [[UIAlertView alloc] init];
+                [alert setTitle:@"My Program"];
+                [alert setMessage:@"Connect to your PICNIC account?"];
+                [alert setDelegate:self];
+                [alert addButtonWithTitle:@"Not now"];
+                [alert addButtonWithTitle:@"Let's go!"];
+                [alert show];
+                [alert release];
+            } else {
+                [self dayDidChange:self.daySelector];
+            }
+            break;
+        default:
+            break;
+    }
 
 }
 

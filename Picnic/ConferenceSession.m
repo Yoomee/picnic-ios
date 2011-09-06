@@ -20,6 +20,7 @@
 @dynamic day;
 @dynamic timeStamp;
 @dynamic startsAt;
+@dynamic attending;
 @dynamic text;
 @dynamic name;
 @dynamic venue;
