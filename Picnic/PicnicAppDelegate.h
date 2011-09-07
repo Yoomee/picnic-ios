@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SplashScreenController.h"
-#import "Synchroniser.h"
+@class SplashScreenController, Synchroniser;
 
 @interface PicnicAppDelegate : UIResponder <UIApplicationDelegate>
 

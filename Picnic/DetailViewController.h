@@ -7,35 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ConferenceSession.h"
-#import "Venue.h"
-#import "Member.h"
-#import "SpeakerThumbnail.h"
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate> {
-    UILabel *_venueName;
-    UITextView *_sessionText;
-    UILabel *_sessionTime;
-    UIBarButtonItem *_attendingToggleButton;
-    UILabel *_sessionSpeakers;
-    UIScrollView *_contentView;
-    UIImageView *_welcomeView;
 }
-@property (nonatomic, retain) UIImageView *welcomeView;
-@property (nonatomic, retain) IBOutlet UIScrollView *contentView;
-@property (retain, nonatomic) ConferenceSession *conferenceSession;
-@property (retain, nonatomic) IBOutlet UILabel *sessionName;
-@property (retain, nonatomic) IBOutlet UILabel *sessionSpeakers;
 
+@property (retain, nonatomic) UIPopoverController *popoverController;
 @property (retain, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, retain) IBOutlet UILabel *venueName;
-@property (nonatomic, retain) IBOutlet UITextView *sessionText;
-@property (nonatomic, retain) IBOutlet UILabel *sessionTime;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *attendingToggleButton;
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc;
+- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
--(void) resizeSessionTextAndContentView;
--(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
--(void) updateSelected:(BOOL)selectFirst;
-- (IBAction)didPressAttendingToggleButton:(id)sender;
 
 @end

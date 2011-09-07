@@ -8,7 +8,10 @@
 
 #import "PicnicAppDelegate.h"
 #import "RootViewController.h"
-#import "DetailViewController.h"
+#import "MapViewController.h"
+#import "SessionDetailViewController.h"
+#import "Synchroniser.h"
+#import "SplashScreenController.h"
 
 @implementation PicnicAppDelegate
 
@@ -54,8 +57,8 @@
         self.splashScreenController = mySplashScreenController;
         
         RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPad" bundle:nil];
-        DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPad" bundle:nil];
-        controller.detailViewController = detailViewController;
+        SessionDetailViewController *detailViewController = [[SessionDetailViewController alloc] initWithNibName:@"SessionDetailViewController_iPad" bundle:nil];
+        controller.sessionDetailViewController = detailViewController;
         controller.managedObjectContext = self.managedObjectContext;
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -166,7 +169,7 @@
     } else {
         RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
         [viewControllers addObject: aRootViewController];
-        [viewControllers addObject:aRootViewController.detailViewController];
+        [viewControllers addObject:aRootViewController.sessionDetailViewController];
     }
     [viewControllers enumerateObjectsUsingBlock:^(UIViewController *viewController, NSUInteger idx, BOOL *stop){
         [(RootViewController *)viewController updateSelected:YES];
@@ -180,6 +183,15 @@
         NSString *apiKey = [[url pathComponents] objectAtIndex:1];
         [defaults setValue:apiKey forKey:@"apiKey"];
         [defaults synchronize];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            RootViewController *aRootViewController = (RootViewController *)[self.navigationController topViewController];
+            [aRootViewController setMyProgram:YES];
+            [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
+        } else {
+            RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
+            [aRootViewController setMyProgram:YES];
+            [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
+        }
     }
     return YES;
 }
@@ -207,13 +219,13 @@
     [NSFetchedResultsController deleteCacheWithName:@"MyDay3"];
     [self refreshViewControllers];
     [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
+    SessionDetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
     [controller.welcomeView removeFromSuperview];
     [self hideSplashScreen];
 }
 - (void)hideSplashScreen
 {
-    DetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
+    SessionDetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
     controller.contentView.alpha = 0.0;
     [controller showWelcome:self.window.rootViewController.interfaceOrientation];
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -289,12 +301,11 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
 
     
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    
-//    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
 //    if (true && defaultStorePath) {
 //        [fileManager removeItemAtPath:[storeURL path] error:NULL];
-////        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
 //    }
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,

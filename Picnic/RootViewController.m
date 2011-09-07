@@ -7,22 +7,30 @@
 //
 
 #import "RootViewController.h"
-
-#import "DetailViewController.h"
+#import "PicnicAppDelegate.h"
+#import "SessionDetailViewController.h"
+#import "MapViewController.h"
 #import "SessionCell.h"
+#import "ConferenceSession.h"
+#import "Venue.h"
+#import "Member.h"
 
 @interface RootViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)willViewInfoTab;
+- (void)finishedViewingInfoTab;
 @end
 
 @implementation RootViewController
 
-@synthesize detailViewController = _detailViewController;
+@synthesize sessionDetailViewController = _sessionDetailViewController;
+@synthesize mapViewController = _mapViewController;
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize currentDay = _currentDay;
 @synthesize daySelector = _daySelector;
 @synthesize myProgram = _myProgram;
+@synthesize viewingInfoTab = _viewingInfoTab;
 @synthesize tabBar = _tabBar;
 @synthesize tableView;
 
@@ -33,6 +41,7 @@
         self.title = @"Wednesday 14 September";
         self.currentDay = 1;
         self.myProgram = NO;
+        self.viewingInfoTab = NO;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             //self.clearsSelectionOnViewWillAppear = NO;
             self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -69,7 +78,8 @@
 
 - (void)dealloc
 {
-    [_detailViewController release];
+    [_sessionDetailViewController release];
+    [_mapViewController release];    
     [__fetchedResultsController release];
     [__managedObjectContext release];
     [_daySelector release];
@@ -114,30 +124,49 @@
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return (self.viewingInfoTab ? 1 : [[self.fetchedResultsController sections] count]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
+    if(self.viewingInfoTab){
+        return 1;
+    }
+    else {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    }
 }
 
 // Customize the appearance of table view cells.
-- (SessionCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {   
-    static NSString *CellIdentifier = @"SessionCell";
-    SessionCell *cell = (SessionCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:self options:nil];
-        // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-        cell = [topLevelObjects objectAtIndex:0];
-    }
+    if(self.viewingInfoTab){
+        static NSString *CellIdentifier = @"Cell";
+        
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        }
+        
+        // Configure the cell.
+        cell.textLabel.text = @"Map";
 
-    // Configure the cell.
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
+        return cell;
+    }else {
+        static NSString *CellIdentifier = @"SessionCell";
+        SessionCell *cell = (SessionCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:self options:nil];
+            // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+
+        // Configure the cell.
+        [self configureCell:cell atIndexPath:indexPath];
+        return cell;
+    }
 }
 
 /*
@@ -157,20 +186,52 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        DetailViewController *aDetailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController_iPhone" bundle:nil];
-        self.detailViewController = aDetailViewController;
-        ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];        
-        self.detailViewController.conferenceSession = selectedConferenceSession;
-        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-        self.navigationItem.backBarButtonItem = backButton;
-        [self.navigationController pushViewController:self.detailViewController animated:YES];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [backButton release];
-        [aDetailViewController release];
+    UISplitViewController *appSplitViewController = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController];
+    if(self.viewingInfoTab){
+        
+        if(_mapViewController == nil){
+            NSString *mapNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"MapViewController_iPhone" : @"MapViewController_iPad");
+            MapViewController *myMapViewController = [[MapViewController alloc] initWithNibName:mapNibName bundle:nil];
+            self.mapViewController = myMapViewController;
+            [myMapViewController release];
+        }
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+            self.navigationItem.backBarButtonItem = backButton;
+            [self.navigationController pushViewController:self.mapViewController animated:YES];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [backButton release];
+        } else {
+            if (appSplitViewController.delegate != self.mapViewController){
+                NSArray *oldViewControllers = appSplitViewController.viewControllers;
+                [appSplitViewController setDelegate:self.mapViewController];
+                appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.mapViewController, nil];
+            }
+        }
+
     } else {
-        ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.conferenceSession = conferenceSession;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            SessionDetailViewController *aDetailViewController = [[SessionDetailViewController alloc] initWithNibName:@"SessionDetailViewController_iPhone" bundle:nil];
+            self.sessionDetailViewController = aDetailViewController;
+            ConferenceSession *selectedConferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];        
+            self.sessionDetailViewController.conferenceSession = selectedConferenceSession;
+            UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+            self.navigationItem.backBarButtonItem = backButton;
+            [self.navigationController pushViewController:self.sessionDetailViewController animated:YES];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [backButton release];
+            [aDetailViewController release];
+        } else {
+            if (appSplitViewController.delegate != self.sessionDetailViewController){
+                NSArray *oldViewControllers = appSplitViewController.viewControllers;
+                [appSplitViewController setDelegate:self.sessionDetailViewController];
+                appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.sessionDetailViewController, nil];
+            }
+            
+            ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+            self.sessionDetailViewController.conferenceSession = conferenceSession;
+        }
     }
     
 }
@@ -297,8 +358,8 @@
  - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [tableView reloadData];
-    if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {
-        NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController conferenceSession]];
+    if ([[[self.sessionDetailViewController conferenceSession] day] intValue] == self.currentDay) {
+        NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.sessionDetailViewController conferenceSession]];
         [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition: UITableViewScrollPositionNone];
     }
 }
@@ -310,6 +371,7 @@
     cell.conferenceSession = conferenceSession;
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 73)];
     [bgView setBackgroundColor:conferenceSession.color];
+//    UIImageView *attendingStar = [UIImageView alloc] in
     [cell setSelectedBackgroundView:bgView];
     [bgView release];
 }
@@ -326,6 +388,44 @@
         self.myProgram = NO;
         [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
 	}
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"Clicked: %d", buttonIndex);
+    if (actionSheet.tag == 0){
+        NSString* launchUrl = @"http://10.0.1.5:3000/api/authenticate";
+        [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
+        if(self.viewingInfoTab)
+            [self finishedViewingInfoTab];
+        switch (buttonIndex) {
+            case 0:
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+                break;
+            case 1:
+                NSLog(@"NEVER!");
+                UIActionSheet *newActionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure?\nWe won't ask you again." delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Keep my program offline" otherButtonTitles:@"Cancel",nil];
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+                    [newActionSheet setCancelButtonIndex:1];
+                [newActionSheet setTag:1];
+                [newActionSheet showFromTabBar:self.tabBar];
+                [newActionSheet release];
+                break;
+            default:
+                [self dayDidChange:self.daySelector];
+                break;
+        }
+    } else if (actionSheet.tag == 1){
+        if(buttonIndex == 0){
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:YES forKey:@"neverSyncMyProgram"];
+            self.myProgram = YES;
+            [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:1]];
+            if(self.viewingInfoTab)
+                [self finishedViewingInfoTab];
+            [self dayDidChange:self.daySelector];
+        }
+        
+    }
 }
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender {
@@ -346,53 +446,86 @@
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
-    NSLog(@"Updating selected");
     if (selectFirst == YES){
-        if([self.detailViewController conferenceSession]){
+        if([self.sessionDetailViewController conferenceSession]){
             if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
                 [self.navigationController popViewControllerAnimated:YES];
-            self.detailViewController.conferenceSession = nil;
+            self.sessionDetailViewController.conferenceSession = nil;
         }
         if ([self.tableView numberOfRowsInSection:0] > 0) {
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
         }
         [self dayDidChange:self.daySelector];
-    } else if([self.detailViewController conferenceSession]){
+    } else if([self.sessionDetailViewController conferenceSession]){
         if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
-            if ([[[self.detailViewController conferenceSession] day] intValue] == self.currentDay) {
-                NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.detailViewController conferenceSession]];
+            if ([[[self.sessionDetailViewController conferenceSession] day] intValue] == self.currentDay) {
+                NSIndexPath *selectedIndexPath = [self.fetchedResultsController indexPathForObject:[self.sessionDetailViewController conferenceSession]];
                 [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition: UITableViewScrollPositionMiddle];
-            } else {
+            } else if ([self tableView:self.tableView numberOfRowsInSection:0] > 0){
               [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
             }
         }
     }
 }
 
+-(void)willViewInfoTab{
+    self.title = @"Information";
+    self.myProgram = NO;
+    self.viewingInfoTab = YES;
+    [self.daySelector setHidden:YES];
+    CGRect frame = self.tableView.frame; 
+    frame.origin.y = 0;
+    frame.size.height = frame.size.height + 45;
+    self.tableView.frame = frame;
+}
+-(void)finishedViewingInfoTab{
+    self.viewingInfoTab = NO;
+    [self.daySelector setHidden:NO];
+    CGRect frame = self.tableView.frame; 
+    frame.origin.y = 45;
+    frame.size.height = frame.size.height - 45;
+    self.tableView.frame = frame;
+}
+
 #pragma mark - Tab bar
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSLog(@"NeverSync: %i", [[defaults valueForKey:@"neverSyncMyProgram"] intValue]);
+
     switch (item.tag) {
         case 0: //Program
+            if(self.viewingInfoTab)
+                [self finishedViewingInfoTab];
             self.myProgram = NO;
             [self dayDidChange:self.daySelector];
             break;
-        case 1: //My program
-            self.myProgram = YES;
+        case 1:
+            true;
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *apiKey = [defaults valueForKey:@"apiKey"];
-            if(([apiKey length] == 0)){
-                UIAlertView *alert = [[UIAlertView alloc] init];
-                [alert setTitle:@"My Program"];
-                [alert setMessage:@"Connect to your PICNIC account?"];
-                [alert setDelegate:self];
-                [alert addButtonWithTitle:@"Not now"];
-                [alert addButtonWithTitle:@"Let's go!"];
-                [alert show];
-                [alert release];
-            } else {
+            if([defaults boolForKey:@"neverSyncMyProgram"] || ([apiKey length] > 0)){
+                self.myProgram = YES;
+                if(self.viewingInfoTab)
+                    [self finishedViewingInfoTab];
                 [self dayDidChange:self.daySelector];
+            } else {
+                UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+                [actionSheet setTag:0];
+                [actionSheet setTitle:@"Sync with an online PICNIC account?"];
+                [actionSheet setDelegate:self];
+                [actionSheet addButtonWithTitle:@"Sync now"];
+                [actionSheet addButtonWithTitle:@"Never sync"];
+                [actionSheet addButtonWithTitle:@"Ask me later"];
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+                    [actionSheet setCancelButtonIndex:2];
+                [actionSheet showFromTabBar:self.tabBar];
+                [actionSheet release];
             }
             break;
+        case 2://Info
+            [self willViewInfoTab];
+            [self.tableView reloadData];
         default:
             break;
     }

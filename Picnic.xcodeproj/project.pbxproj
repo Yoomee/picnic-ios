@@ -48,8 +48,8 @@
 		5B5CFF4613D720100080184E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF4513D720100080184E /* DetailViewController.m */; };
 		5B5CFF4913D720100080184E /* RootViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF4713D720100080184E /* RootViewController_iPhone.xib */; };
 		5B5CFF4C13D720100080184E /* RootViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF4A13D720100080184E /* RootViewController_iPad.xib */; };
-		5B5CFF4F13D720100080184E /* DetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */; };
-		5B5CFF5213D720100080184E /* DetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF5013D720100080184E /* DetailViewController_iPad.xib */; };
+		5B5CFF4F13D720100080184E /* SessionDetailViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF4D13D720100080184E /* SessionDetailViewController_iPhone.xib */; };
+		5B5CFF5213D720100080184E /* SessionDetailViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF5013D720100080184E /* SessionDetailViewController_iPad.xib */; };
 		5B5CFF5A13D720110080184E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF5913D720110080184E /* SenTestingKit.framework */; };
 		5B5CFF5B13D720110080184E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2913D720100080184E /* UIKit.framework */; };
 		5B5CFF5C13D720110080184E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B5CFF2B13D720100080184E /* Foundation.framework */; };
@@ -58,16 +58,22 @@
 		5B5CFF6613D720110080184E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6413D720110080184E /* InfoPlist.strings */; };
 		5B5CFF6813D720110080184E /* PicnicTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6713D720110080184E /* PicnicTests.h */; };
 		5B5CFF6A13D720110080184E /* PicnicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6913D720110080184E /* PicnicTests.m */; };
+		5B5F4A521417D28D00B51977 /* Picnic1-1.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B5F4A511417D28D00B51977 /* Picnic1-1.2.xcmappingmodel */; };
 		5B6A026413D9C3040057F10A /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A026313D9C3040057F10A /* Venue.m */; };
 		5B6A02E313D9CF440057F10A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E213D9CF440057F10A /* CFNetwork.framework */; };
 		5B6A02E513D9CF4F0057F10A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */; };
 		5B6A02E713D9CF590057F10A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */; };
+		5B6EF5DF1417D0B200E77AEB /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6EF5DE1417D0B200E77AEB /* Tag.m */; };
 		5B78C2D313E6ED5100EEB790 /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78C2D213E6ED5100EEB790 /* ConferenceSession.m */; };
 		5B78C2D613E6FEE200EEB790 /* SpeakerThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B78C2D513E6FEE200EEB790 /* SpeakerThumbnail.m */; };
 		5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */; };
 		5B7F2CED1406A7CD00AD9939 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7F2CEC1406A7CD00AD9939 /* libz.1.2.3.dylib */; };
 		5B8175FE141638EB00C32CC6 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8175FD141638EB00C32CC6 /* clock.png */; };
 		5B8176011416396700C32CC6 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8176001416396700C32CC6 /* star.png */; };
+		5B81765F1416695B00C32CC6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B81765D1416695A00C32CC6 /* MapViewController.m */; };
+		5B8176601416695B00C32CC6 /* MapViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B81765E1416695A00C32CC6 /* MapViewController_iPad.xib */; };
+		5B817662141669DC00C32CC6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B817661141669DC00C32CC6 /* map.png */; };
+		5B81766D1416730000C32CC6 /* SessionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B81766C141672FF00C32CC6 /* SessionDetailViewController.m */; };
 		5B8F0CC113F298380016E114 /* WelcomeLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B8F0CC013F298380016E114 /* WelcomeLandscape.png */; };
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
@@ -80,6 +86,17 @@
 		5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */; };
 		5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */; };
 		5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */; };
+		5BDE619C1417618400BD358F /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE619A1417618400BD358F /* clock@2x.png */; };
+		5BDE619D1417618400BD358F /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE619B1417618400BD358F /* star@2x.png */; };
+		5BDE61A01417631F00BD358F /* toolbarStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE619E1417631F00BD358F /* toolbarStar.png */; };
+		5BDE61A11417631F00BD358F /* toolbarStarEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE619F1417631F00BD358F /* toolbarStarEmpty.png */; };
+		5BDE61A61417865100BD358F /* attendingStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61A21417865100BD358F /* attendingStar.png */; };
+		5BDE61A71417865100BD358F /* attendingStar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61A31417865100BD358F /* attendingStar@2x.png */; };
+		5BDE61A81417865100BD358F /* attendingStarSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61A41417865100BD358F /* attendingStarSelected.png */; };
+		5BDE61A91417865100BD358F /* attendingStarSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61A51417865100BD358F /* attendingStarSelected@2x.png */; };
+		5BDE61B414178CB900BD358F /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61B214178CB900BD358F /* info.png */; };
+		5BDE61B514178CB900BD358F /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61B314178CB900BD358F /* info@2x.png */; };
+		5BDE61B914178F6500BD358F /* MapViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */; };
 		5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE89F913E6E63A00A9D343 /* Member.m */; };
 /* End PBXBuildFile section */
 
@@ -166,20 +183,23 @@
 		5B5CFF4513D720100080184E /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		5B5CFF4813D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController_iPhone.xib; sourceTree = "<group>"; };
 		5B5CFF4B13D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController_iPad.xib; sourceTree = "<group>"; };
-		5B5CFF4E13D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPhone.xib; sourceTree = "<group>"; };
-		5B5CFF5113D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController_iPad.xib; sourceTree = "<group>"; };
+		5B5CFF4E13D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SessionDetailViewController_iPhone.xib; sourceTree = "<group>"; };
+		5B5CFF5113D720100080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SessionDetailViewController_iPad.xib; sourceTree = "<group>"; };
 		5B5CFF5813D720110080184E /* PicnicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicnicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B5CFF5913D720110080184E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5B5CFF6313D720110080184E /* PicnicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PicnicTests-Info.plist"; sourceTree = "<group>"; };
 		5B5CFF6513D720110080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5CFF6713D720110080184E /* PicnicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicnicTests.h; sourceTree = "<group>"; };
 		5B5CFF6913D720110080184E /* PicnicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicTests.m; sourceTree = "<group>"; };
+		5B5F4A511417D28D00B51977 /* Picnic1-1.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = "Picnic1-1.2.xcmappingmodel"; path = "Picnic.xcdatamodeld/Picnic1-1.2.xcmappingmodel"; sourceTree = "<group>"; };
 		5B6A026213D9C3040057F10A /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		5B6A026313D9C3040057F10A /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		5B6A02E213D9CF440057F10A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5B6A02E413D9CF4F0057F10A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5B6A02E613D9CF590057F10A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5B6A02E813D9CF650057F10A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		5B6EF5DD1417D0B200E77AEB /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		5B6EF5DE1417D0B200E77AEB /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		5B78C2D113E6ED5100EEB790 /* ConferenceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceSession.h; sourceTree = "<group>"; };
 		5B78C2D213E6ED5100EEB790 /* ConferenceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceSession.m; sourceTree = "<group>"; };
 		5B78C2D413E6FEE200EEB790 /* SpeakerThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerThumbnail.h; sourceTree = "<group>"; };
@@ -188,6 +208,12 @@
 		5B7F2CEC1406A7CD00AD9939 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		5B8175FD141638EB00C32CC6 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		5B8176001416396700C32CC6 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		5B81765C1416695A00C32CC6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		5B81765D1416695A00C32CC6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		5B81765E1416695A00C32CC6 /* MapViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController_iPad.xib; sourceTree = "<group>"; };
+		5B817661141669DC00C32CC6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		5B81766B141672FF00C32CC6 /* SessionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionDetailViewController.h; sourceTree = "<group>"; };
+		5B81766C141672FF00C32CC6 /* SessionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionDetailViewController.m; sourceTree = "<group>"; };
 		5B8F0CC013F298380016E114 /* WelcomeLandscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeLandscape.png; path = images/WelcomeLandscape.png; sourceTree = "<group>"; };
 		5B94CBEA13D869FA00317CD8 /* SessionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCell.h; sourceTree = "<group>"; };
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
@@ -204,6 +230,17 @@
 		5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenController.h; sourceTree = "<group>"; };
 		5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenController.m; sourceTree = "<group>"; };
 		5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreen_iPad.xib; sourceTree = "<group>"; };
+		5BDE619A1417618400BD358F /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
+		5BDE619B1417618400BD358F /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star@2x.png"; sourceTree = "<group>"; };
+		5BDE619E1417631F00BD358F /* toolbarStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbarStar.png; path = images/toolbarStar.png; sourceTree = "<group>"; };
+		5BDE619F1417631F00BD358F /* toolbarStarEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbarStarEmpty.png; path = images/toolbarStarEmpty.png; sourceTree = "<group>"; };
+		5BDE61A21417865100BD358F /* attendingStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attendingStar.png; path = images/attendingStar.png; sourceTree = "<group>"; };
+		5BDE61A31417865100BD358F /* attendingStar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendingStar@2x.png"; path = "images/attendingStar@2x.png"; sourceTree = "<group>"; };
+		5BDE61A41417865100BD358F /* attendingStarSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attendingStarSelected.png; path = images/attendingStarSelected.png; sourceTree = "<group>"; };
+		5BDE61A51417865100BD358F /* attendingStarSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attendingStarSelected@2x.png"; path = "images/attendingStarSelected@2x.png"; sourceTree = "<group>"; };
+		5BDE61B214178CB900BD358F /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		5BDE61B314178CB900BD358F /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController_iPhone.xib; sourceTree = "<group>"; };
 		5BDE89F813E6E63A00A9D343 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
 		5BDE89F913E6E63A00A9D343 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -348,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				5BB844C113D88E65001E4753 /* Picnic.sqlite */,
+				5B5F4A511417D28D00B51977 /* Picnic1-1.2.xcmappingmodel */,
 				5B5CFF3D13D720100080184E /* Picnic.xcdatamodeld */,
 			);
 			name = Data;
@@ -390,8 +428,19 @@
 		5B5CFF7713D721B50080184E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5BDE61B214178CB900BD358F /* info.png */,
+				5BDE61B314178CB900BD358F /* info@2x.png */,
+				5B817661141669DC00C32CC6 /* map.png */,
 				5B8176001416396700C32CC6 /* star.png */,
 				5B8175FD141638EB00C32CC6 /* clock.png */,
+				5BDE619A1417618400BD358F /* clock@2x.png */,
+				5BDE619B1417618400BD358F /* star@2x.png */,
+				5BDE619E1417631F00BD358F /* toolbarStar.png */,
+				5BDE619F1417631F00BD358F /* toolbarStarEmpty.png */,
+				5BDE61A21417865100BD358F /* attendingStar.png */,
+				5BDE61A31417865100BD358F /* attendingStar@2x.png */,
+				5BDE61A41417865100BD358F /* attendingStarSelected.png */,
+				5BDE61A51417865100BD358F /* attendingStarSelected@2x.png */,
 				5BA4874713F03E6E009754DA /* Default.png */,
 				5BA4874D13F03F30009754DA /* Default@2x.png */,
 				5B24F00E13F2F4F6006F4CBB /* app_icon_57.png */,
@@ -412,12 +461,14 @@
 			children = (
 				5B5CFF4713D720100080184E /* RootViewController_iPhone.xib */,
 				5B5CFF4A13D720100080184E /* RootViewController_iPad.xib */,
-				5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */,
-				5B5CFF5013D720100080184E /* DetailViewController_iPad.xib */,
+				5B5CFF4D13D720100080184E /* SessionDetailViewController_iPhone.xib */,
+				5B5CFF5013D720100080184E /* SessionDetailViewController_iPad.xib */,
 				5B78C2D713E6FF1900EEB790 /* SpeakerThumbnail.xib */,
 				5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */,
 				5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */,
 				5B94CBEE13D86A4600317CD8 /* SessionCell.xib */,
+				5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */,
+				5B81765E1416695A00C32CC6 /* MapViewController_iPad.xib */,
 			);
 			name = Views;
 			path = Picnic;
@@ -438,6 +489,8 @@
 				5BDE89F913E6E63A00A9D343 /* Member.m */,
 				5B6A026213D9C3040057F10A /* Venue.h */,
 				5B6A026313D9C3040057F10A /* Venue.m */,
+				5B6EF5DD1417D0B200E77AEB /* Tag.h */,
+				5B6EF5DE1417D0B200E77AEB /* Tag.m */,
 				5B3949981407AF6A000C4BB3 /* Synchroniser.h */,
 				5B3949991407AF6A000C4BB3 /* Synchroniser.m */,
 			);
@@ -452,6 +505,10 @@
 				5B5CFF4113D720100080184E /* RootViewController.m */,
 				5B5CFF4313D720100080184E /* DetailViewController.h */,
 				5B5CFF4513D720100080184E /* DetailViewController.m */,
+				5B81766B141672FF00C32CC6 /* SessionDetailViewController.h */,
+				5B81766C141672FF00C32CC6 /* SessionDetailViewController.m */,
+				5B81765C1416695A00C32CC6 /* MapViewController.h */,
+				5B81765D1416695A00C32CC6 /* MapViewController.m */,
 				5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */,
 				5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */,
 			);
@@ -533,8 +590,8 @@
 				5B5CFF4413D720100080184E /* DetailViewController.h in Resources */,
 				5B5CFF4913D720100080184E /* RootViewController_iPhone.xib in Resources */,
 				5B5CFF4C13D720100080184E /* RootViewController_iPad.xib in Resources */,
-				5B5CFF4F13D720100080184E /* DetailViewController_iPhone.xib in Resources */,
-				5B5CFF5213D720100080184E /* DetailViewController_iPad.xib in Resources */,
+				5B5CFF4F13D720100080184E /* SessionDetailViewController_iPhone.xib in Resources */,
+				5B5CFF5213D720100080184E /* SessionDetailViewController_iPad.xib in Resources */,
 				5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */,
 				5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */,
 				5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */,
@@ -555,6 +612,19 @@
 				5B04F10E1407A4BE00910583 /* Settings.bundle in Resources */,
 				5B8175FE141638EB00C32CC6 /* clock.png in Resources */,
 				5B8176011416396700C32CC6 /* star.png in Resources */,
+				5B8176601416695B00C32CC6 /* MapViewController_iPad.xib in Resources */,
+				5B817662141669DC00C32CC6 /* map.png in Resources */,
+				5BDE619C1417618400BD358F /* clock@2x.png in Resources */,
+				5BDE619D1417618400BD358F /* star@2x.png in Resources */,
+				5BDE61A01417631F00BD358F /* toolbarStar.png in Resources */,
+				5BDE61A11417631F00BD358F /* toolbarStarEmpty.png in Resources */,
+				5BDE61A61417865100BD358F /* attendingStar.png in Resources */,
+				5BDE61A71417865100BD358F /* attendingStar@2x.png in Resources */,
+				5BDE61A81417865100BD358F /* attendingStarSelected.png in Resources */,
+				5BDE61A91417865100BD358F /* attendingStarSelected@2x.png in Resources */,
+				5BDE61B414178CB900BD358F /* info.png in Resources */,
+				5BDE61B514178CB900BD358F /* info@2x.png in Resources */,
+				5BDE61B914178F6500BD358F /* MapViewController_iPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +692,10 @@
 				5B394A381407B668000C4BB3 /* SBJsonTokeniser.m in Sources */,
 				5B394A391407B668000C4BB3 /* SBJsonUTF8Stream.m in Sources */,
 				5B394A3A1407B668000C4BB3 /* SBJsonWriter.m in Sources */,
+				5B81765F1416695B00C32CC6 /* MapViewController.m in Sources */,
+				5B81766D1416730000C32CC6 /* SessionDetailViewController.m in Sources */,
+				5B6EF5DF1417D0B200E77AEB /* Tag.m in Sources */,
+				5B5F4A521417D28D00B51977 /* Picnic1-1.2.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,20 +742,20 @@
 			name = RootViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
-		5B5CFF4D13D720100080184E /* DetailViewController_iPhone.xib */ = {
+		5B5CFF4D13D720100080184E /* SessionDetailViewController_iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5B5CFF4E13D720100080184E /* en */,
 			);
-			name = DetailViewController_iPhone.xib;
+			name = SessionDetailViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
-		5B5CFF5013D720100080184E /* DetailViewController_iPad.xib */ = {
+		5B5CFF5013D720100080184E /* SessionDetailViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5B5CFF5113D720100080184E /* en */,
 			);
-			name = DetailViewController_iPad.xib;
+			name = SessionDetailViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		5B5CFF6413D720110080184E /* InfoPlist.strings */ = {

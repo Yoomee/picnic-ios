@@ -11,6 +11,7 @@
 #import "Venue.h"
 #import "PicnicAppDelegate.h"
 #import "RootViewController.h"
+#import "Member.h"
 
 
 @implementation Synchroniser
@@ -404,12 +405,24 @@
 }
 
 -(void) setAttending:(NSNumber *)attending forConferenceSession:(ConferenceSession *)conferenceSession {
+    [NSFetchedResultsController deleteCacheWithName:[NSString stringWithFormat:@"Day%i",conferenceSession.day]];
     [NSFetchedResultsController deleteCacheWithName:[NSString stringWithFormat:@"MyDay%i",conferenceSession.day]];
     [conferenceSession setAttending:attending];
+    PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
+    if (![appDelegate.managedObjectContext save:&error]) {
         NSLog(@"ERROR: updating sessions");
     }
+}
+
+-(void)mergeChanges:(NSNotification *)notification{
+    PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *mainContext = [appDelegate managedObjectContext];
+    
+    // Merge changes into the main context on the main thread
+    [mainContext performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:)
+                                  withObject:notification
+                               waitUntilDone:YES]; 
 }
 
 - (NSManagedObjectContext *)managedObjectContext
@@ -419,7 +432,13 @@
         return __managedObjectContext;
     }
     __managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [__managedObjectContext setPersistentStoreCoordinator:[[(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext] persistentStoreCoordinator]];
+    PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [__managedObjectContext setPersistentStoreCoordinator:[[appDelegate managedObjectContext] persistentStoreCoordinator]];
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
+    [nc addObserver:self
+           selector:@selector(mergeChanges:)
+               name:NSManagedObjectContextDidSaveNotification
+             object:__managedObjectContext];
     return __managedObjectContext;
 }
 

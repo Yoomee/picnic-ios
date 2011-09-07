@@ -12,6 +12,7 @@
 @synthesize sessionName;
 @synthesize venueName;
 @synthesize sessionTime;
+@synthesize attendingStar;
 
 @synthesize conferenceSession = _conferenceSession;
 
@@ -58,12 +59,16 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-    
     if (self.conferenceSession) {        
         self.sessionName.text = [self.conferenceSession name];
         self.venueName.text = [self.conferenceSession.venue name];
         self.sessionTime.text = [self.conferenceSession timeString];
+        [self.attendingStar setHidden:![self.conferenceSession.attending boolValue]];
     }
 }
 
+- (void)dealloc {
+    [attendingStar release];
+    [super dealloc];
+}
 @end

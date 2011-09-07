@@ -14,6 +14,7 @@
     UILabel *sessionName;
     UILabel *venueName;
     UILabel *sessionTime;
+    UIImageView *attendingStar;
 }
 
 @property (nonatomic, retain) ConferenceSession *conferenceSession;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *sessionName;
 @property (nonatomic, retain) IBOutlet UILabel *venueName;
 @property (nonatomic, retain) IBOutlet UILabel *sessionTime;
+@property (nonatomic, retain) IBOutlet UIImageView *attendingStar;
 
 - (void)configureView;
 
