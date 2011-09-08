@@ -85,7 +85,37 @@
     [items insertObject:barButtonItem atIndex:0];
     [self.toolbar setItems:items animated:YES];
     [items release];
+    self.popoverBarButtonItem = barButtonItem;
     self.popoverController = pc;
+}
+
+-(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem{
+    NSLog(@"Map: Show Popover");
+    NSLog(@"I:%@", [self.toolbar items]);
+    if(pc){
+        NSLog(@"Inside");
+        [self.toolbar setTintColor:[UIColor blackColor]];
+        NSMutableArray *items = [[self.toolbar items] mutableCopy];
+        [items insertObject:self.popoverBarButtonItem atIndex:0];
+        [self.toolbar setItems:items animated:YES];
+        [items release];
+        self.popoverController = pc;
+    }
+    NSLog(@"I:%@", [self.toolbar items]);
+}
+
+-(void)invalidatePopover{
+    NSLog(@"Map: Inval Popover");
+    NSLog(@"I:%@", [self.toolbar items]);
+    if(self.popoverController){
+        NSLog(@"Inside");
+        NSMutableArray *items = [[self.toolbar items] mutableCopy];
+        [items removeObjectAtIndex:0];
+        [self.toolbar setItems:items animated:NO];
+        [items release];
+        self.popoverController = nil;
+    }
+    NSLog(@"I:%@", [self.toolbar items]);
 }
 
 

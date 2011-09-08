@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SessionDetailViewController, MapViewController;
+@class SessionDetailViewController, MapViewController, FestivalThemesController;
 
 #import <CoreData/CoreData.h>
 
@@ -21,8 +21,11 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *daySelector;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
+
 @property (retain, nonatomic) SessionDetailViewController *sessionDetailViewController;
 @property (retain, nonatomic) MapViewController *mapViewController;
+@property (retain, nonatomic) FestivalThemesController *festivalThemesController;
+
 @property (retain, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
 

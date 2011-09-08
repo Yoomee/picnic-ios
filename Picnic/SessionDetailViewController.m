@@ -9,6 +9,7 @@
 #import "SessionDetailViewController.h"
 #import "PicnicAppDelegate.h"
 #import "Synchroniser.h"
+#import "Tag.h"
 
 
 @implementation SessionDetailViewController
@@ -24,6 +25,7 @@
 @synthesize attendingToggleButton = _attendingToggleButton;
 @synthesize sessionSpeakers = _sessionSpeakers;
 @synthesize popoverController = _myPopoverController;
+@synthesize tagViews = _tagViews;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,16 +55,14 @@
     
     if (newConferenceSession != nil && !containsAttendingToggle) {
         NSMutableArray *items = [self.toolbar.items mutableCopy];
-        UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        [items addObject:flexibleSpace];
         [items addObject:self.attendingToggleButton];
         self.toolbar.items = items;
-        [flexibleSpace release];
         [items release];
     } else if (newConferenceSession == nil && containsAttendingToggle) {
-        NSArray *emptyArray = [[NSArray alloc] init];
-        self.toolbar.items = emptyArray;
-        [emptyArray release];
+        NSMutableArray *items = [self.toolbar.items mutableCopy];
+        [items removeObject:self.attendingToggleButton];
+        self.toolbar.items = items;
+        [items release];
     }
     
     if (self.popoverController != nil) {
@@ -104,6 +104,31 @@
                 [subView setHidden:NO];
             [self.welcomeView removeFromSuperview];
         }
+        for (UIView *view in self.contentView.subviews) {
+            if(view.tag == 1)
+                [view removeFromSuperview];
+        }
+        NSMutableArray *tagImages = [[NSMutableArray alloc] init];
+        [self.conferenceSession.tags enumerateObjectsUsingBlock:^(Tag *tag, BOOL *stop) {
+            NSString *tagString = [NSString stringWithFormat:@"tag%i.png", [tag.uid intValue]];
+            if([self.conferenceSession mainTagIs:tag]){
+                [tagImages insertObject:tagString atIndex:0];
+            } else {
+                [tagImages addObject:tagString];
+            }
+        }];
+        float numberOfTags = [tagImages count];
+        [tagImages enumerateObjectsUsingBlock:^(NSString *imageName, NSUInteger idx, BOOL *stop){
+                UIImageView *tagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+            float tagX = (((idx + 1)-((numberOfTags + 1)/2)) * 45) + self.contentView.center.x;
+            float tagY = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 23 : 45);
+            tagView.center = CGPointMake(tagX, tagY);
+            tagView.tag = 1;
+            tagView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin);
+            [self.contentView addSubview:tagView];
+            [tagView release];
+        }];
+
     }
 }
 
@@ -193,6 +218,7 @@
 
 - (void)dealloc
 {
+    [_tagViews release];
     [_conferenceSession release];
     [_sessionName release];
     [_sessionTime release];
@@ -233,11 +259,42 @@
     if(self.conferenceSession){
         [self.toolbar setTintColor:[self.conferenceSession color]];
     }
+    self.popoverBarButtonItem = barButtonItem;
     self.popoverController = pc;
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
 }
+
+-(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem{
+    NSLog(@"Sess: show pop");
+    NSLog(@"I:%@", [self.toolbar items]);
+    if(pc){
+        NSLog(@"Inside");
+        NSMutableArray *items = [[self.toolbar items] mutableCopy];
+        [items insertObject:self.popoverBarButtonItem atIndex:0];
+        [self.toolbar setItems:items animated:YES];
+        [items release];
+        self.popoverController = pc;
+    }
+    NSLog(@"I:%@", [self.toolbar items]);
+}
+
+-(void)invalidatePopover{
+    NSLog(@"Sess: inval pop");
+    NSLog(@"I:%@", [self.toolbar items]);
+
+    if(self.popoverController){
+        NSLog(@"Inside");
+        NSMutableArray *items = [[self.toolbar items] mutableCopy];
+        [items removeObjectAtIndex:0];
+        [self.toolbar setItems:items animated:NO];
+        [items release];
+        self.popoverController = nil;
+    }
+    NSLog(@"I:%@", [self.toolbar items]);
+}
+
 
 - (IBAction)didPressAttendingToggleButton:(id)sender {
     if (self.conferenceSession) {

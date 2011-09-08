@@ -21,7 +21,9 @@
     UILabel *_sessionSpeakers;
     UIScrollView *_contentView;
     UIImageView *_welcomeView;
+    NSMutableArray *tagViews;
 }
+@property (nonatomic, retain) NSMutableArray *tagViews;
 @property (nonatomic, retain) UIImageView *welcomeView;
 @property (nonatomic, retain) IBOutlet UIScrollView *contentView;
 @property (retain, nonatomic) ConferenceSession *conferenceSession;
@@ -37,6 +39,10 @@
 -(void) resizeSessionTextAndContentView;
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
 -(void) updateSelected:(BOOL)selectFirst;
+
+-(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(void) invalidatePopover;
+
 - (IBAction)didPressAttendingToggleButton:(id)sender;
 
 @end

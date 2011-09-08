@@ -10,6 +10,7 @@
 #import "PicnicAppDelegate.h"
 #import "SessionDetailViewController.h"
 #import "MapViewController.h"
+#import "FestivalThemesController.h"
 #import "SessionCell.h"
 #import "ConferenceSession.h"
 #import "Venue.h"
@@ -25,6 +26,8 @@
 
 @synthesize sessionDetailViewController = _sessionDetailViewController;
 @synthesize mapViewController = _mapViewController;
+@synthesize festivalThemesController = _festivalThemesController;
+
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize currentDay = _currentDay;
@@ -78,6 +81,7 @@
 
 - (void)dealloc
 {
+    [_festivalThemesController release];
     [_sessionDetailViewController release];
     [_mapViewController release];    
     [__fetchedResultsController release];
@@ -130,7 +134,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.viewingInfoTab){
-        return 1;
+        return 2;
     }
     else {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
@@ -148,9 +152,16 @@
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         }
-        
+        switch ([indexPath row]) {
+            case 0:
+                cell.textLabel.text = @"City Map";
+                break;
+            case 1:
+                cell.textLabel.text = @"Festival Themes";
+            default:
+                break;
+        }
         // Configure the cell.
-        cell.textLabel.text = @"Map";
 
         return cell;
     }else {
@@ -188,25 +199,52 @@
 {
     UISplitViewController *appSplitViewController = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController];
     if(self.viewingInfoTab){
-        
-        if(_mapViewController == nil){
-            NSString *mapNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"MapViewController_iPhone" : @"MapViewController_iPad");
-            MapViewController *myMapViewController = [[MapViewController alloc] initWithNibName:mapNibName bundle:nil];
-            self.mapViewController = myMapViewController;
-            [myMapViewController release];
-        }
-        
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-            self.navigationItem.backBarButtonItem = backButton;
-            [self.navigationController pushViewController:self.mapViewController animated:YES];
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [backButton release];
-        } else {
-            if (appSplitViewController.delegate != self.mapViewController){
-                NSArray *oldViewControllers = appSplitViewController.viewControllers;
-                [appSplitViewController setDelegate:self.mapViewController];
-                appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.mapViewController, nil];
+        if([indexPath row] == 0){
+            if(_mapViewController == nil){
+                NSString *mapNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"MapViewController_iPhone" : @"MapViewController_iPad");
+                MapViewController *myMapViewController = [[MapViewController alloc] initWithNibName:mapNibName bundle:nil];
+                self.mapViewController = myMapViewController;
+                [myMapViewController release];
+            }
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+                self.navigationItem.backBarButtonItem = backButton;
+                [self.navigationController pushViewController:self.mapViewController animated:YES];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [backButton release];
+            } else {
+                if (appSplitViewController.delegate != self.mapViewController){
+                    [self.mapViewController showPopoverWithPopoverController:self.sessionDetailViewController.popoverController andBarButtonItem:self.sessionDetailViewController.popoverBarButtonItem];
+                    [self.sessionDetailViewController invalidatePopover];
+                    NSArray *oldViewControllers = appSplitViewController.viewControllers;
+                    [appSplitViewController setDelegate:self.mapViewController];
+                    appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.mapViewController, nil];
+                }
+            }
+        } else if([indexPath row] == 
+                  1){
+            if(_festivalThemesController == nil){
+                NSString *themesNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"FestivalThemesController_iPhone" : @"FestivalThemesController_iPad");
+                FestivalThemesController *myFestivalThemesController = [[FestivalThemesController alloc] initWithNibName:themesNibName bundle:nil];
+                self.festivalThemesController = myFestivalThemesController;
+                [myFestivalThemesController release];
+            }
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+                self.navigationItem.backBarButtonItem = backButton;
+                [self.navigationController pushViewController:self.festivalThemesController animated:YES];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [backButton release];
+            } else {
+                if (appSplitViewController.delegate != self.festivalThemesController){
+//                    [self.mapViewController showPopoverWithPopoverController:self.sessionDetailViewController.popoverController andBarButtonItem:self.sessionDetailViewController.popoverBarButtonItem];
+//                    [self.sessionDetailViewController invalidatePopover];
+                    NSArray *oldViewControllers = appSplitViewController.viewControllers;
+                    [appSplitViewController setDelegate:self.festivalThemesController];
+                    appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.festivalThemesController, nil];
+                }
             }
         }
 
@@ -224,13 +262,15 @@
             [aDetailViewController release];
         } else {
             if (appSplitViewController.delegate != self.sessionDetailViewController){
+                [self.sessionDetailViewController showPopoverWithPopoverController:self.mapViewController.popoverController andBarButtonItem:self.mapViewController.popoverBarButtonItem];
+                [self.mapViewController invalidatePopover];
                 NSArray *oldViewControllers = appSplitViewController.viewControllers;
                 [appSplitViewController setDelegate:self.sessionDetailViewController];
                 appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.sessionDetailViewController, nil];
-            }
-            
+            }            
             ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
             self.sessionDetailViewController.conferenceSession = conferenceSession;
+
         }
     }
     
@@ -402,7 +442,7 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
                 break;
             case 1:
-                NSLog(@"NEVER!");
+                true;
                 UIActionSheet *newActionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure?\nWe won't ask you again." delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Keep my program offline" otherButtonTitles:@"Cancel",nil];
                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
                     [newActionSheet setCancelButtonIndex:1];
@@ -489,10 +529,6 @@
 
 #pragma mark - Tab bar
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSLog(@"NeverSync: %i", [[defaults valueForKey:@"neverSyncMyProgram"] intValue]);
-
     switch (item.tag) {
         case 0: //Program
             if(self.viewingInfoTab)

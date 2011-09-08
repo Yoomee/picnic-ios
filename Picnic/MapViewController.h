@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
-#import "ConferenceSession.h"
-#import "Venue.h"
-#import "Member.h"
-#import "SpeakerThumbnail.h"
+
 
 @interface MapViewController : DetailViewController {
     UIScrollView *scrollView;
@@ -19,6 +16,10 @@
 }
 
 - (IBAction)toggleFullScreen:(id)sender;
+
+-(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem;
+-(void) invalidatePopover;
+
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *mapView;
 @property (assign, nonatomic) BOOL fullScreen;

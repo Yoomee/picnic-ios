@@ -13,6 +13,7 @@
 
 @synthesize toolbar = _toolbar;
 @synthesize popoverController = _myPopoverController;
+@synthesize popoverBarButtonItem = _myPopoverBarButtonItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +74,7 @@
 
 - (void)dealloc
 {
+    [_myPopoverBarButtonItem release];
     [_myPopoverController release];
     [_toolbar release];
     [super dealloc];
@@ -89,17 +91,6 @@
 
 #pragma mark - Split view
 
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc
-{
-    NSLog(@"Detail: WillHideViewController");
-    barButtonItem.title = @"Sessions";
-    NSMutableArray *items = [[self.toolbar items] mutableCopy];
-    [items insertObject:barButtonItem atIndex:0];
-    [self.toolbar setItems:items animated:YES];
-    [items release];
-    self.popoverController = pc;
-}
-
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSLog(@"Detail: WillShowViewController");
@@ -109,6 +100,7 @@
     [self.toolbar setItems:items animated:YES];
     [items release];
     self.popoverController = nil;
+//    self.popoverBarButtonItem = nil;
 }
 
 @end

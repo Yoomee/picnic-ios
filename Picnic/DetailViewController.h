@@ -10,10 +10,9 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate> {
 }
-
+@property (retain,nonatomic) UIBarButtonItem *popoverBarButtonItem;
 @property (retain, nonatomic) UIPopoverController *popoverController;
 @property (retain, nonatomic) IBOutlet UIToolbar *toolbar;
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc;
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
