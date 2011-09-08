@@ -11,13 +11,19 @@
 @class SessionDetailViewController, MapViewController, FestivalThemesController;
 
 #import <CoreData/CoreData.h>
+#import "DetailViewController.h"
 
 
-@interface RootViewController : UIViewController <NSFetchedResultsControllerDelegate, UITabBarDelegate, UIActionSheetDelegate> {
+@interface RootViewController : UIViewController <UISplitViewControllerDelegate, NSFetchedResultsControllerDelegate, UITabBarDelegate, UIActionSheetDelegate> {
     UITableView *tableView;
     UISegmentedControl *_daySelector;
     UITabBar *_tabBar;
+    UIPopoverController *popoverController;    
+    UIBarButtonItem *rootPopoverButtonItem;
+    DetailViewController* detailViewController;
 }
+@property (nonatomic, retain) DetailViewController *detailViewController;
+
 @property (nonatomic, retain) IBOutlet UISegmentedControl *daySelector;
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
@@ -33,6 +39,9 @@
 @property (assign, nonatomic) BOOL myProgram;
 @property (assign, nonatomic) BOOL viewingInfoTab;
 @property (nonatomic, retain) IBOutlet UITabBar *tabBar;
+
+@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, retain) UIBarButtonItem *rootPopoverButtonItem;
 
 
 - (IBAction)dayDidChange:(UISegmentedControl *)sender;

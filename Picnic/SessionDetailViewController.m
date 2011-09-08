@@ -50,21 +50,6 @@
         // Update the view.
         [self configureView];
 	}
-
-    BOOL containsAttendingToggle = [[self.toolbar items] containsObject:self.attendingToggleButton];
-    
-    if (newConferenceSession != nil && !containsAttendingToggle) {
-        NSMutableArray *items = [self.toolbar.items mutableCopy];
-        [items addObject:self.attendingToggleButton];
-        self.toolbar.items = items;
-        [items release];
-    } else if (newConferenceSession == nil && containsAttendingToggle) {
-        NSMutableArray *items = [self.toolbar.items mutableCopy];
-        [items removeObject:self.attendingToggleButton];
-        self.toolbar.items = items;
-        [items release];
-    }
-    
     if (self.popoverController != nil) {
         [self.popoverController dismissPopoverAnimated:YES];
     }        
@@ -128,6 +113,22 @@
             [self.contentView addSubview:tagView];
             [tagView release];
         }];
+        BOOL containsAttendingToggle = [[self.toolbar items] containsObject:self.attendingToggleButton];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL canUseMyProgram = (([defaults boolForKey:@"neverSyncMyProgram"])||([[defaults stringForKey:@"apiKey"] length] > 0));
+        if (canUseMyProgram && !containsAttendingToggle) {
+            NSMutableArray *items = [self.toolbar.items mutableCopy];
+            [items addObject:self.attendingToggleButton];
+            self.toolbar.items = items;
+            [items release];
+        } else if (!canUseMyProgram && containsAttendingToggle) {
+            NSMutableArray *items = [self.toolbar.items mutableCopy];
+            [items removeObject:self.attendingToggleButton];
+            self.toolbar.items = items;
+            [items release];
+        }
+
 
     }
 }
@@ -250,50 +251,22 @@
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc
 {
-    NSLog(@"Session: WillHideViewController");
-    barButtonItem.title = @"Sessions";
-    NSMutableArray *items = [[self.toolbar items] mutableCopy];
-    [items insertObject:barButtonItem atIndex:0];
-    [self.toolbar setItems:items animated:YES];
-    [items release];
-    if(self.conferenceSession){
-        [self.toolbar setTintColor:[self.conferenceSession color]];
-    }
-    self.popoverBarButtonItem = barButtonItem;
-    self.popoverController = pc;
+//    NSLog(@"Session: WillHideViewController");
+//    barButtonItem.title = @"Sessions";
+//    NSMutableArray *items = [[self.toolbar items] mutableCopy];
+//    [items insertObject:barButtonItem atIndex:0];
+//    [self.toolbar setItems:items animated:YES];
+//    [items release];
+//    if(self.conferenceSession){
+//        [self.toolbar setTintColor:[self.conferenceSession color]];
+//    }
+//    self.popoverBarButtonItem = barButtonItem;
+//    self.popoverController = pc;
 }
 
 -(void)updateSelected:(BOOL)selectFirst{
 }
 
--(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem{
-    NSLog(@"Sess: show pop");
-    NSLog(@"I:%@", [self.toolbar items]);
-    if(pc){
-        NSLog(@"Inside");
-        NSMutableArray *items = [[self.toolbar items] mutableCopy];
-        [items insertObject:self.popoverBarButtonItem atIndex:0];
-        [self.toolbar setItems:items animated:YES];
-        [items release];
-        self.popoverController = pc;
-    }
-    NSLog(@"I:%@", [self.toolbar items]);
-}
-
--(void)invalidatePopover{
-    NSLog(@"Sess: inval pop");
-    NSLog(@"I:%@", [self.toolbar items]);
-
-    if(self.popoverController){
-        NSLog(@"Inside");
-        NSMutableArray *items = [[self.toolbar items] mutableCopy];
-        [items removeObjectAtIndex:0];
-        [self.toolbar setItems:items animated:NO];
-        [items release];
-        self.popoverController = nil;
-    }
-    NSLog(@"I:%@", [self.toolbar items]);
-}
 
 
 - (IBAction)didPressAttendingToggleButton:(id)sender {

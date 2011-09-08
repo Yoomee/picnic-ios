@@ -24,6 +24,7 @@
 
 @implementation RootViewController
 
+@synthesize detailViewController = _detailViewController;
 @synthesize sessionDetailViewController = _sessionDetailViewController;
 @synthesize mapViewController = _mapViewController;
 @synthesize festivalThemesController = _festivalThemesController;
@@ -36,6 +37,8 @@
 @synthesize viewingInfoTab = _viewingInfoTab;
 @synthesize tabBar = _tabBar;
 @synthesize tableView;
+@synthesize popoverController, rootPopoverButtonItem;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,6 +75,7 @@
 - (void)viewDidUnload
 {
     __fetchedResultsController = nil;
+    self.rootPopoverButtonItem = nil;
     [self setDaySelector:nil];
     [self setTabBar:nil];
     [super viewDidUnload];
@@ -81,6 +85,8 @@
 
 - (void)dealloc
 {
+    [popoverController release];
+    [rootPopoverButtonItem release];
     [_festivalThemesController release];
     [_sessionDetailViewController release];
     [_mapViewController release];    
@@ -135,8 +141,9 @@
 {
     if(self.viewingInfoTab){
         return 2;
-    }
-    else {
+    } else if (self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0){
+        return 1;
+    } else{
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
         return [sectionInfo numberOfObjects];
     }
@@ -165,18 +172,30 @@
 
         return cell;
     }else {
-        static NSString *CellIdentifier = @"SessionCell";
-        SessionCell *cell = (SessionCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:self options:nil];
-            // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
-            cell = [topLevelObjects objectAtIndex:0];
-        }
+        if(self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0){
+            static NSString *CellIdentifier = @"MyProgramCellIdentifier";
+            // Dequeue or create a cell of the appropriate type.
+            UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MyProgramCell" owner:self options:nil];
+                // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+                cell = [topLevelObjects objectAtIndex:0];
+            }
+            return cell;
+        } else {
+            static NSString *CellIdentifier = @"SessionCell";
+            SessionCell *cell = (SessionCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if (cell == nil) {
+                NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SessionCell" owner:self options:nil];
+                // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
+                cell = [topLevelObjects objectAtIndex:0];
+            }
 
-        // Configure the cell.
-        [self configureCell:cell atIndexPath:indexPath];
-        return cell;
+            // Configure the cell.
+            [self configureCell:cell atIndexPath:indexPath];
+            return cell;
+        }
     }
 }
 
@@ -197,7 +216,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UISplitViewController *appSplitViewController = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController];
     if(self.viewingInfoTab){
         if([indexPath row] == 0){
             if(_mapViewController == nil){
@@ -213,17 +231,10 @@
                 [self.navigationController pushViewController:self.mapViewController animated:YES];
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                 [backButton release];
-            } else {
-                if (appSplitViewController.delegate != self.mapViewController){
-                    [self.mapViewController showPopoverWithPopoverController:self.sessionDetailViewController.popoverController andBarButtonItem:self.sessionDetailViewController.popoverBarButtonItem];
-                    [self.sessionDetailViewController invalidatePopover];
-                    NSArray *oldViewControllers = appSplitViewController.viewControllers;
-                    [appSplitViewController setDelegate:self.mapViewController];
-                    appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.mapViewController, nil];
-                }
+            } else if (self.detailViewController != self.mapViewController){
+                self.detailViewController = self.mapViewController;
             }
-        } else if([indexPath row] == 
-                  1){
+        } else if([indexPath row] == 1){
             if(_festivalThemesController == nil){
                 NSString *themesNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"FestivalThemesController_iPhone" : @"FestivalThemesController_iPad");
                 FestivalThemesController *myFestivalThemesController = [[FestivalThemesController alloc] initWithNibName:themesNibName bundle:nil];
@@ -237,18 +248,12 @@
                 [self.navigationController pushViewController:self.festivalThemesController animated:YES];
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
                 [backButton release];
-            } else {
-                if (appSplitViewController.delegate != self.festivalThemesController){
-//                    [self.mapViewController showPopoverWithPopoverController:self.sessionDetailViewController.popoverController andBarButtonItem:self.sessionDetailViewController.popoverBarButtonItem];
-//                    [self.sessionDetailViewController invalidatePopover];
-                    NSArray *oldViewControllers = appSplitViewController.viewControllers;
-                    [appSplitViewController setDelegate:self.festivalThemesController];
-                    appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.festivalThemesController, nil];
-                }
+            } else if (self.detailViewController != self.festivalThemesController){
+                self.detailViewController = self.festivalThemesController;
             }
         }
 
-    } else {
+    } else if (!(self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0)){
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             SessionDetailViewController *aDetailViewController = [[SessionDetailViewController alloc] initWithNibName:@"SessionDetailViewController_iPhone" bundle:nil];
             self.sessionDetailViewController = aDetailViewController;
@@ -261,19 +266,32 @@
             [backButton release];
             [aDetailViewController release];
         } else {
-            if (appSplitViewController.delegate != self.sessionDetailViewController){
-                [self.sessionDetailViewController showPopoverWithPopoverController:self.mapViewController.popoverController andBarButtonItem:self.mapViewController.popoverBarButtonItem];
-                [self.mapViewController invalidatePopover];
-                NSArray *oldViewControllers = appSplitViewController.viewControllers;
-                [appSplitViewController setDelegate:self.sessionDetailViewController];
-                appSplitViewController.viewControllers = [NSArray arrayWithObjects:[oldViewControllers objectAtIndex:0], self.sessionDetailViewController, nil];
+            if (self.detailViewController != self.sessionDetailViewController){
+                self.detailViewController = self.sessionDetailViewController;
             }            
             ConferenceSession *conferenceSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
             self.sessionDetailViewController.conferenceSession = conferenceSession;
-
         }
+    } else{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    // Dismiss the popover if it's present.
+    if (popoverController != nil) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}
+-(void) setDetailViewController:(DetailViewController *)newDetailViewController{
+    if(self.popoverController){
+        [_detailViewController invalidateRootPopoverButtonItem:self.rootPopoverButtonItem];
+    }    
+    UISplitViewController *appSplitViewController = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController];
+    appSplitViewController.viewControllers = [NSArray arrayWithObjects:[appSplitViewController.viewControllers objectAtIndex:0], newDetailViewController, nil];
     
+    _detailViewController = newDetailViewController;
+    
+    if(self.popoverController) {
+        [_detailViewController showRootPopoverButtonItem:self.rootPopoverButtonItem];
+    }
 }
 
 #pragma mark - Fetched results controller
@@ -416,20 +434,6 @@
     [bgView release];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == 1)
-	{
-        NSString* launchUrl = @"http://10.0.1.5:3000/api/authenticate";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
-	}
-	else
-	{
-        self.myProgram = NO;
-        [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
-	}
-}
-
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSLog(@"Clicked: %d", buttonIndex);
     if (actionSheet.tag == 0){
@@ -460,6 +464,9 @@
             [defaults setBool:YES forKey:@"neverSyncMyProgram"];
             self.myProgram = YES;
             [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:1]];
+            if(self.detailViewController == self.sessionDetailViewController){
+                [self.sessionDetailViewController configureView];
+            }
             if(self.viewingInfoTab)
                 [self finishedViewingInfoTab];
             [self dayDidChange:self.daySelector];
@@ -566,6 +573,24 @@
             break;
     }
 
+}
+
+#pragma mark - Split view
+- (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController:(UIPopoverController*)pc {
+    NSLog(@"willHideViewController");
+    // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
+    barButtonItem.title = @"Menu";
+    self.popoverController = pc;
+    self.rootPopoverButtonItem = barButtonItem;
+    [self.detailViewController showRootPopoverButtonItem:rootPopoverButtonItem];
+}
+
+
+- (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    // Nil out references to the popover controller and the popover button, and tell the detail view controller to hide the button.
+    [self.detailViewController invalidateRootPopoverButtonItem:rootPopoverButtonItem];
+    self.popoverController = nil;
+    self.rootPopoverButtonItem = nil;
 }
 
 @end

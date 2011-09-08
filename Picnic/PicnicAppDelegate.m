@@ -59,6 +59,7 @@
         RootViewController *controller = [[RootViewController alloc] initWithNibName:@"RootViewController_iPad" bundle:nil];
         SessionDetailViewController *detailViewController = [[SessionDetailViewController alloc] initWithNibName:@"SessionDetailViewController_iPad" bundle:nil];
         controller.sessionDetailViewController = detailViewController;
+        controller.detailViewController = detailViewController;
         controller.managedObjectContext = self.managedObjectContext;
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -66,7 +67,7 @@
 
         UISplitViewController *mySplitViewController = [[UISplitViewController alloc] init];
         self.splitViewController = mySplitViewController;
-        self.splitViewController.delegate = detailViewController;
+        self.splitViewController.delegate = controller;
         self.splitViewController.viewControllers = [NSArray arrayWithObjects:navigationController, detailViewController, nil];
         
         self.window.rootViewController = self.splitViewController;
@@ -183,14 +184,16 @@
         NSString *apiKey = [[url pathComponents] objectAtIndex:1];
         [defaults setValue:apiKey forKey:@"apiKey"];
         [defaults synchronize];
+        RootViewController *aRootViewController;
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            RootViewController *aRootViewController = (RootViewController *)[self.navigationController topViewController];
-            [aRootViewController setMyProgram:YES];
-            [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
+            aRootViewController = (RootViewController *)[self.navigationController topViewController];
         } else {
-            RootViewController *aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
-            [aRootViewController setMyProgram:YES];
-            [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
+            aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
+        }
+        [aRootViewController setMyProgram:YES];
+        [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
+        if(aRootViewController.detailViewController == aRootViewController.sessionDetailViewController){
+            [(SessionDetailViewController *)aRootViewController.detailViewController configureView];
         }
     }
     return YES;

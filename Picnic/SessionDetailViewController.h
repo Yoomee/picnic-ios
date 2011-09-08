@@ -40,9 +40,6 @@
 -(void) showWelcome:(UIInterfaceOrientation)interfaceOrientation;
 -(void) updateSelected:(BOOL)selectFirst;
 
--(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem;
--(void) invalidatePopover;
-
 - (IBAction)didPressAttendingToggleButton:(id)sender;
 
 @end

@@ -99,6 +99,7 @@
 		5BA4873E13F03BCF009754DA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */; };
 		5BA4874813F03E6E009754DA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874713F03E6E009754DA /* Default.png */; };
 		5BA4874E13F03F30009754DA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874D13F03F30009754DA /* Default@2x.png */; };
+		5BB386E0141969170060689A /* MyProgramCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB386DF141969170060689A /* MyProgramCell.xib */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
 		5BD4C3E113F044CC0030FCFA /* PicnicLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E013F044CC0030FCFA /* PicnicLogo.png */; };
 		5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */; };
@@ -258,6 +259,7 @@
 		5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "images/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		5BA4874713F03E6E009754DA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
 		5BA4874D13F03F30009754DA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
+		5BB386DF141969170060689A /* MyProgramCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProgramCell.xib; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
 		5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Picnic1.2.xcdatamodel; sourceTree = "<group>"; };
 		5BD0896913D9D4B5004DAD7A /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -503,6 +505,7 @@
 				5BD4C3E413F0483C0030FCFA /* SplashScreen_iPad.xib */,
 				5B589E0513F134D900DFD44D /* SplashScreen_iPhone.xib */,
 				5B94CBEE13D86A4600317CD8 /* SessionCell.xib */,
+				5BB386DF141969170060689A /* MyProgramCell.xib */,
 				5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */,
 				5B81765E1416695A00C32CC6 /* MapViewController_iPad.xib */,
 				5B6243D314191376009AC2FC /* FestivalThemesController_iPad.xib */,
@@ -711,6 +714,7 @@
 				5B6243E31419169B009AC2FC /* star_grey_diap.png in Resources */,
 				5B6243E41419169B009AC2FC /* triangle_mustard_diap.png in Resources */,
 				5B6243E614192502009AC2FC /* FestivalThemesController_iPhone.xib in Resources */,
+				5BB386E0141969170060689A /* MyProgramCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

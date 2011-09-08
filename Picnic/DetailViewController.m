@@ -89,18 +89,36 @@
 {
 }
 
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    // Add the popover button to the toolbar.
+    NSMutableArray *itemsArray = [self.toolbar.items mutableCopy];
+    [itemsArray insertObject:barButtonItem atIndex:0];
+    [self.toolbar setItems:itemsArray animated:NO];
+    [itemsArray release];
+}
+
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    // Remove the popover button from the toolbar.
+    NSMutableArray *itemsArray = [self.toolbar.items mutableCopy];
+    [itemsArray removeObject:barButtonItem];
+    [self.toolbar setItems:itemsArray animated:NO];
+    [itemsArray release];
+}
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    NSLog(@"Detail: WillShowViewController");
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    NSMutableArray *items = [[self.toolbar items] mutableCopy];
-    [items removeObjectAtIndex:0];
-    [self.toolbar setItems:items animated:YES];
-    [items release];
-    self.popoverController = nil;
-//    self.popoverBarButtonItem = nil;
+//    NSLog(@"Detail: WillShowViewController");
+//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
+//    NSMutableArray *items = [[self.toolbar items] mutableCopy];
+//    [items removeObjectAtIndex:0];
+//    [self.toolbar setItems:items animated:YES];
+//    [items release];
+//    self.popoverController = nil;
+////    self.popoverBarButtonItem = nil;
 }
 
 @end

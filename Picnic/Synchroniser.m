@@ -13,7 +13,7 @@
 #import "RootViewController.h"
 #import "Member.h"
 #import "Tag.h"
-
+#define SERVER_URL @"http://picnicnetwork.org"
 
 @implementation Synchroniser
 @synthesize managedObjectContext = __managedObjectContext;
@@ -26,10 +26,10 @@
     NSString *apiKey = [defaults stringForKey:@"apiKey"];
     NSString *urlString;
     if (apiKey.length == 0) {
-        urlString = [NSString stringWithFormat:@"http://10.0.1.5:3000/api/program/%@",progVersion];
+        urlString = [NSString stringWithFormat:@"%@/api/program/%@",SERVER_URL,progVersion];
     } else {
         NSString *myProgramVersion = [defaults stringForKey:@"myProgramVersion"];
-        urlString = [NSString stringWithFormat:@"http://10.0.1.5:3000/api/program/%@?api_key=%@&my_program_version=%@",progVersion, apiKey, myProgramVersion];
+        urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@",SERVER_URL,progVersion, apiKey, myProgramVersion];
     }
     NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];

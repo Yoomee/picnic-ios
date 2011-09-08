@@ -15,13 +15,7 @@
     UIImageView *mapView;
 }
 
-- (IBAction)toggleFullScreen:(id)sender;
-
--(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem;
--(void) invalidatePopover;
-
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *mapView;
-@property (assign, nonatomic) BOOL fullScreen;
 
 @end

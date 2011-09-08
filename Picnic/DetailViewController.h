@@ -16,5 +16,10 @@
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
+- (void)showRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
+
+- (void)invalidateRootPopoverButtonItem:(UIBarButtonItem *)barButtonItem;
+    
+
 
 @end

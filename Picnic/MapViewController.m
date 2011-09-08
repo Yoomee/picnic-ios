@@ -13,14 +13,12 @@
 @implementation MapViewController
 @synthesize scrollView;
 @synthesize mapView;
-@synthesize fullScreen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.fullScreen = NO;
     }
     return self;
 }
@@ -61,6 +59,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self.toolbar setTintColor:[UIColor blackColor]];
+}
+
 - (void)viewDidUnload
 {
     [self setScrollView:nil];
@@ -77,59 +79,4 @@
 	return YES;
 }
 
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc
-{
-    NSLog(@"Map: WillHideViewController");
-    barButtonItem.title = @"Menu";
-    NSMutableArray *items = [[self.toolbar items] mutableCopy];
-    [items insertObject:barButtonItem atIndex:0];
-    [self.toolbar setItems:items animated:YES];
-    [items release];
-    self.popoverBarButtonItem = barButtonItem;
-    self.popoverController = pc;
-}
-
--(void) showPopoverWithPopoverController:(UIPopoverController *)pc andBarButtonItem:(UIBarButtonItem *)barButtonItem{
-    NSLog(@"Map: Show Popover");
-    NSLog(@"I:%@", [self.toolbar items]);
-    if(pc){
-        NSLog(@"Inside");
-        [self.toolbar setTintColor:[UIColor blackColor]];
-        NSMutableArray *items = [[self.toolbar items] mutableCopy];
-        [items insertObject:self.popoverBarButtonItem atIndex:0];
-        [self.toolbar setItems:items animated:YES];
-        [items release];
-        self.popoverController = pc;
-    }
-    NSLog(@"I:%@", [self.toolbar items]);
-}
-
--(void)invalidatePopover{
-    NSLog(@"Map: Inval Popover");
-    NSLog(@"I:%@", [self.toolbar items]);
-    if(self.popoverController){
-        NSLog(@"Inside");
-        NSMutableArray *items = [[self.toolbar items] mutableCopy];
-        [items removeObjectAtIndex:0];
-        [self.toolbar setItems:items animated:NO];
-        [items release];
-        self.popoverController = nil;
-    }
-    NSLog(@"I:%@", [self.toolbar items]);
-}
-
-
-
-- (IBAction)toggleFullScreen:(id)sender {
-
-//    UISplitViewController *appSplitViewController = [(PicnicAppDelegate *)[[UIApplication sharedApplication] delegate] splitViewController];
-//    if (self.fullScreen){
-//        [self dismissModalViewControllerAnimated:NO];
-//        self.fullScreen = NO;
-//    } else {
-//        appSplitViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-//        [appSplitViewController presentModalViewController:[[appSplitViewController viewControllers] objectAtIndex:1] animated:NO];
-//        self.fullScreen = YES;
-//    }
-}
 @end
