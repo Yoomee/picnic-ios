@@ -64,7 +64,6 @@
 		5B5CFF6613D720110080184E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6413D720110080184E /* InfoPlist.strings */; };
 		5B5CFF6813D720110080184E /* PicnicTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6713D720110080184E /* PicnicTests.h */; };
 		5B5CFF6A13D720110080184E /* PicnicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5CFF6913D720110080184E /* PicnicTests.m */; };
-		5B6243B21418DAFF009AC2FC /* Migrate1_1.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5B6243B11418DAFE009AC2FC /* Migrate1_1.2.xcmappingmodel */; };
 		5B6243B81418DDC1009AC2FC /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6243B71418DDC0009AC2FC /* Tag.m */; };
 		5B6243BB1418DF9A009AC2FC /* ConferenceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6243BA1418DF9A009AC2FC /* ConferenceSession.m */; };
 		5B6243CA1418F69D009AC2FC /* tag152.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6243C31418F69D009AC2FC /* tag152.png */; };
@@ -205,7 +204,6 @@
 		5B5CFF3913D720100080184E /* Picnic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Picnic-Prefix.pch"; sourceTree = "<group>"; };
 		5B5CFF3A13D720100080184E /* PicnicAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicnicAppDelegate.h; sourceTree = "<group>"; };
 		5B5CFF3B13D720100080184E /* PicnicAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicAppDelegate.m; sourceTree = "<group>"; };
-		5B5CFF3E13D720100080184E /* Picnic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Picnic.xcdatamodel; sourceTree = "<group>"; };
 		5B5CFF4013D720100080184E /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		5B5CFF4113D720100080184E /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		5B5CFF4313D720100080184E /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 		5B5CFF6513D720110080184E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B5CFF6713D720110080184E /* PicnicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicnicTests.h; sourceTree = "<group>"; };
 		5B5CFF6913D720110080184E /* PicnicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicnicTests.m; sourceTree = "<group>"; };
-		5B6243B11418DAFE009AC2FC /* Migrate1_1.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = Migrate1_1.2.xcmappingmodel; path = Picnic.xcdatamodeld/Migrate1_1.2.xcmappingmodel; sourceTree = "<group>"; };
 		5B6243B61418DDC0009AC2FC /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		5B6243B71418DDC0009AC2FC /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		5B6243B91418DF99009AC2FC /* ConferenceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceSession.h; sourceTree = "<group>"; };
@@ -443,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				5BB844C113D88E65001E4753 /* Picnic.sqlite */,
-				5B6243B11418DAFE009AC2FC /* Migrate1_1.2.xcmappingmodel */,
 				5B5CFF3D13D720100080184E /* Picnic.xcdatamodeld */,
 			);
 			name = Data;
@@ -811,7 +807,6 @@
 				5B394A3A1407B668000C4BB3 /* SBJsonWriter.m in Sources */,
 				5B81765F1416695B00C32CC6 /* MapViewController.m in Sources */,
 				5B81766D1416730000C32CC6 /* SessionDetailViewController.m in Sources */,
-				5B6243B21418DAFF009AC2FC /* Migrate1_1.2.xcmappingmodel in Sources */,
 				5B6243B81418DDC1009AC2FC /* Tag.m in Sources */,
 				5B6243BB1418DF9A009AC2FC /* ConferenceSession.m in Sources */,
 				5B6243D414191377009AC2FC /* FestivalThemesController.m in Sources */,
@@ -1170,7 +1165,6 @@
 			isa = XCVersionGroup;
 			children = (
 				5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */,
-				5B5CFF3E13D720100080184E /* Picnic.xcdatamodel */,
 			);
 			currentVersion = 5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */;
 			path = Picnic.xcdatamodeld;

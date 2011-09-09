@@ -22,6 +22,7 @@
 @dynamic endsAt;
 @dynamic text;
 @dynamic attending;
+@dynamic syncedAttending;
 @dynamic startsAt;
 @dynamic name;
 @dynamic tags;

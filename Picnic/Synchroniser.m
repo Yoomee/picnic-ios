@@ -13,33 +13,40 @@
 #import "RootViewController.h"
 #import "Member.h"
 #import "Tag.h"
-#define SERVER_URL @"http://10.0.1.5:3000"
+#define SERVER_URL @"http://picnicnetwork.org"
+//#define SERVER_URL @"http://10.0.1.5:3000"
 
 @implementation Synchroniser
 @synthesize managedObjectContext = __managedObjectContext;
 
--(void)startUpdate
+-(void)startUpdate:(BOOL)syncAttending
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *progVersion = [defaults stringForKey:@"programVersion"];
-    // NSString *urlString = [NSString  stringWithFormat:@"http://10.0.1.5:3000/api/program/%@",progVersion];
     NSString *apiKey = [defaults stringForKey:@"apiKey"];
-    NSString *urlString;
-    if (apiKey.length == 0) {
-        urlString = [NSString stringWithFormat:@"%@/api/program/%@",SERVER_URL,progVersion];
+
+    if (syncAttending && (apiKey.length > 0)){
+        NSLog(@"Will sync attending");
+        [self syncStaleAttendingWithApiKey:apiKey];
     } else {
-        NSString *myProgramVersion = [defaults stringForKey:@"myProgramVersion"];
-        urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@",SERVER_URL,progVersion, apiKey, myProgramVersion];
+        NSLog(@"Updating, not attending");
+        NSString *progVersion = [defaults stringForKey:@"programVersion"];
+        NSString *urlString;
+        if (apiKey.length == 0) {
+            urlString = [NSString stringWithFormat:@"%@/api/program/%@",SERVER_URL,progVersion];
+        } else {
+            NSString *myProgramVersion = [defaults stringForKey:@"myProgramVersion"];
+            urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@",SERVER_URL,progVersion, apiKey, myProgramVersion];
+        }
+        NSLog(@"%@",urlString);
+        NSURL *url = [NSURL URLWithString:urlString];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setPersistentConnectionTimeoutSeconds:60];
+        [request setDelegate:self];
+        [request startAsynchronous];    
     }
-    NSLog(@"%@",urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setPersistentConnectionTimeoutSeconds:60];
-    [request setDelegate:self];
-    [request startAsynchronous];    
 }
 
--(void)updateConferenceSessions:(NSMutableArray *)sessions withMySessionIds:(NSArray *) sessionIds {    
+-(void)updateConferenceSessions:(NSMutableArray *)sessions{    
     [sessions sortUsingDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES] autorelease]]];
     
     NSError *error = nil;
@@ -82,7 +89,7 @@
             [newSession setColorB:[NSNumber numberWithFloat:[[nSession objectForKey:@"color_b"] floatValue]]];
             [newSession setStartsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"starts_at"] intValue]]];
             [newSession setEndsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"ends_at"] intValue]]];
-            [newSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
+            [newSession setTimeStamp:[NSDate dateWithTimeIntervalSinceNow:0]];
             [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:newSession];
             [sessions removeObjectAtIndex:0];
             if ([sessions count] > 0){
@@ -102,8 +109,9 @@
             [eSession setColorB:[NSNumber numberWithFloat:[[nSession objectForKey:@"color_b"] floatValue]]];
             [eSession setStartsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"starts_at"] intValue]]];
             [eSession setEndsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"ends_at"] intValue]]];
-            [eSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
+            [eSession setTimeStamp:[NSDate dateWithTimeIntervalSinceNow:0]];
             [eSession setSpeakers:NULL];
+            [eSession setTags:NULL];
             [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:eSession];
             if([sessions count] > 0){
                 [sessions removeObjectAtIndex:0];
@@ -122,12 +130,12 @@
         [newSession setColorB:[NSNumber numberWithFloat:[[nSession objectForKey:@"color_b"] floatValue]]];
         [newSession setStartsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"starts_at"] intValue]]];
         [newSession setEndsAt:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"ends_at"] intValue]]];
-        [newSession setTimeStamp:[NSDate dateWithTimeIntervalSince1970:[[nSession objectForKey:@"timestamp"] intValue]]];
+        [newSession setTimeStamp:[NSDate dateWithTimeIntervalSinceNow:0]];
         [(Venue *)[venueDict objectForKey:[NSNumber numberWithInt:[[nSession objectForKey:@"venue_id"] intValue]]] addConferenceSessionsObject:newSession];
     }];
     
     if (![self.managedObjectContext save:&error]) {
-        NSLog(@"ERROR: updating sessions");
+        NSLog(@"ERROR: updating sessions:%@",error);
     }
     [venueDict release];
     [sortDescriptor release];
@@ -373,6 +381,7 @@
 }
 
 -(void)updateMySessions:(NSArray *)sessionIds {
+    NSLog(@"Session ids");
     NSMutableDictionary *mySessionIds = [[NSMutableDictionary alloc] initWithCapacity:[sessionIds count]];
     [sessionIds enumerateObjectsUsingBlock:^(NSString *sessionId, NSUInteger idx, BOOL *stop) {
         [mySessionIds setValue:@"1" forKey:[NSString stringWithFormat:@"%@",sessionId]];
@@ -386,8 +395,10 @@
     [existingSessions enumerateObjectsUsingBlock:^(ConferenceSession *eSession, NSUInteger idx, BOOL *stop) {
         if ([(NSString *)[mySessionIds valueForKey:[NSString stringWithFormat:@"%@",eSession.uid]] isEqualToString:@"1"]) {
             [eSession setAttending:[NSNumber numberWithInt:1]];
+            [eSession setSyncedAttending:[NSNumber numberWithInt:1]];
         } else {
             [eSession setAttending:[NSNumber numberWithInt:0]];
+            [eSession setSyncedAttending:[NSNumber numberWithInt:0]];
         }
     }];
     if (![self.managedObjectContext save:&error]) {
@@ -402,7 +413,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     if ([data objectForKey:@"version"]) {
         [self updateVenues:[data objectForKey:@"venues"]];
-        [self updateConferenceSessions:[data objectForKey:@"conference_sessions"] withMySessionIds:[data objectForKey:@"my_session_ids"]];            
+        [self updateConferenceSessions:[data objectForKey:@"conference_sessions"]];            
         [self updateTags:[data objectForKey:@"tags"]];
         [self updateMembers:[data objectForKey:@"members"]];
         [defaults setObject:[data objectForKey:@"version"] forKey:@"programVersion"];
@@ -442,14 +453,6 @@
     NSLog(@"%@",error);
 }
 
--(void) setAttending:(NSNumber *)attending forConferenceSession:(ConferenceSession *)conferenceSession {
-    [conferenceSession setAttending:attending];
-    PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSError *error = nil;
-    if (![appDelegate.managedObjectContext save:&error]) {
-        NSLog(@"ERROR: updating sessions");
-    }
-}
 
 -(void)mergeChanges:(NSNotification *)notification{
     PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -461,6 +464,118 @@
                                waitUntilDone:YES]; 
 }
 
+#pragma mark - Attending
+
+-(void)attendingRequestFinished:(ASIHTTPRequest *)request{
+    NSLog(@"Finished attending");
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    id object = [parser objectWithData:[request responseData]];
+    if (object) {
+        NSDictionary *data = (NSDictionary *)object; 
+        int success = [[data objectForKey:@"success"] intValue];
+        NSLog(@"%@", data);
+        if (success==1) {
+            ConferenceSession *conferenceSession = (ConferenceSession *)[request.userInfo objectForKey:@"session"];
+            [conferenceSession setSyncedAttending:[data valueForKey:@"attending"]];
+            [conferenceSession setTimeStamp:[NSDate dateWithTimeIntervalSinceNow:0]];
+            NSError *error = nil;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"ERROR: updating sessions");
+            }
+        }
+    } else {
+        NSLog(@"%@",[NSString stringWithFormat:@"An error occurred: %@", parser.error]);
+    }
+    [parser release];
+}
+
+-(void) setAttending:(NSNumber *)attending forConferenceSession:(ConferenceSession *)conferenceSession {
+    [conferenceSession setAttending:attending];
+    [conferenceSession setTimeStamp:[NSDate dateWithTimeIntervalSinceNow:0]];
+    PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSError *error = nil;
+    if (![appDelegate.managedObjectContext save:&error]) {
+        NSLog(@"ERROR: updating sessions");
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *apiKey = [defaults stringForKey:@"apiKey"];
+    if (apiKey.length > 0) {
+        NSString *urlString = [NSString stringWithFormat:@"%@/api/",SERVER_URL];
+        if ([attending boolValue]) {
+            urlString = [urlString stringByAppendingString:@"attend"];
+        } else {
+            urlString = [urlString stringByAppendingString:@"unattend"];
+        }
+        urlString = [urlString stringByAppendingFormat:@"/%@?api_key=%@",conferenceSession.uid,apiKey];
+        NSLog(@"%@",urlString);
+        NSURL *url = [NSURL URLWithString:urlString];
+        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        [request setPersistentConnectionTimeoutSeconds:30];
+        [request setDelegate:self];
+        [request setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys: conferenceSession, @"session", nil]];
+        [request setDidFinishSelector:@selector(attendingRequestFinished:)];
+        [request startAsynchronous]; 
+    }   
+}
+
+-(void)syncStaleAttendingRequestFinished:(ASIHTTPRequest *)request{
+    NSLog(@"Finished staleSync");
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    id object = [parser objectWithData:[request responseData]];
+    if (object) {
+        NSDictionary *data = (NSDictionary *)object; 
+        int success = [[data objectForKey:@"success"] intValue];
+        NSLog(@"%@", data);
+        if (success==1) {
+            [self startUpdate:NO];
+        }
+    } else {
+        NSLog(@"%@",[NSString stringWithFormat:@"An error occurred: %@", parser.error]);
+    }
+    [parser release];
+}
+
+
+-(void)syncStaleAttendingWithApiKey:(NSString *)apiKey{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ConferenceSession" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"attending != syncedAttending"];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+    NSArray *staleSessions = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];    
+    if([staleSessions count] > 0){
+        NSMutableArray *conferenceSessions = [[NSMutableArray alloc] initWithCapacity:[staleSessions count]];
+        [staleSessions enumerateObjectsUsingBlock:^(ConferenceSession *session, NSUInteger idx, BOOL *stop) {
+            NSDictionary *sessionDict = [NSDictionary dictionaryWithObjectsAndKeys:session.uid, @"id", session.attending, @"attending", [NSString stringWithFormat:@"%f",session.timeStamp.timeIntervalSince1970], @"timestamp", nil];
+            [conferenceSessions addObject:sessionDict];
+        }];
+        
+        SBJsonWriter *writer = [[SBJsonWriter alloc]init];
+        NSString *jsonString = [writer stringWithObject:conferenceSessions];
+        if(jsonString){
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/sync_attending", SERVER_URL]];        
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+            [request addPostValue:jsonString forKey:@"conference_sessions"];
+            [request addPostValue:apiKey forKey:@"api_key"];
+            [request setPersistentConnectionTimeoutSeconds:30];
+            [request setDelegate:self];
+            [request setDidFinishSelector:@selector(syncStaleAttendingRequestFinished:)];
+            [request setPersistentConnectionTimeoutSeconds:30];
+            [request startAsynchronous]; 
+        } else {
+            NSLog(@"%@",[NSString stringWithFormat:@"An error occurred: %@", writer.error]);
+        }
+        [conferenceSessions release];
+        [writer release];
+    } else{
+        [self startUpdate:NO];
+    }
+    [fetchRequest release];
+}
+
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (__managedObjectContext != nil)
@@ -470,6 +585,7 @@
     __managedObjectContext = [[NSManagedObjectContext alloc] init];
     PicnicAppDelegate *appDelegate = (PicnicAppDelegate *)[[UIApplication sharedApplication] delegate];
     [__managedObjectContext setPersistentStoreCoordinator:[[appDelegate managedObjectContext] persistentStoreCoordinator]];
+    [__managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter]; 
     [nc addObserver:self
            selector:@selector(mergeChanges:)

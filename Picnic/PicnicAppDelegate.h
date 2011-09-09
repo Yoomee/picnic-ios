@@ -21,6 +21,7 @@
 @property (retain, nonatomic) UISplitViewController *splitViewController;
 @property (retain, nonatomic) Synchroniser *synchroniser;
 @property (nonatomic, retain) UIAlertView *alertView;
+@property (assign, nonatomic) BOOL updating;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

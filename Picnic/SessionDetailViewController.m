@@ -67,6 +67,7 @@
     // Update the user interface for the detail item.
 
     if (self.conferenceSession) {
+        NSLog(@"id:%@,att:%@,syn:%@,time:%@", self.conferenceSession.uid, self.conferenceSession.attending, self.conferenceSession.syncedAttending, self.conferenceSession.timeStamp);
         [self.toolbar setTintColor:[self.conferenceSession color]];
         self.sessionName.text = [self.conferenceSession name];
         self.title = [self.conferenceSession name];
@@ -108,7 +109,7 @@
         }];
         float numberOfTags = [tagImages count];
         [tagImages enumerateObjectsUsingBlock:^(NSString *imageName, NSUInteger idx, BOOL *stop){
-                UIImageView *tagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+            UIImageView *tagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
             float tagX = (((idx + 1)-((numberOfTags + 1)/2)) * 45) + self.contentView.center.x;
             float tagY = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 23 : 45);
             tagView.center = CGPointMake(tagX, tagY);
@@ -117,6 +118,7 @@
             [self.contentView addSubview:tagView];
             [tagView release];
         }];
+        [tagImages release];
         BOOL containsAttendingToggle = [[self.toolbar items] containsObject:self.attendingToggleButton];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

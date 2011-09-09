@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSDate * endsAt;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSNumber * attending;
+@property (nonatomic, retain) NSNumber * syncedAttending;
 @property (nonatomic, retain) NSDate * startsAt;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet* tags;

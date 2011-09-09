@@ -24,6 +24,7 @@
 @synthesize splitViewController = _splitViewController;
 @synthesize synchroniser = _synchroniser;
 @synthesize alertView = _alertView;
+@synthesize updating = _updating;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,6 +33,8 @@
     UIWindow *myWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = myWindow;
     [myWindow release];
+    
+    self.updating = NO;
     
     [self setupSettings];
     
@@ -114,7 +117,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-    [self.synchroniser startUpdate];
+    [self.synchroniser startUpdate:YES];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -146,17 +149,16 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     NSString *progVersion = [defaults stringForKey:@"programVersion"];
-    
-//    [defaults setValue:@"" forKey:@"apiKey"];
-    
+    NSLog(@"Replace db? %@", progVersion);
+
     if (progVersion == NULL) {
         [defaults setValue:0 forKey:@"programVersion"];
-//        NSLog(@"Replacing database");
-//        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
-//        NSFileManager *fileManager = [NSFileManager defaultManager];
-//        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
-//        [fileManager removeItemAtPath:[storeURL path] error:NULL];
-//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
+        NSLog(@"Replacing database");
+        NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
+        [fileManager removeItemAtPath:[storeURL path] error:NULL];
+        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
     }    
     
     [defaults setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
@@ -200,29 +202,34 @@
 }
 
 -(void)willStartUpdate{
-    NSLog(@"Updating program.");    
-    self.alertView = [[UIAlertView alloc] initWithTitle:@"Updating program" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-    [self.alertView show];
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
-    [indicator startAnimating];
-    [self.alertView addSubview:indicator];
-    [indicator release];
-    [self.window.rootViewController presentModalViewController:self.splashScreenController animated:NO];
-
+    NSLog(@"Updating program.");
+    if(!self.updating){
+        self.updating = YES;
+        self.alertView = [[UIAlertView alloc] initWithTitle:@"Updating program" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+        [self.alertView show];
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
+        [indicator startAnimating];
+        [self.alertView addSubview:indicator];
+        [indicator release];
+        [self.window.rootViewController presentModalViewController:self.splashScreenController animated:NO];
+    }
 }
 
 -(void)didFinishUpdate{
     NSLog(@"Finished.");
-    [NSFetchedResultsController deleteCacheWithName:@"Day1"];
-    [NSFetchedResultsController deleteCacheWithName:@"Day2"];
-    [NSFetchedResultsController deleteCacheWithName:@"Day3"];
-    [NSFetchedResultsController deleteCacheWithName:@"MyDay1"];
-    [NSFetchedResultsController deleteCacheWithName:@"MyDay2"];
-    [NSFetchedResultsController deleteCacheWithName:@"MyDay3"];
-    [self refreshViewControllers];
-    [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    [self hideSplashScreen];
+    if(self.updating){
+        [NSFetchedResultsController deleteCacheWithName:@"Day1"];
+        [NSFetchedResultsController deleteCacheWithName:@"Day2"];
+        [NSFetchedResultsController deleteCacheWithName:@"Day3"];
+        [NSFetchedResultsController deleteCacheWithName:@"MyDay1"];
+        [NSFetchedResultsController deleteCacheWithName:@"MyDay2"];
+        [NSFetchedResultsController deleteCacheWithName:@"MyDay3"];
+        [self refreshViewControllers];
+        [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [self hideSplashScreen];
+        self.updating = NO;
+    }
 }
 - (void)hideSplashScreen
 {
@@ -268,6 +275,7 @@
     if (coordinator != nil)
     {
         __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [__managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return __managedObjectContext;
@@ -308,9 +316,10 @@
 //        [fileManager removeItemAtPath:[storeURL path] error:NULL];
 //        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
 //    }
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+//                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+//                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    NSDictionary *options = nil;
     
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
