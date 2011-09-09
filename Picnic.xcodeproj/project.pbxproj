@@ -17,6 +17,17 @@
 		5B2D3C9C141A111400BE9961 /* infoRow1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3C9A141A111400BE9961 /* infoRow1@2x.png */; };
 		5B2D3C9F141A213000BE9961 /* toolbarStarEmptyBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3C9D141A213000BE9961 /* toolbarStarEmptyBlack.png */; };
 		5B2D3CA0141A213000BE9961 /* toolbarStarEmptyBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3C9E141A213000BE9961 /* toolbarStarEmptyBlack@2x.png */; };
+		5B2D3CAD141A7BA400BE9961 /* UsefulInformationController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CA9141A7BA300BE9961 /* UsefulInformationController_iPad.xib */; };
+		5B2D3CAE141A7BA400BE9961 /* UsefulInformationController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CAA141A7BA300BE9961 /* UsefulInformationController_iPhone.xib */; };
+		5B2D3CAF141A7BA400BE9961 /* UsefulInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D3CAC141A7BA400BE9961 /* UsefulInformationController.m */; };
+		5B2D3CB4141A7FE700BE9961 /* infoRow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB0141A7FE700BE9961 /* infoRow2.png */; };
+		5B2D3CB5141A7FE700BE9961 /* infoRow2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB1141A7FE700BE9961 /* infoRow2@2x.png */; };
+		5B2D3CB6141A7FE700BE9961 /* infoRow3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB2141A7FE700BE9961 /* infoRow3.png */; };
+		5B2D3CB7141A7FE700BE9961 /* infoRow3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB3141A7FE700BE9961 /* infoRow3@2x.png */; };
+		5B2D3CBC141A81BB00BE9961 /* AboutAppController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB8141A81BA00BE9961 /* AboutAppController_iPad.xib */; };
+		5B2D3CBD141A81BB00BE9961 /* AboutAppController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CB9141A81BA00BE9961 /* AboutAppController_iPhone.xib */; };
+		5B2D3CBE141A81BB00BE9961 /* AboutAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D3CBB141A81BB00BE9961 /* AboutAppController.m */; };
+		5B2D3CC0141A82B700BE9961 /* yoomee_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2D3CBF141A82B700BE9961 /* yoomee_logo.png */; };
 		5B3716A513F2DC3000739EC4 /* WelcomePortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */; };
 		5B39499A1407AF6A000C4BB3 /* Synchroniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3949991407AF6A000C4BB3 /* Synchroniser.m */; };
 		5B394A271407B668000C4BB3 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3949FA1407B668000C4BB3 /* ASIAuthenticationDialog.m */; };
@@ -143,6 +154,19 @@
 		5B2D3C9A141A111400BE9961 /* infoRow1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoRow1@2x.png"; path = "images/infoRow1@2x.png"; sourceTree = "<group>"; };
 		5B2D3C9D141A213000BE9961 /* toolbarStarEmptyBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbarStarEmptyBlack.png; path = images/toolbarStarEmptyBlack.png; sourceTree = "<group>"; };
 		5B2D3C9E141A213000BE9961 /* toolbarStarEmptyBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarStarEmptyBlack@2x.png"; path = "images/toolbarStarEmptyBlack@2x.png"; sourceTree = "<group>"; };
+		5B2D3CA9141A7BA300BE9961 /* UsefulInformationController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsefulInformationController_iPad.xib; sourceTree = "<group>"; };
+		5B2D3CAA141A7BA300BE9961 /* UsefulInformationController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UsefulInformationController_iPhone.xib; sourceTree = "<group>"; };
+		5B2D3CAB141A7BA400BE9961 /* UsefulInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsefulInformationController.h; sourceTree = "<group>"; };
+		5B2D3CAC141A7BA400BE9961 /* UsefulInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsefulInformationController.m; sourceTree = "<group>"; };
+		5B2D3CB0141A7FE700BE9961 /* infoRow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = infoRow2.png; path = images/infoRow2.png; sourceTree = "<group>"; };
+		5B2D3CB1141A7FE700BE9961 /* infoRow2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoRow2@2x.png"; path = "images/infoRow2@2x.png"; sourceTree = "<group>"; };
+		5B2D3CB2141A7FE700BE9961 /* infoRow3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = infoRow3.png; path = images/infoRow3.png; sourceTree = "<group>"; };
+		5B2D3CB3141A7FE700BE9961 /* infoRow3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoRow3@2x.png"; path = "images/infoRow3@2x.png"; sourceTree = "<group>"; };
+		5B2D3CB8141A81BA00BE9961 /* AboutAppController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppController_iPad.xib; sourceTree = "<group>"; };
+		5B2D3CB9141A81BA00BE9961 /* AboutAppController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutAppController_iPhone.xib; sourceTree = "<group>"; };
+		5B2D3CBA141A81BB00BE9961 /* AboutAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutAppController.h; sourceTree = "<group>"; };
+		5B2D3CBB141A81BB00BE9961 /* AboutAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutAppController.m; sourceTree = "<group>"; };
+		5B2D3CBF141A82B700BE9961 /* yoomee_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yoomee_logo.png; path = Picnic/yoomee_logo.png; sourceTree = "<group>"; };
 		5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomePortrait.png; path = images/WelcomePortrait.png; sourceTree = "<group>"; };
 		5B3949981407AF6A000C4BB3 /* Synchroniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synchroniser.h; sourceTree = "<group>"; };
 		5B3949991407AF6A000C4BB3 /* Synchroniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synchroniser.m; sourceTree = "<group>"; };
@@ -323,6 +347,10 @@
 		5B2D3C91141A0FA700BE9961 /* info rows */ = {
 			isa = PBXGroup;
 			children = (
+				5B2D3CB0141A7FE700BE9961 /* infoRow2.png */,
+				5B2D3CB1141A7FE700BE9961 /* infoRow2@2x.png */,
+				5B2D3CB2141A7FE700BE9961 /* infoRow3.png */,
+				5B2D3CB3141A7FE700BE9961 /* infoRow3@2x.png */,
 				5B2D3C97141A107200BE9961 /* infoRow0@2x.png */,
 				5B2D3C95141A0FCC00BE9961 /* infoRow0.png */,
 				5B2D3C99141A111400BE9961 /* infoRow1.png */,
@@ -486,6 +514,7 @@
 				5B6243C21418F69D009AC2FC /* tags */,
 				5BDE61B214178CB900BD358F /* info.png */,
 				5BDE61B314178CB900BD358F /* info@2x.png */,
+				5B2D3CBF141A82B700BE9961 /* yoomee_logo.png */,
 				5B817661141669DC00C32CC6 /* map.png */,
 				5B8176001416396700C32CC6 /* star.png */,
 				5B8175FD141638EB00C32CC6 /* clock.png */,
@@ -529,6 +558,10 @@
 				5B81765E1416695A00C32CC6 /* MapViewController_iPad.xib */,
 				5B6243D314191376009AC2FC /* FestivalThemesController_iPad.xib */,
 				5B6243E514192502009AC2FC /* FestivalThemesController_iPhone.xib */,
+				5B2D3CA9141A7BA300BE9961 /* UsefulInformationController_iPad.xib */,
+				5B2D3CAA141A7BA300BE9961 /* UsefulInformationController_iPhone.xib */,
+				5B2D3CB8141A81BA00BE9961 /* AboutAppController_iPad.xib */,
+				5B2D3CB9141A81BA00BE9961 /* AboutAppController_iPhone.xib */,
 			);
 			name = Views;
 			path = Picnic;
@@ -601,6 +634,10 @@
 				5B81765D1416695A00C32CC6 /* MapViewController.m */,
 				5B6243D114191375009AC2FC /* FestivalThemesController.h */,
 				5B6243D214191375009AC2FC /* FestivalThemesController.m */,
+				5B2D3CAB141A7BA400BE9961 /* UsefulInformationController.h */,
+				5B2D3CAC141A7BA400BE9961 /* UsefulInformationController.m */,
+				5B2D3CBA141A81BB00BE9961 /* AboutAppController.h */,
+				5B2D3CBB141A81BB00BE9961 /* AboutAppController.m */,
 				5BD4C3E213F0483B0030FCFA /* SplashScreenController.h */,
 				5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */,
 			);
@@ -739,6 +776,15 @@
 				5B2D3C9C141A111400BE9961 /* infoRow1@2x.png in Resources */,
 				5B2D3C9F141A213000BE9961 /* toolbarStarEmptyBlack.png in Resources */,
 				5B2D3CA0141A213000BE9961 /* toolbarStarEmptyBlack@2x.png in Resources */,
+				5B2D3CAD141A7BA400BE9961 /* UsefulInformationController_iPad.xib in Resources */,
+				5B2D3CAE141A7BA400BE9961 /* UsefulInformationController_iPhone.xib in Resources */,
+				5B2D3CB4141A7FE700BE9961 /* infoRow2.png in Resources */,
+				5B2D3CB5141A7FE700BE9961 /* infoRow2@2x.png in Resources */,
+				5B2D3CB6141A7FE700BE9961 /* infoRow3.png in Resources */,
+				5B2D3CB7141A7FE700BE9961 /* infoRow3@2x.png in Resources */,
+				5B2D3CBC141A81BB00BE9961 /* AboutAppController_iPad.xib in Resources */,
+				5B2D3CBD141A81BB00BE9961 /* AboutAppController_iPhone.xib in Resources */,
+				5B2D3CC0141A82B700BE9961 /* yoomee_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,6 +856,8 @@
 				5B6243B81418DDC1009AC2FC /* Tag.m in Sources */,
 				5B6243BB1418DF9A009AC2FC /* ConferenceSession.m in Sources */,
 				5B6243D414191377009AC2FC /* FestivalThemesController.m in Sources */,
+				5B2D3CAF141A7BA400BE9961 /* UsefulInformationController.m in Sources */,
+				5B2D3CBE141A81BB00BE9961 /* AboutAppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

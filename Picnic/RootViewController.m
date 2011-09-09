@@ -11,6 +11,8 @@
 #import "SessionDetailViewController.h"
 #import "MapViewController.h"
 #import "FestivalThemesController.h"
+#import "UsefulInformationController.h"
+#import "AboutAppController.h"
 #import "SessionCell.h"
 #import "ConferenceSession.h"
 #import "Venue.h"
@@ -28,6 +30,8 @@
 @synthesize sessionDetailViewController = _sessionDetailViewController;
 @synthesize mapViewController = _mapViewController;
 @synthesize festivalThemesController = _festivalThemesController;
+@synthesize usefulInformationController = _usefulInformationController;
+@synthesize aboutAppController = _aboutAppController;
 
 @synthesize fetchedResultsController = __fetchedResultsController;
 @synthesize managedObjectContext = __managedObjectContext;
@@ -87,6 +91,8 @@
 {
     [popoverController release];
     [rootPopoverButtonItem release];
+    [_aboutAppController release];
+    [_usefulInformationController release];
     [_festivalThemesController release];
     [_sessionDetailViewController release];
     [_mapViewController release];    
@@ -140,7 +146,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.viewingInfoTab){
-        return 3;
+        return 4;
     } else if (self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0){
         return 1;
     } else{
@@ -168,6 +174,9 @@
                 break;
             case 2:
                 cell.textLabel.text = @"Useful Information";
+                break;
+            case 3:
+                cell.textLabel.text = @"About the app";
                 break;
             default:
                 break;
@@ -255,6 +264,40 @@
                 [backButton release];
             } else if (self.detailViewController != self.festivalThemesController){
                 self.detailViewController = self.festivalThemesController;
+            }
+        } else if([indexPath row] == 2){
+            if(_usefulInformationController == nil){
+                NSString *nibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"UsefulInformationController_iPhone" : @"UsefulInformationController_iPad");
+                UsefulInformationController *myUsefulInformationController = [[UsefulInformationController alloc] initWithNibName:nibName bundle:nil];
+                self.usefulInformationController = myUsefulInformationController;
+                [myUsefulInformationController release];
+            }
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+                self.navigationItem.backBarButtonItem = backButton;
+                [self.navigationController pushViewController:self.usefulInformationController animated:YES];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [backButton release];
+            } else if (self.detailViewController != self.usefulInformationController){
+                self.detailViewController = self.usefulInformationController;
+            }
+        } else if([indexPath row] == 3){
+            if(_aboutAppController == nil){
+                NSString *themesNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"AboutAppController_iPhone" : @"AboutAppController_iPad");
+                AboutAppController *myAboutAppController = [[AboutAppController alloc] initWithNibName:themesNibName bundle:nil];
+                self.aboutAppController = myAboutAppController;
+                [myAboutAppController release];
+            }
+            
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+                UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+                self.navigationItem.backBarButtonItem = backButton;
+                [self.navigationController pushViewController:self.aboutAppController animated:YES];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [backButton release];
+            } else if (self.detailViewController != self.aboutAppController){
+                self.detailViewController = self.aboutAppController;
             }
         }
 
@@ -440,9 +483,8 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"Clicked: %d", buttonIndex);
     if (actionSheet.tag == 0){
-        NSString* launchUrl = @"http://10.0.1.5:3000/api/authenticate";
+        NSString* launchUrl = @"http://picnicnetwork.org/api/authenticate";
         [self.tabBar setSelectedItem:[[self.tabBar items] objectAtIndex:0]];
         if(self.viewingInfoTab)
             [self finishedViewingInfoTab];
@@ -582,7 +624,6 @@
 
 #pragma mark - Split view
 - (void)splitViewController:(UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController:(UIPopoverController*)pc {
-    NSLog(@"willHideViewController");
     // Keep references to the popover controller and the popover button, and tell the detail view controller to show the button.
     barButtonItem.title = @"Menu";
     self.popoverController = pc;

@@ -67,7 +67,6 @@
     // Update the user interface for the detail item.
 
     if (self.conferenceSession) {
-        NSLog(@"id:%@,att:%@,syn:%@,time:%@", self.conferenceSession.uid, self.conferenceSession.attending, self.conferenceSession.syncedAttending, self.conferenceSession.timeStamp);
         [self.toolbar setTintColor:[self.conferenceSession color]];
         self.sessionName.text = [self.conferenceSession name];
         self.title = [self.conferenceSession name];
@@ -158,7 +157,7 @@
     }
     CGSize textSize = [[self.conferenceSession text] sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:CGSizeMake(self.sessionText.frame.size.width, 1000.0f)];
     CGRect frame = self.sessionText.frame; 
-    frame.size.height = textSize.height + 30;
+    frame.size.height = textSize.height + 50;
     self.sessionText.frame = frame;
     UIScrollView *tempScrollView = (UIScrollView *)self.contentView;
     tempScrollView.contentSize = CGSizeMake(0, self.sessionText.frame.origin.y + self.sessionText.frame.size.height + 20);

@@ -33,7 +33,6 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"View did load");
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -56,8 +55,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    NSLog(@"Should rotate, Landscape:%i", UIInterfaceOrientationIsLandscape(interfaceOrientation));
-    self.landscape = UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    self.landscape = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) && UIInterfaceOrientationIsLandscape(interfaceOrientation);
 	return YES;
 }
 

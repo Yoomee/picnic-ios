@@ -148,11 +148,10 @@
 -(void)setupSettings
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
-    NSString *progVersion = [defaults stringForKey:@"programVersion"];
-    NSLog(@"Replace db? %@", progVersion);
+    NSInteger dbVersion = [defaults integerForKey:@"dbVersion"]; 
 
-    if (progVersion == NULL) {
-        [defaults setValue:0 forKey:@"programVersion"];
+    if (!(dbVersion && (dbVersion == 2))) {
+        [defaults setInteger:2 forKey:@"dbVersion"];
         NSLog(@"Replacing database");
         NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -191,12 +190,13 @@
             aRootViewController = (RootViewController *)[self.navigationController topViewController];
         } else {
             aRootViewController = (RootViewController *)[[[self.splitViewController viewControllers]objectAtIndex:0] topViewController];
+            if(aRootViewController.detailViewController == aRootViewController.sessionDetailViewController){
+                [(SessionDetailViewController *)aRootViewController.detailViewController configureView];
+            }
         }
         [aRootViewController setMyProgram:YES];
         [aRootViewController.tabBar setSelectedItem:[[aRootViewController.tabBar items] objectAtIndex:1]];
-        if(aRootViewController.detailViewController == aRootViewController.sessionDetailViewController){
-            [(SessionDetailViewController *)aRootViewController.detailViewController configureView];
-        }
+
     }
     return YES;
 }
@@ -309,21 +309,9 @@
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
 
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"Picnic" ofType:@"sqlite"];
-//    if (true && defaultStorePath) {
-//        [fileManager removeItemAtPath:[storeURL path] error:NULL];
-//        [fileManager copyItemAtPath:defaultStorePath toPath:[storeURL path] error:NULL];
-//    }
-//    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-//                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-//                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-    NSDictionary *options = nil;
-    
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error])
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
     {
         /*
          Replace this implementation with code to handle the error appropriately.

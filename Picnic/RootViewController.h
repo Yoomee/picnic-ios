@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class SessionDetailViewController, MapViewController, FestivalThemesController;
+@class SessionDetailViewController, MapViewController, FestivalThemesController, UsefulInformationController, AboutAppController;
 
 #import <CoreData/CoreData.h>
 #import "DetailViewController.h"
@@ -31,6 +31,8 @@
 @property (retain, nonatomic) SessionDetailViewController *sessionDetailViewController;
 @property (retain, nonatomic) MapViewController *mapViewController;
 @property (retain, nonatomic) FestivalThemesController *festivalThemesController;
+@property (retain, nonatomic) UsefulInformationController *usefulInformationController;
+@property (retain, nonatomic) AboutAppController *aboutAppController;
 
 @property (retain, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;

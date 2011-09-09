@@ -14,7 +14,6 @@
 #import "Member.h"
 #import "Tag.h"
 #define SERVER_URL @"http://picnicnetwork.org"
-//#define SERVER_URL @"http://10.0.1.5:3000"
 
 @implementation Synchroniser
 @synthesize managedObjectContext = __managedObjectContext;
@@ -381,7 +380,6 @@
 }
 
 -(void)updateMySessions:(NSArray *)sessionIds {
-    NSLog(@"Session ids");
     NSMutableDictionary *mySessionIds = [[NSMutableDictionary alloc] initWithCapacity:[sessionIds count]];
     [sessionIds enumerateObjectsUsingBlock:^(NSString *sessionId, NSUInteger idx, BOOL *stop) {
         [mySessionIds setValue:@"1" forKey:[NSString stringWithFormat:@"%@",sessionId]];
@@ -467,7 +465,6 @@
 #pragma mark - Attending
 
 -(void)attendingRequestFinished:(ASIHTTPRequest *)request{
-    NSLog(@"Finished attending");
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     id object = [parser objectWithData:[request responseData]];
     if (object) {
