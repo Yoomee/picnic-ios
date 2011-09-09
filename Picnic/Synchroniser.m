@@ -13,7 +13,7 @@
 #import "RootViewController.h"
 #import "Member.h"
 #import "Tag.h"
-#define SERVER_URL @"http://picnicnetwork.org"
+#define SERVER_URL @"http://10.0.1.5:3000"
 
 @implementation Synchroniser
 @synthesize managedObjectContext = __managedObjectContext;

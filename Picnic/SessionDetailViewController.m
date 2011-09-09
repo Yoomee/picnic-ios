@@ -5,7 +5,7 @@
 //  Created by Matthew Atkins on 20/07/2011.
 //  Copyright 2011 Yoomee. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "SessionDetailViewController.h"
 #import "PicnicAppDelegate.h"
 #import "Synchroniser.h"
@@ -36,6 +36,13 @@
         [aBarButton setWidth:30.0];
         self.attendingToggleButton  = aBarButton;
         [aBarButton release];
+        
+        UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WelcomePortrait.png"]];
+        welView.contentMode = UIViewContentModeTopLeft;
+        welView.frame = CGRectMake(0, 0, 960, 960);
+//        welView.tag = 1;
+        self.welcomeView = welView;
+        [welView release];
     }
     return self;
 }
@@ -84,14 +91,11 @@
         } else {
             [self.attendingToggleButton setImage:[UIImage imageNamed:@"toolbarStarEmpty.png"]];
         }
-        if (self.welcomeView){
-            for (UIView *subView in self.contentView.subviews)
+        for (UIView *subView in self.contentView.subviews) {
+            if(subView.tag == 1)
+                [subView removeFromSuperview];
+            else
                 [subView setHidden:NO];
-            [self.welcomeView removeFromSuperview];
-        }
-        for (UIView *view in self.contentView.subviews) {
-            if(view.tag == 1)
-                [view removeFromSuperview];
         }
         NSMutableArray *tagImages = [[NSMutableArray alloc] init];
         [self.conferenceSession.tags enumerateObjectsUsingBlock:^(Tag *tag, BOOL *stop) {
@@ -118,17 +122,20 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         BOOL canUseMyProgram = (([defaults boolForKey:@"neverSyncMyProgram"])||([[defaults stringForKey:@"apiKey"] length] > 0));
         if (canUseMyProgram && !containsAttendingToggle) {
+            [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStylePlain];
+            self.navigationItem.rightBarButtonItem = self.attendingToggleButton;
             NSMutableArray *items = [self.toolbar.items mutableCopy];
             [items addObject:self.attendingToggleButton];
             self.toolbar.items = items;
             [items release];
         } else if (!canUseMyProgram && containsAttendingToggle) {
+            self.navigationItem.rightBarButtonItem = nil;
             NSMutableArray *items = [self.toolbar.items mutableCopy];
             [items removeObject:self.attendingToggleButton];
             self.toolbar.items = items;
             [items release];
         }
-
+        [self.welcomeView setHidden:YES];
 
     }
 }
@@ -160,17 +167,15 @@
     for (UIView *subView in self.contentView.subviews)
         [subView setHidden:YES];
     NSString *imageName;        
-    if ((interfaceOrientation == 3) || (interfaceOrientation == 4)) {
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
         imageName = @"WelcomeLandscape.png";
-        } else {
+    } else {
         imageName = @"WelcomePortrait.png";
     }
-    UIImageView *welView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-    self.welcomeView = welView;
-    [self.contentView addSubview:welView];
-    [welView release];
+    [self.welcomeView setImage:[UIImage imageNamed:imageName]];
+    [self.welcomeView setHidden:NO];
+    [self.contentView addSubview:self.welcomeView];
     [self.toolbar setTintColor:[UIColor blackColor]];
-
 }
 
 #pragma mark - View lifecycle
@@ -190,9 +195,6 @@
     [self setContentView:nil];
     [self setWelcomeView:nil];
     self.conferenceSession = nil;
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.welcomeView = nil;
     [self setAttendingToggleButton:nil];
     [super viewDidUnload];
 }
@@ -245,6 +247,25 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self resizeSessionTextAndContentView];
+    NSString *imageName;
+    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
+        imageName = @"WelcomeLandscape.png";
+    } else {
+        imageName = @"WelcomePortrait.png";
+    }
+    
+    [UIView beginAnimations:@"fadeOut" context:nil]; 
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    self.welcomeView.alpha = 0;
+    [UIView commitAnimations];
+    [self.welcomeView setImage:[UIImage imageNamed:imageName]];
+    [UIView beginAnimations:@"fadeOut" context:nil]; 
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    self.welcomeView.alpha = 1;
+    [UIView commitAnimations];
+    
 }
 
 #pragma mark - Split view

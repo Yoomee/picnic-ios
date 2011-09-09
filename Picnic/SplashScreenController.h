@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SplashScreenController : UIViewController
+@interface SplashScreenController : UIViewController {
+    UIImageView *imageView;
+}
+@property (assign, nonatomic) BOOL landscape;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 @end

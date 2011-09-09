@@ -201,7 +201,7 @@
 
 -(void)willStartUpdate{
     NSLog(@"Updating program.");    
-    self.alertView = [[UIAlertView alloc] initWithTitle:@"Updating program\nPlease wait..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    self.alertView = [[UIAlertView alloc] initWithTitle:@"Updating program" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
     [self.alertView show];
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     indicator.center = CGPointMake(self.alertView.bounds.size.width / 2, self.alertView.bounds.size.height - 50);
@@ -222,13 +222,11 @@
     [NSFetchedResultsController deleteCacheWithName:@"MyDay3"];
     [self refreshViewControllers];
     [self.alertView dismissWithClickedButtonIndex:0 animated:YES];
-    SessionDetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
-    [controller.welcomeView removeFromSuperview];
     [self hideSplashScreen];
 }
 - (void)hideSplashScreen
 {
-    SessionDetailViewController *controller = [self.splitViewController.viewControllers objectAtIndex:1];
+    SessionDetailViewController *controller = [(RootViewController *)[(UINavigationController *)[self.splitViewController.viewControllers objectAtIndex:0] topViewController] sessionDetailViewController];
     controller.contentView.alpha = 0.0;
     [controller showWelcome:self.window.rootViewController.interfaceOrientation];
     self.splashScreenController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

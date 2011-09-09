@@ -9,6 +9,8 @@
 #import "SplashScreenController.h"
 
 @implementation SplashScreenController
+@synthesize imageView;
+@synthesize landscape = _landscape;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,12 +33,22 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"View did load");
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if (self.landscape) {
+        [self.imageView setImage:[UIImage imageNamed:@"Default-Landscape~ipad.png"]];
+    } else {
+        [self.imageView setImage:[UIImage imageNamed:@"Default-Portrait~ipad.png"]];
+    }
+}
+
 - (void)viewDidUnload
 {
+    [self setImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -44,12 +56,14 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    NSLog(@"Should rotate, Landscape:%i", UIInterfaceOrientationIsLandscape(interfaceOrientation));
+    self.landscape = UIInterfaceOrientationIsLandscape(interfaceOrientation);
 	return YES;
 }
 
 - (void)dealloc
 {
+    [imageView release];
     [super dealloc];
 }
 

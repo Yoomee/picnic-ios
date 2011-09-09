@@ -140,7 +140,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.viewingInfoTab){
-        return 2;
+        return 3;
     } else if (self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0){
         return 1;
     } else{
@@ -165,10 +165,15 @@
                 break;
             case 1:
                 cell.textLabel.text = @"Festival Themes";
+                break;
+            case 2:
+                cell.textLabel.text = @"Useful Information";
+                break;
             default:
                 break;
         }
         // Configure the cell.
+        [cell.imageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"infoRow%i.png", [indexPath row]]]];
 
         return cell;
     }else {
