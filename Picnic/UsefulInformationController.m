@@ -41,7 +41,7 @@
 {
     [super viewDidLoad];
     self.title = @"Useful Information";
-    self.scrollView.contentSize = CGSizeMake(0, 1674);
+    self.scrollView.contentSize = CGSizeMake(0, 1839);
     // Do any additional setup after loading the view from its nib.
 }
 
