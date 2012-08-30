@@ -522,13 +522,10 @@
     self.currentDay = [sender selectedSegmentIndex] + 1;
     switch(self.currentDay) {
         case 2:
-            self.title = @"Thursday 15 September";
-            break;
-        case 3:
-            self.title = @"Friday 16 September";
+            self.title = @"Tuesday 18 September";
             break;
         default:
-            self.title = @"Wednesday 14 September";
+            self.title = @"Monday 17 September";
     }
     __fetchedResultsController = nil;
     [self.tableView reloadData];
