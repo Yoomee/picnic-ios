@@ -97,27 +97,27 @@
             else
                 [subView setHidden:NO];
         }
-        NSMutableArray *tagImages = [[NSMutableArray alloc] init];
-        [self.conferenceSession.tags enumerateObjectsUsingBlock:^(Tag *tag, BOOL *stop) {
-            NSString *tagString = [NSString stringWithFormat:@"tag%i.png", [tag.uid intValue]];
-            if([self.conferenceSession mainTagIs:tag]){
-                [tagImages insertObject:tagString atIndex:0];
-            } else {
-                [tagImages addObject:tagString];
-            }
-        }];
-        float numberOfTags = [tagImages count];
-        [tagImages enumerateObjectsUsingBlock:^(NSString *imageName, NSUInteger idx, BOOL *stop){
-            UIImageView *tagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-            float tagX = (((idx + 1)-((numberOfTags + 1)/2)) * 45) + self.contentView.center.x;
-            float tagY = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 23 : 45);
-            tagView.center = CGPointMake(tagX, tagY);
-            tagView.tag = 1;
-            tagView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin);
-            [self.contentView addSubview:tagView];
-            [tagView release];
-        }];
-        [tagImages release];
+//        NSMutableArray *tagImages = [[NSMutableArray alloc] init];
+//        [self.conferenceSession.tags enumerateObjectsUsingBlock:^(Tag *tag, BOOL *stop) {
+//            NSString *tagString = [NSString stringWithFormat:@"tag%i.png", [tag.uid intValue]];
+//            if([self.conferenceSession mainTagIs:tag]){
+//                [tagImages insertObject:tagString atIndex:0];
+//            } else {
+//                [tagImages addObject:tagString];
+//            }
+//        }];
+//        float numberOfTags = [tagImages count];
+//        [tagImages enumerateObjectsUsingBlock:^(NSString *imageName, NSUInteger idx, BOOL *stop){
+//            UIImageView *tagView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+//            float tagX = (((idx + 1)-((numberOfTags + 1)/2)) * 45) + self.contentView.center.x;
+//            float tagY = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? 23 : 45);
+//            tagView.center = CGPointMake(tagX, tagY);
+//            tagView.tag = 1;
+//            tagView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin);
+//            [self.contentView addSubview:tagView];
+//            [tagView release];
+//        }];
+//        [tagImages release];
         BOOL containsAttendingToggle = [[self.toolbar items] containsObject:self.attendingToggleButton];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
