@@ -31,7 +31,7 @@
         NSString *progVersion = [defaults stringForKey:@"programVersion"];
         NSString *urlString;
         if (apiKey.length == 0) {
-            urlString = [NSString stringWithFormat:@"%@/api/program/%@",SERVER_URL,progVersion];
+            urlString = [NSString stringWithFormat:@"%@/api/program/%@?conference_id=2",SERVER_URL,progVersion];
         } else {
             NSString *myProgramVersion = [defaults stringForKey:@"myProgramVersion"];
             urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@",SERVER_URL,progVersion, apiKey, myProgramVersion];
