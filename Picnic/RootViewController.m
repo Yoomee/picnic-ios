@@ -146,7 +146,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(self.viewingInfoTab){
-        return 4;
+        return 2;
     } else if (self.myProgram && [[self.fetchedResultsController fetchedObjects] count] == 0){
         return 1;
     } else{
@@ -167,15 +167,9 @@
         }
         switch ([indexPath row]) {
             case 0:
-                cell.textLabel.text = @"City Map";
-                break;
-            case 1:
-                cell.textLabel.text = @"Festival Themes";
-                break;
-            case 2:
                 cell.textLabel.text = @"Useful Information";
                 break;
-            case 3:
+            case 1:
                 cell.textLabel.text = @"About the app";
                 break;
             default:
@@ -231,7 +225,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(self.viewingInfoTab){
-        if([indexPath row] == 0){
+        if([indexPath row] == 99){
+            // not showing Festival Themes for 2012            
             if(_mapViewController == nil){
                 NSString *mapNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"MapViewController_iPhone" : @"MapViewController_iPad");
                 MapViewController *myMapViewController = [[MapViewController alloc] initWithNibName:mapNibName bundle:nil];
@@ -248,7 +243,8 @@
             } else if (self.detailViewController != self.mapViewController){
                 self.detailViewController = self.mapViewController;
             }
-        } else if([indexPath row] == 1){
+        } else if([indexPath row] == 99){
+            // not showing Festival Themes for 2012
             if(_festivalThemesController == nil){
                 NSString *themesNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"FestivalThemesController_iPhone" : @"FestivalThemesController_iPad");
                 FestivalThemesController *myFestivalThemesController = [[FestivalThemesController alloc] initWithNibName:themesNibName bundle:nil];
@@ -265,7 +261,7 @@
             } else if (self.detailViewController != self.festivalThemesController){
                 self.detailViewController = self.festivalThemesController;
             }
-        } else if([indexPath row] == 2){
+        } else if([indexPath row] == 0){
             if(_usefulInformationController == nil){
                 NSString *nibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"UsefulInformationController_iPhone" : @"UsefulInformationController_iPad");
                 UsefulInformationController *myUsefulInformationController = [[UsefulInformationController alloc] initWithNibName:nibName bundle:nil];
@@ -282,7 +278,7 @@
             } else if (self.detailViewController != self.usefulInformationController){
                 self.detailViewController = self.usefulInformationController;
             }
-        } else if([indexPath row] == 3){
+        } else if([indexPath row] == 1){
             if(_aboutAppController == nil){
                 NSString *themesNibName = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone ? @"AboutAppController_iPhone" : @"AboutAppController_iPad");
                 AboutAppController *myAboutAppController = [[AboutAppController alloc] initWithNibName:themesNibName bundle:nil];
