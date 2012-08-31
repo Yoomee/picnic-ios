@@ -109,10 +109,6 @@
 		5B94CBEC13D869FA00317CD8 /* SessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B94CBEB13D869FA00317CD8 /* SessionCell.m */; };
 		5B94CBEF13D86A4600317CD8 /* SessionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B94CBEE13D86A4600317CD8 /* SessionCell.xib */; };
 		5BA4873A13F03BCF009754DA /* app_icon_512.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873413F03BCF009754DA /* app_icon_512.png */; };
-		5BA4873D13F03BCF009754DA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */; };
-		5BA4873E13F03BCF009754DA /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */; };
-		5BA4874813F03E6E009754DA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874713F03E6E009754DA /* Default.png */; };
-		5BA4874E13F03F30009754DA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA4874D13F03F30009754DA /* Default@2x.png */; };
 		5BB386E0141969170060689A /* MyProgramCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB386DF141969170060689A /* MyProgramCell.xib */; };
 		5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5BB844C113D88E65001E4753 /* Picnic.sqlite */; };
 		5BD4C3E513F0483C0030FCFA /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD4C3E313F0483C0030FCFA /* SplashScreenController.m */; };
@@ -129,6 +125,10 @@
 		5BDE61B514178CB900BD358F /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61B314178CB900BD358F /* info@2x.png */; };
 		5BDE61B914178F6500BD358F /* MapViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */; };
 		5BDE89FA13E6E63A00A9D343 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDE89F913E6E63A00A9D343 /* Member.m */; };
+		BD97485115F0AA6C00CF8406 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97485015F0AA6B00CF8406 /* Default.png */; };
+		BD97485415F0AA7900CF8406 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97485315F0AA7900CF8406 /* Default@2x.png */; };
+		BD97485615F0AA8600CF8406 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97485515F0AA8600CF8406 /* Default-Portrait~ipad.png */; };
+		BD97485815F0AA9200CF8406 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = BD97485715F0AA9200CF8406 /* Default-Landscape~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,10 +283,6 @@
 		5B94CBEB13D869FA00317CD8 /* SessionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCell.m; sourceTree = "<group>"; };
 		5B94CBEE13D86A4600317CD8 /* SessionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionCell.xib; sourceTree = "<group>"; };
 		5BA4873413F03BCF009754DA /* app_icon_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon_512.png; path = images/app_icon_512.png; sourceTree = "<group>"; };
-		5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "images/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "images/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		5BA4874713F03E6E009754DA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
-		5BA4874D13F03F30009754DA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
 		5BB386DF141969170060689A /* MyProgramCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyProgramCell.xib; sourceTree = "<group>"; };
 		5BB844C113D88E65001E4753 /* Picnic.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Picnic.sqlite; sourceTree = "<group>"; };
 		5BBEDCEE1415041200AAE33B /* Picnic1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Picnic1.2.xcdatamodel; sourceTree = "<group>"; };
@@ -307,6 +303,10 @@
 		5BDE61B814178F6500BD358F /* MapViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController_iPhone.xib; sourceTree = "<group>"; };
 		5BDE89F813E6E63A00A9D343 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Member.h; sourceTree = "<group>"; };
 		5BDE89F913E6E63A00A9D343 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Member.m; sourceTree = "<group>"; };
+		BD97485015F0AA6B00CF8406 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BD97485315F0AA7900CF8406 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		BD97485515F0AA8600CF8406 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		BD97485715F0AA9200CF8406 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,16 +520,16 @@
 				5B2D3C9E141A213000BE9961 /* toolbarStarEmptyBlack@2x.png */,
 				5BDE61A21417865100BD358F /* attendingStar.png */,
 				5BDE61A31417865100BD358F /* attendingStar@2x.png */,
+				BD97485715F0AA9200CF8406 /* Default-Landscape~ipad.png */,
+				BD97485515F0AA8600CF8406 /* Default-Portrait~ipad.png */,
+				BD97485315F0AA7900CF8406 /* Default@2x.png */,
+				BD97485015F0AA6B00CF8406 /* Default.png */,
 				5BDE61A41417865100BD358F /* attendingStarSelected.png */,
 				5BDE61A51417865100BD358F /* attendingStarSelected@2x.png */,
-				5BA4874713F03E6E009754DA /* Default.png */,
-				5BA4874D13F03F30009754DA /* Default@2x.png */,
 				5B24F00E13F2F4F6006F4CBB /* app_icon_57.png */,
 				5B24F01113F2F523006F4CBB /* app_icon_72.png */,
 				5B24F01313F2F52B006F4CBB /* app_icon_114.png */,
 				5BA4873413F03BCF009754DA /* app_icon_512.png */,
-				5BA4873713F03BCF009754DA /* Default-Landscape~ipad.png */,
-				5BA4873813F03BCF009754DA /* Default-Portrait~ipad.png */,
 				5B3716A413F2DC3000739EC4 /* WelcomePortrait.png */,
 				5B8F0CC013F298380016E114 /* WelcomeLandscape.png */,
 			);
@@ -720,10 +720,6 @@
 				5BB844C213D88E65001E4753 /* Picnic.sqlite in Resources */,
 				5B78C2D813E6FF1A00EEB790 /* SpeakerThumbnail.xib in Resources */,
 				5BA4873A13F03BCF009754DA /* app_icon_512.png in Resources */,
-				5BA4873D13F03BCF009754DA /* Default-Landscape~ipad.png in Resources */,
-				5BA4873E13F03BCF009754DA /* Default-Portrait~ipad.png in Resources */,
-				5BA4874813F03E6E009754DA /* Default.png in Resources */,
-				5BA4874E13F03F30009754DA /* Default@2x.png in Resources */,
 				5BD4C3E613F0483C0030FCFA /* SplashScreen_iPad.xib in Resources */,
 				5B589E0613F134D900DFD44D /* SplashScreen_iPhone.xib in Resources */,
 				5B589E0C13F157B100DFD44D /* Entitlements.entitlements in Resources */,
@@ -778,6 +774,10 @@
 				5B2D3CBC141A81BB00BE9961 /* AboutAppController_iPad.xib in Resources */,
 				5B2D3CBD141A81BB00BE9961 /* AboutAppController_iPhone.xib in Resources */,
 				5B2D3CC0141A82B700BE9961 /* yoomee_logo.png in Resources */,
+				BD97485115F0AA6C00CF8406 /* Default.png in Resources */,
+				BD97485415F0AA7900CF8406 /* Default@2x.png in Resources */,
+				BD97485615F0AA8600CF8406 /* Default-Portrait~ipad.png in Resources */,
+				BD97485815F0AA9200CF8406 /* Default-Landscape~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
