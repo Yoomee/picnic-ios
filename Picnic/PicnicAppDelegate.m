@@ -150,8 +150,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     NSInteger dbVersion = [defaults integerForKey:@"dbVersion"]; 
 
-    if (!(dbVersion && (dbVersion == 2))) {
-        [defaults setInteger:2 forKey:@"dbVersion"];
+    if (!(dbVersion && (dbVersion == 3))) {
+        [defaults setInteger:3 forKey:@"dbVersion"];
         NSLog(@"Replacing database");
         NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Picnic.sqlite"];
         NSFileManager *fileManager = [NSFileManager defaultManager];
