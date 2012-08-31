@@ -965,6 +965,7 @@
 				);
 				PRODUCT_NAME = "PICNIC Festival";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "86B56BF0-4B0D-477D-9BBD-2893412D3578";
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Distribution;
@@ -1023,6 +1024,7 @@
 				);
 				PRODUCT_NAME = "PICNIC Festival";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "09C7DA14-869B-45B4-95D3-21A9F02FE2F1";
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -1094,7 +1096,7 @@
 		5B5CFF6E13D720110080184E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matt Atkins (86N66R4WRU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ian Mooney (5L9XZ92D2F)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Picnic/Picnic-Prefix.pch";
@@ -1106,7 +1108,8 @@
 					"/usr/include/libxml2/**",
 				);
 				PRODUCT_NAME = "PICNIC Festival";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B4D326-135A-4DCD-B863-77CD0554414E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E17FEF57-F48C-4227-91CC-6FA8068E203E";
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1125,6 +1128,7 @@
 					"/usr/include/libxml2/**",
 				);
 				PRODUCT_NAME = "PICNIC Festival";
+				SDKROOT = iphoneos4.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

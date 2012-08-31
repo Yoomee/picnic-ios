@@ -34,7 +34,7 @@
             urlString = [NSString stringWithFormat:@"%@/api/program/%@?conference_id=2",SERVER_URL,progVersion];
         } else {
             NSString *myProgramVersion = [defaults stringForKey:@"myProgramVersion"];
-            urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@",SERVER_URL,progVersion, apiKey, myProgramVersion];
+            urlString = [NSString stringWithFormat:@"%@/api/program/%@?api_key=%@&my_program_version=%@&conference_id=2",SERVER_URL,progVersion, apiKey, myProgramVersion];
         }
         NSLog(@"%@",urlString);
         NSURL *url = [NSURL URLWithString:urlString];
